@@ -10,16 +10,16 @@ In the year of 2025, everybody is talking and doing AI things...
 #### I. Deterministic vs. Probabilistic 
 Most of the people of my era had read the book [Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are just organized data working in a specific way, ie. array, list, stack. queue and tree are canonical widget on early university project, so to speak. But there are also hash, collection, bag, dictionary and many more... 
 
-All and all, they share common but obvious characteristics: 
+They share common characteristics: 
 - Reside in memory; 
 - Memory consumed is proportional to number of elements; 
 - No matter the order of data, they always work as expected; 
 - Subject to different levels of [Time complexity](https://en.wikipedia.org/wiki/Time_complexity). 
 
-Typically speaking, there are three kinds problem in real life: 
+All in all, within any organized data, there are three kinds of problem in real life: 
 - Cardinality : count number of unique elements; 
-- Membership : test a specific element exists; 
-- Frequency : how many times an element appear;
+- Membership : test if a specific element exists; 
+- Frequency : how many times an element appears;
 
 For hundreds of records, it is easy to handle with a table: 
 ```
@@ -46,6 +46,9 @@ SELECT EXISTS(SELECT 1 FROM t WHERE value = 'David') AS exists_check;
 -- Frequency 
 SELECT count(*) as freq FROM t WHERE value='David'; 
 ```
+
+But when we have ten thousands or ten millions of records, storing and counting table in real time is impractical or even impossible. This is where probabilistic data structure comes into play. 
+
 
 #### II. Bloom Filter 
 
