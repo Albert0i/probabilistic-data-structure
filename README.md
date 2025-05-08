@@ -16,7 +16,7 @@ They share common characteristics:
 - No matter the order of data, they always work as expected; 
 - Subject to different levels of [Time complexity](https://en.wikipedia.org/wiki/Time_complexity). 
 
-All in all, within any organized data, there are three kinds of problem in real life: 
+All in all, within any organized data, there are three kinds of problem: 
 - Cardinality : count number of unique elements; 
 - Membership : test if a specific element exists; 
 - Frequency : how many times an element appears;
