@@ -8,7 +8,7 @@ In the year of 2025, everybody is doing AI things...
 
 
 #### I. Deterministic vs. Probabilistic 
-Most of the data structures I know are learned from university and most of us had read the book[Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf) 
+Most of the people of my era had read the book [Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf). 
 
 ```
 USE test; 
