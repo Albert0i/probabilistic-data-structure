@@ -4,11 +4,11 @@
 
 
 #### Prologue
-In the year of 2025, everybody is doing AI things. 
+In the year of 2025, everybody is doing AI things... 
 
 
-#### I. 
-Algorithms and Data Structures by Niklaus Wirth (1985)
+#### I. Deterministic vs. Probabilistic 
+[Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf)
 
 #### II. 
 
