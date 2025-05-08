@@ -4,12 +4,24 @@
 
 
 #### Prologue
-In the year of 2025, everybody is doing AI things... 
+In the year of 2025, everybody is talking and doing AI things... 
 
 
 #### I. Deterministic vs. Probabilistic 
-Most of the people of my era had read the book [Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf). 
+Most of the people of my era had read the book [Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are just organized data working in a specific way, ie. array, list, stack. queue and tree are canonical widget on early university project, so to speak. But there are also hash, collection, bag, dictionary and many more... 
 
+All and all, they share common but obvious characteristics: 
+- Reside in memory; 
+- Memory consumed is proportional to number of elements; 
+- No matter the order of data, they always work as expected; 
+- Subject to different levels of [Time complexity](https://en.wikipedia.org/wiki/Time_complexity). 
+
+Typically speaking, there are three kinds problem in real life: 
+- Cardinality : count number of unique elements; 
+- Membership : test a specific element exists; 
+- Frequency : how many times an element appear;
+
+For hundreds of records, it is easy to handle with a table: 
 ```
 USE test; 
 
@@ -22,54 +34,17 @@ CREATE TABLE t (
 CREATE INDEX idx_value ON t(value(255)); 
 ```
 
+And insert our data accordingly then: 
 ```
-INSERT INTO t (value) VALUES
--- Highly duplicated (appears 5 times)
-('Alice'), ('Alice'), ('Alice'), ('Alice'), ('Alice'),
-('Bob'), ('Bob'), ('Bob'), ('Bob'), ('Bob'),
-('Charlie'), ('Charlie'), ('Charlie'), ('Charlie'), ('Charlie'),
+-- Cardinality 
+SELECT COUNT(*) as card 
+FROM (SELECT DISTINCT value FROM t) t1; 
 
--- Moderately duplicated (appears 3 times)
-('David'), ('David'), ('David'),
-('Emma'), ('Emma'), ('Emma'),
-('Fiona'), ('Fiona'), ('Fiona'),
-('George'), ('George'), ('George'),
+-- Membership 
+SELECT EXISTS(SELECT 1 FROM t WHERE value = 'David') AS exists_check;
 
--- Slightly duplicated (appears 2 times)
-('Hannah'), ('Hannah'),
-('Isaac'), ('Isaac'),
-('Jack'), ('Jack'),
-('Katherine'), ('Katherine'),
-('Liam'), ('Liam'),
-('Mia'), ('Mia'),
-('Nathan'), ('Nathan'),
-('Olivia'), ('Olivia'),
-
--- Unique names (appears 1 time)
-('Peter'), ('Quinn'), ('Rachel'), ('Samuel'), ('Taylor'), 
-('Ursula'), ('Victor'), ('Willow'), ('Xavier'), ('Yvonne'), 
-('Zachary'), ('Amber'), ('Brandon'), ('Catherine'), ('Derek'),
-('Ella'), ('Frank'), ('Grace'), ('Harry'), ('Isabella'), 
-('Jordan'), ('Kylie'), ('Leo'), ('Madison'), ('Noah'),
-('Oscar'), ('Paige'), ('Quentin'), ('Rebecca'), ('Scott'),
-('Tiffany'), ('Ulysses'), ('Vanessa'), ('Warren'), ('Xander'),
-('Yasmine'), ('Zane'), ('Annabelle'), ('Bennett'), ('Celeste'),
-('Dominic'), ('Eliza'), ('Frederick'), ('Gabrielle'), ('Henry'),
-('Ivy'), ('Jasper'), ('Kayla'), ('Lucas'), ('Megan'),
-('Nicholas'), ('Opal'), ('Preston'), ('Quincy'), ('Riley'),
-('Sebastian'), ('Trinity'), ('Uriah'), ('Valerie'), ('Wesley'),
-('Ximena'), ('Yosef'), ('Zara'), ('Anthony'), ('Bethany'),
-('Cedric'), ('Daisy'), ('Edwin'), ('Francine'), ('Gavin'),
-('Hailey'), ('Ian'), ('Juliet'), ('Kevin'), ('Lillian'),
-('Mason'), ('Natalie'), ('Owen'), ('Penelope'), ('Ryan'),
-('Sadie'), ('Tyler'), ('Uma'), ('Violet');
-```
-
-```
-select value, count(*) 
-from t
-group by value
-order by 2 desc 
+-- Frequency 
+SELECT count(*) as freq FROM t WHERE value='David'; 
 ```
 
 #### II. Bloom Filter 
