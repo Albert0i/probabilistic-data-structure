@@ -3,10 +3,12 @@
 > "Finally his eyes grow dim, and he no longer knows whether it's really getting darker or just his eyes that are deceiving him. But he seems now to see an inextinguishable light begin to shine from the darkness behind the door. He doesn't have long to live now." 
 
 
-#### prologue
-Algorithms and Data Structures by Niklaus Wirth (1985)
+#### Prologue
+In the year of 2025, everybody is doing AI things. 
+
 
 #### I. 
+Algorithms and Data Structures by Niklaus Wirth (1985)
 
 #### II. 
 
