@@ -85,6 +85,28 @@ After inserting sample data from `bf.redis`:
 (integer) 1
 ```
 
+After inserting sample data from `bf.redis`:
+```
+> TOPK.QUERY PDS:t:freq 'David'
+1) "1"
+
+> TOPK.LIST PDS:t:freq WITHCOUNT
+1) "Alice"
+2) "5"
+3) "Charlie"
+4) "5"
+5) "Bob"
+6) "5"
+7) "David"
+8) "3"
+9) "George"
+10) "3"
+. . . 
+197) "Sebastian"
+198) "1"
+```
+
+
 #### II. [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) 
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
