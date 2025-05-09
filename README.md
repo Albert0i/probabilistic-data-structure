@@ -58,10 +58,16 @@ As you can see, we use a single data structure, ie. table, to address three prob
 ![alt membership](img/t.member.JPG)
 ![alt frequency](img/t.freq.JPG)
 
-As you can see, we have 103 rows and data size is 0.03MB. 
+We have 127 records and data size is 0.03MB. 
 ![alt data size](img/t.data-size.JPG)
 
-When records scale up to ten billions, aggregating in real time is impractical or even impossible. This is where PDS comes into play. 
+However, scaling up to ten billions, aggregating in real time is impractical or even impossible and let alone the data size. This is where PDS comes into play. 
+
+**Caveat**
+
+1. PDS are special data structures to tackle humungous data size; 
+1. PDS trades accuracy for speed and size, you won't get 100% accuracy and have to endure false positive somehow; 
+2. Good estimation of elements is a MUST. 
 
 
 #### II. Bloom Filter 
