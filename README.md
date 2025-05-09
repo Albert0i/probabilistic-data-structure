@@ -4,24 +4,24 @@
 
 
 #### Prologue
-In the year of 2025, everybody is talking and doing AI things... 
+In the year of 2025, everybody is talking and doing AI things... Probabilistic Data Structure, or PDS for short, doesn't have direct bearing with AI but more to do with data analytic issue. If records to be processed are ten thousands then any RDBMS will do. If records to be processed are ten millions or even ten billions and you are more concern with speed and size than accuracy, PDS is a obvios choice. 
 
 
 #### I. Deterministic vs. Probabilistic 
-Most of the people of my era had read the book [Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are just organized data working in a specific way, ie. array, list, stack. queue and tree are canonical widget on early university project, so to speak. But there are also hash, collection, bag, dictionary and many more... 
+Most people of my era have read the book [Algorithms and Data Structures by Niklaus Wirth (1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are simply organized data working in a specific way, ie. array, list, stack. queue and tree are canonical data structures to be taught in university, so to speak. But there are also hash, collection, bag, dictionary and many more... 
 
-They share common characteristics: 
-- Reside in memory; 
+All of them shares common characteristics: 
+- Resides in memory; 
 - Memory consumed is proportional to number of elements; 
-- No matter the order of data, they always work as expected; 
+- No matter the order of data, it always works as expected; 
 - Subject to different levels of [Time complexity](https://en.wikipedia.org/wiki/Time_complexity). 
 
-All in all, within any organized data, there are three kinds of problem: 
-- Cardinality : count number of unique elements; 
-- Membership : test if a specific element exists; 
-- Frequency : how many times an element appears;
+Within organized data of any form, there are three kinds of problem: 
+- Cardinality: count number of unique elements; 
+- Membership: test if a specific element exists; 
+- Frequency: how many times an element appears;
 
-For hundreds of records, it is easy to handle with a table: 
+It is easy to handle with a table in MariaDB, for example: 
 ```
 USE test; 
 
@@ -34,18 +34,26 @@ CREATE TABLE t (
 CREATE INDEX idx_value ON t(value(255)); 
 ```
 
-And insert our data accordingly then: 
+After inserting sample data from `t.sql`: 
 ```
 -- Cardinality 
 SELECT COUNT(*) as card 
 FROM (SELECT DISTINCT value FROM t) t1; 
 
+99
+
 -- Membership 
 SELECT EXISTS(SELECT 1 FROM t WHERE value = 'David') AS exists_check;
 
+1 
+
 -- Frequency 
 SELECT count(*) as freq FROM t WHERE value='David'; 
+
+3
 ```
+
+As you can see, we use a single data structure, ie. a table, to address the three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) properties, RDBMS stores data on disk. Data has to be pull out in order to make search and aggregation repeatedly. 
 
 But when we have ten thousands or ten millions of records, storing and counting table in real time is impractical or even impossible. This is where probabilistic data structure comes into play. 
 
