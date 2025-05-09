@@ -51,7 +51,7 @@ SELECT COUNT(*) as freq FROM t WHERE value='David';
 3
 ```
 
-Easy-peasy! As you can see, we use a single data structure, ie. table, to address three problems. Owning to the [ACID](https://en.wikipedia.org/wiki/ACID) nature, RDBMS stores data on disk. By means of index, it just know where to pull out data to make aggregation. 
+Easy-peasy! As you can see, we use a single data structure, ie. table, to address three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) nature, RDBMS stores data on disk and by dint of index, it just know where to pull out data to make aggregations. 
 ![alt cardinality](img/t.card.JPG)
 ![alt membership](img/t.member.JPG)
 ![alt frequency](img/t.freq.JPG)
@@ -59,19 +59,18 @@ Easy-peasy! As you can see, we use a single data structure, ie. table, to addres
 We have 127 records and data size is 0.03MB which is ≈ 30.72KB. 
 ![alt data size](img/t.data-size.JPG)
 
-When scaling up to billions, aggregating in real time is impractical or even impossible and let alone data size. This is where PDS comes into play. 
+When scaling up to billions, aggregating in real time is impractical and virtually impossible. This is where PDS comes into play... 
 
 **Caveat**
 
-- PDS are specialized data structures to tackle humungous data size for specific purpose; 
+- PDS are specialized data structures to tackle *humungous* data size for specific purpose; 
 - PDS trades accuracy for speed and size, you won't get 100% accuracy and have to endure false positive somehow; 
-- Good estimation of elements is a MUST otherwise accuracy would dwindle drastically;  
-- PDS are advanced data structures and thus more insight understanding are required. 
+- Good estimation of elements is a **MUST** otherwise accuracy would dwindle drastically; 
 ---
 A **false positive** occurs when a test or system incorrectly identifies something as true or present when it actually isn’t. This concept is commonly used in areas like **machine learning, security, medicine, and data analysis**.
 
 
-Here, I am going to apply [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/) [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) and [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/) one by one. 
+Here, I am going to demo [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/) [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) and [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/) one by one. 
 
 After inserting sample data from `pf.redis`:
 ```
