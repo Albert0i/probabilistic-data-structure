@@ -66,7 +66,7 @@ When scaling up to billions, aggregating in real time is impractical or even imp
 - PDS are specialized data structures to tackle humungous data size for specific purpose; 
 - PDS trades accuracy for speed and size, you won't get 100% accuracy and have to endure false positive somehow; 
 - Good estimation of elements is a MUST otherwise accuracy would dwindle drastically;  
-- PDS are far more complicated than aforementioned canonical data structures and not easy to implement even though you know the inner workings.  
+- PDS are advanced data structures and thus more insight understanding are required. 
 
 Here, I am going to apply [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/) [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) and [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/) one by one. 
 
