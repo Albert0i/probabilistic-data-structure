@@ -4,7 +4,7 @@
 
 
 #### Prologue
-In the year of 2025, everybody is talking and doing AI things... Probabilistic Data Structure, or PDS for short, doesn't have direct bearing with AI but more to do with data analytic issue. If records to be processed are ten thousands then any RDBMS will do. If records to be processed are ten millions or even ten billions and you are more concern with speed and size than accuracy, PDS is a obvios choice. 
+In the year of 2025, everybody is talking and doing AI things... Probabilistic Data Structure, or PDS for short, doesn't have direct bearing on AI but more to do with data analytic issue. If records to be processed are ten thousands then any RDBMS will do. If records to be processed are ten millions or even ten billions and you are more concerned with speed and size rather than accuracy, PDS is an obvios choice. 
 
 
 #### I. Deterministic vs. Probabilistic 
@@ -53,7 +53,10 @@ SELECT count(*) as freq FROM t WHERE value='David';
 3
 ```
 
-As you can see, we use a single data structure, ie. a table, to address the three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) properties, RDBMS stores data on disk. Data has to be pull out in order to make search and aggregation repeatedly. 
+As you can see, we use a single data structure, ie. table, to address the three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) properties, RDBMS stores data on disk. By means of index, it just know where to pull out data to make aggregation accordingly. 
+![alt cardinality](img/t.card.JPG)
+![alt membership](img/t.member.JPG)
+![alt frequency](img/t.freq.JPG)
 
 But when we have ten thousands or ten millions of records, storing and counting table in real time is impractical or even impossible. This is where probabilistic data structure comes into play. 
 
