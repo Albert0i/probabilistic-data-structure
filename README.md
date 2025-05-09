@@ -70,6 +70,9 @@ However, scaling up to ten billions, aggregating in real time is impractical or 
 - Good estimation of elements is a MUST otherwise accuracy would dwindle drastically;  
 - PDS are far more complicated than aforementioned canonical data structures and not easy to implement even though you know the inner workings.  
 
+I am going to use [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/), [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) and [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/) one by one. 
+
+
 
 #### II. Bloom Filter 
 
