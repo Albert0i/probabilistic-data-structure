@@ -8,7 +8,7 @@ In the year of 2025, everybody is talking and doing AI things... Probabilistic D
 
 
 #### I. Deterministic vs. Probabilistic 
-Most people of my era have read the book [Algorithms and Data Structures by Niklaus Wirth 1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are simply organized data working in a specific way, ie. array, list, stack. queue and tree are canonical data structures to be taught in university, so to speak. But there are also hash, collection, bag, dictionary and many more... 
+Most people of my era have read the book [Algorithms and Data Structures by Niklaus Wirth 1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are simply *organized* data working in a specific way, ie. array, list, stack. queue and tree are *canonical* data structures to be taught in university, so to speak. But there are also hash, collection, bag, dictionary and many more... 
 
 All of them shares common characteristics: 
 - Resides in memory; 
