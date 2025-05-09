@@ -206,6 +206,7 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 
 #### Epilogue
+> "'correct understanding of a matter and a misunderstanding of the same matter are not mutually exclusive'."
 
 
 ### EOF 2025/05/30)
