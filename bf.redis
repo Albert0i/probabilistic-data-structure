@@ -1,0 +1,12 @@
+
+BF.MADD PDS:t:member 'Alice' 'Alice' 'Alice' 'Alice' 'Alice' 'Bob' 'Bob' 'Bob' 'Bob' 'Bob' 'Charlie' 'Charlie' 'Charlie' 'Charlie' 'Charlie'
+
+BF.MADD PDS:t:member 'David' 'David' 'David' 'Emma' 'Emma' 'Emma' 'Fiona' 'Fiona' 'Fiona' 'George' 'George' 'George'
+
+BF.MADD PDS:t:member 'Hannah' 'Hannah' 'Isaac' 'Isaac' 'Jack' 'Jack' 'Katherine' 'Katherine' 'Liam' 'Liam' 'Mia' 'Mia' 'Nathan' 'Nathan' 'Olivia' 'Olivia'
+
+BF.MADD PDS:t:member 'Peter' 'Quinn' 'Rachel' 'Samuel' 'Taylor'  'Ursula' 'Victor' 'Willow' 'Xavier' 'Yvonne'  'Zachary' 'Amber' 'Brandon' 'Catherine' 'Derek' 'Ella' 'Frank' 'Grace' 'Harry' 'Isabella'  'Jordan' 'Kylie' 'Leo' 'Madison' 'Noah' 'Oscar' 'Paige' 'Quentin' 'Rebecca' 'Scott' 'Tiffany' 'Ulysses' 'Vanessa' 'Warren' 'Xander' 'Yasmine' 'Zane' 'Annabelle' 'Bennett' 'Celeste' 'Dominic' 'Eliza' 'Frederick' 'Gabrielle' 'Henry' 'Ivy' 'Jasper' 'Kayla' 'Lucas' 'Megan' 'Nicholas' 'Opal' 'Preston' 'Quincy' 'Riley' 'Sebastian' 'Trinity' 'Uriah' 'Valerie' 'Wesley' 'Ximena' 'Yosef' 'Zara' 'Anthony' 'Bethany' 'Cedric' 'Daisy' 'Edwin' 'Francine' 'Gavin' 'Hailey' 'Ian' 'Juliet' 'Kevin' 'Lillian' 'Mason' 'Natalie' 'Owen' 'Penelope' 'Ryan' 'Sadie' 'Tyler' 'Uma' 'Violet'
+
+BF.CARD PDS:t:member
+
+BF.EXISTS PDS:t:member 'David' 

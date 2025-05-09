@@ -76,6 +76,14 @@ After inserting sample data from `pf.redis`:
 (integer) 99
 ```
 
+After inserting sample data from `bf.redis`:
+```
+> BF.CARD PDS:t:member
+(integer) 99
+
+> BF.EXISTS PDS:t:member 'David' 
+(integer) 1
+```
 
 #### II. Bloom Filter 
 
