@@ -87,6 +87,7 @@ Note:
 - This command provides an estimate of the memory consumed by the key and its associated value.
 - The unit of measurement is bytes.
 
+
 After inserting sample data from `bf.redis`:
 ```
 > BF.CARD PDS:t:member
