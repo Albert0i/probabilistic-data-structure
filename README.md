@@ -83,12 +83,18 @@ After inserting sample data from `bf.redis`:
 
 > BF.EXISTS PDS:t:member 'David' 
 (integer) 1
+
+> BF.EXISTS PDS:t:member 'Leni'
+(integer) 0
 ```
 
 After inserting sample data from `topk.redis`:
 ```
 > TOPK.QUERY PDS:t:freq 'David'
 1) "1"
+
+> TOPK.QUERY PDS:t:freq 'Leni'
+1) "0"
 
 > TOPK.LIST PDS:t:freq WITHCOUNT
 1) "Alice"
@@ -106,9 +112,9 @@ After inserting sample data from `topk.redis`:
 198) "1"
 ```
 
-As you can see, it is amazingly easy to begin with. PDS have common characteristics:
+As you can see, it is amazingly easy to use. PDS shares common characteristics:
 - Resides in memory, they are data structures after all;
-- Memory consumed is fixed and it's based on estimated capacity; 
+- Memory consumed is fixed and is based on estimated capacity; 
 - The order of data may affect accuracy and thus the final outcome; 
 
 | Operation | Description | Time complexity |
@@ -122,7 +128,7 @@ As you can see, it is amazingly easy to begin with. PDS have common characterist
 | [TOPK.QUERY](https://redis.io/docs/latest/commands/topk.query/) | Checks wheather one or more items are in a sketch. | O(n) where n is the number of items |
 | [TOPK.LIST](https://redis.io/docs/latest/commands/topk.list/) | Returns full list of items in Top K list. | O(k*log(k)) where k is the value of top-k |
 
-O(1) is the most favourable. Different PDS may overlap in functions, it is up to you to choose one which suits your application scenario. As a last note, after adding items to PDS, it is impossible to retrieve them back as they are hashed and forgotten. If they matter, better to equip RDBMS as a kind of data sink. 
+O(1) is the most favourable. Different PDS may overlap in functions, it is up to you to choose one which suits your application scenario. As a last note, after adding items to PDS, it is impossible to retrieve them back as they are hashed and forgotten. If items matter, better to equip RDBMS as a kind of data sink for further processing. 
 
 
 #### II. [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) 
