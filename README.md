@@ -169,6 +169,8 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 #### II. [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) 
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
+[Bloom Filter Calculator](https://hur.st/bloomfilter/)
+
 [BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/)
 
 
