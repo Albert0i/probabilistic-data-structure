@@ -56,7 +56,7 @@ As you can see, we use a single data structure, ie. table, to address three prob
 ![alt membership](img/t.member.JPG)
 ![alt frequency](img/t.freq.JPG)
 
-We have 127 records and data size is 0.03MB. 
+We have 127 records and data size is 0.03MB which is ≈ 30.72KB. 
 ![alt data size](img/t.data-size.JPG)
 
 However, scaling up to ten billions, aggregating in real time is impractical or even impossible and let alone the data size. This is where PDS comes into play. 
@@ -74,7 +74,14 @@ After inserting sample data from `pf.redis`:
 ```
 > PFCOUNT PDS:t:card 
 (integer) 99
+
+> MEMORY USAGE PDS:t:card
+(integer) 440
 ```
+--- 
+- The `MEMORY USAGE` command returns the memory usage of a key in bytes.
+- This command provides an estimate of the memory consumed by the key and its associated value.
+- The unit of measurement is bytes.
 
 After inserting sample data from `bf.redis`:
 ```
@@ -87,7 +94,7 @@ After inserting sample data from `bf.redis`:
 > BF.EXISTS PDS:t:member 'Leni'
 (integer) 0
 
-> bf.info PDS:t:member
+> BF.INFO PDS:t:member
 1) "Capacity"
 2) "100"
 3) "Size"
@@ -98,6 +105,9 @@ After inserting sample data from `bf.redis`:
 8) "99"
 9) "Expansion rate"
 10) "2"
+
+> MEMORY USAGE PDS:t:member
+(integer) 280
 ```
 
 After inserting sample data from `topk.redis`:
@@ -132,6 +142,9 @@ After inserting sample data from `topk.redis`:
 6) "7"
 7) "decay"
 8) "0.9"
+
+> MEMORY USAGE PDS:t:freq
+(integer) 4976
 ```
 
 As you can see, it is amazingly easy to use. PDS shares common characteristics:
