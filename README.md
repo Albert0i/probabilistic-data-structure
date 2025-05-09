@@ -67,6 +67,9 @@ When scaling up to billions, aggregating in real time is impractical or even imp
 - PDS trades accuracy for speed and size, you won't get 100% accuracy and have to endure false positive somehow; 
 - Good estimation of elements is a MUST otherwise accuracy would dwindle drastically;  
 - PDS are advanced data structures and thus more insight understanding are required. 
+---
+A **false positive** occurs when a test or system incorrectly identifies something as true or present when it actually isn’t. This concept is commonly used in areas like **machine learning, security, medicine, and data analysis**.
+
 
 Here, I am going to apply [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/) [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) and [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/) one by one. 
 
