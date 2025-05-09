@@ -51,10 +51,10 @@ SELECT COUNT(*) as freq FROM t WHERE value='David';
 3
 ```
 
-As you can see, we use a single data structure, ie. table, to address three problems. Owning to [ACID]https://en.wikipedia.org/wiki/ACID) nature, RDBMS stores data on disk. By means of index, it just know where to pull out data to make aggregation. 
+As you can see, we use a single data structure, ie. table, to address three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) nature, RDBMS stores data on disk. By means of index, it just know where to pull out data to make aggregation. 
 ![alt cardinality](img/t.card.JPG)
 ![alt membership](img/t.member.JPG)
-![alt frequency]*img/t.freq.JPG)
+![alt frequency](img/t.freq.JPG)
 
 We have 127 records and data size is 0.03MB. 
 ![alt data size](img/t.data-size.JPG)
