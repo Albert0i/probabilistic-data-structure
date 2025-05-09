@@ -65,9 +65,10 @@ However, scaling up to ten billions, aggregating in real time is impractical or 
 
 **Caveat**
 
-1. PDS are special data structures to tackle humungous data size; 
-1. PDS trades accuracy for speed and size, you won't get 100% accuracy and have to endure false positive somehow; 
-2. Good estimation of elements is a MUST. 
+- PDS are specialized data structures to tackle humungous data size for specific purpose; 
+- PDS trades accuracy for speed and size, you won't get 100% accuracy and have to endure false positive somehow; 
+- Good estimation of elements is a MUST otherwise accuracy would dwindle drastically;  
+- PDS are far more complicated than aforementioned canonical data structures and not easy to implement even though you know the inner workings.  
 
 
 #### II. Bloom Filter 
