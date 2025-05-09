@@ -86,6 +86,18 @@ After inserting sample data from `bf.redis`:
 
 > BF.EXISTS PDS:t:member 'Leni'
 (integer) 0
+
+> bf.info PDS:t:member
+1) "Capacity"
+2) "100"
+3) "Size"
+4) "240"
+5) "Number of filters"
+6) "1"
+7) "Number of items inserted"
+8) "99"
+9) "Expansion rate"
+10) "2"
 ```
 
 After inserting sample data from `topk.redis`:
@@ -110,6 +122,16 @@ After inserting sample data from `topk.redis`:
 . . . 
 197) "Sebastian"
 198) "1"
+
+> TOPK.INFO PDS:t:freq
+1) "k"
+2) "100"
+3) "width"
+4) "8"
+5) "depth"
+6) "7"
+7) "decay"
+8) "0.9"
 ```
 
 As you can see, it is amazingly easy to use. PDS shares common characteristics:
@@ -134,9 +156,13 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 #### II. [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) 
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
+[BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/)
+
 
 #### III. Cuckoo Filter 
 > The default capacity for Cuckoo filters is 1024, and the default error rate is 0.01. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/cuckoo-filter/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
+
+[CF.RESERVE](https://redis.io/docs/latest/commands/cf.reserve/)
 
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
@@ -144,9 +170,13 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
 
+[PFMERGE](https://redis.io/docs/latest/commands/pfmerge/)
+
 
 #### V. [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
 > The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
+
+[TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/)
 
 
 #### VI. Bibliography 
