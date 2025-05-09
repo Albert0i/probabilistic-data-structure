@@ -53,12 +53,15 @@ SELECT count(*) as freq FROM t WHERE value='David';
 3
 ```
 
-As you can see, we use a single data structure, ie. table, to address the three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) properties, RDBMS stores data on disk. By means of index, it just know where to pull out data to make aggregation accordingly. 
+As you can see, we use a single data structure, ie. table, to address three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) nature, RDBMS stores data on disk. By means of index, it just know where to pull out data to make aggregation. 
 ![alt cardinality](img/t.card.JPG)
 ![alt membership](img/t.member.JPG)
 ![alt frequency](img/t.freq.JPG)
 
-But when we have ten thousands or ten millions of records, storing and counting table in real time is impractical or even impossible. This is where probabilistic data structure comes into play. 
+As you can see, we have 103 rows and data size is 0.03MB. 
+![alt data size](img/t.data-size.JPG)
+
+When records scale up to ten billions, aggregating in real time is impractical or even impossible. This is where PDS comes into play. 
 
 
 #### II. Bloom Filter 

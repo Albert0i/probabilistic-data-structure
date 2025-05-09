@@ -48,3 +48,12 @@ INSERT INTO t (value) VALUES
 ('Hailey'), ('Ian'), ('Juliet'), ('Kevin'), ('Lillian'),
 ('Mason'), ('Natalie'), ('Owen'), ('Penelope'), ('Ryan'),
 ('Sadie'), ('Tyler'), ('Uma'), ('Violet');
+
+
+SELECT 
+    table_schema AS `Database`,
+    table_name AS `Table`,
+    ROUND((data_length + index_length) / 1024 / 1024, 2) AS `Size in MB`
+FROM information_schema.tables
+WHERE table_schema = 'test'
+ORDER BY `Size in MB` DESC;
