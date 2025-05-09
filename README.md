@@ -67,7 +67,7 @@ When scaling up to billions, aggregating in real time is impractical and virtual
 - PDS trades accuracy for speed and size, you won't get 100% accuracy and have to endure false positive somehow; 
 - Good estimation of elements is a **MUST** otherwise accuracy would dwindle drastically; 
 ---
-A **false positive** occurs when a test or system incorrectly identifies something as true or present when it actually isn’t. This concept is commonly used in areas like **machine learning, security, medicine, and data analysis**.
+Note: A **false positive** occurs when a test or system incorrectly identifies something as true or present when it actually isn’t. This concept is commonly used in areas like **machine learning, security, medicine, and data analysis**.
 
 
 Here, I am going to demo [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/) [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) and [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/) one by one. 
@@ -81,6 +81,8 @@ After inserting sample data from `pf.redis`:
 (integer) 440
 ```
 --- 
+Note: 
+
 - The `MEMORY USAGE` command returns the memory usage of a key in bytes.
 - This command provides an estimate of the memory consumed by the key and its associated value.
 - The unit of measurement is bytes.
