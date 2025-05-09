@@ -4,7 +4,7 @@
 
 
 #### Prologue
-In the year of 2025, everybody is talking and doing AI things... Probabilistic Data Structure, or PDS for short, doesn't have direct bearing on AI but more to do with data analytic issue. If records to be processed are ten thousands then any RDBMS will do. If records to be processed are ten millions or even ten billions and you are more concerned with speed and size rather than accuracy, PDS is an obvios choice. 
+In the year of 2025, everybody is talking and doing AI things... Probabilistic Data Structure, or PDS for short, doesn't have direct bearing on AI but more to do with data analytic issue. If records to be processed are ten thousands then any RDBMS will do. If records to be processed are billions or trillions and you are more concerned with speed and size rather than accuracy, PDS is an obvios choice. 
 
 
 #### I. Deterministic vs. Probabilistic 
@@ -12,7 +12,7 @@ Most people of my era have read the book [Algorithms and Data Structures by Nikl
 
 All of them shares common characteristics: 
 - Resides in memory; 
-- Memory consumed is proportional to number of elements; 
+- Memory consumption is proportional to number of elements; 
 - No matter the order of data, it always works as expected; 
 - Subject to different levels of [Time complexity](https://en.wikipedia.org/wiki/Time_complexity). 
 
