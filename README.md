@@ -85,7 +85,7 @@ After inserting sample data from `bf.redis`:
 (integer) 1
 ```
 
-After inserting sample data from `bf.redis`:
+After inserting sample data from `topk.redis`:
 ```
 > TOPK.QUERY PDS:t:freq 'David'
 1) "1"
@@ -105,6 +105,22 @@ After inserting sample data from `bf.redis`:
 197) "Sebastian"
 198) "1"
 ```
+
+As you can see, it is amazingly easy to begin with. PDS have common characteristics:
+- Resides in memory, they are data structures after all;
+- Memory consumed is fixed and it's based on estimated capacity; 
+- The order of data may affect accuracy and thus the final outcome; 
+
+| Operation | Description | Time complexity |
+| ----------- | ----------- | ----------- |
+| [PFADD](https://redis.io/docs/latest/commands/pfadd/) | Add elements to a HyperLogLog key. Create the key if it doesn't exist. | O(1) |
+| [PFCOUNT](https://redis.io/docs/latest/commands/pfcount/) | Returns the approximated cardinality of the set(s) observed by the HyperLogLog key(s). | O(1) |
+| [BF.ADD](https://redis.io/docs/latest/commands/bf.add/) | Adds an item to a Bloom Filter.  | O(k), where k is the number of hash functions used by the last sub-filter |
+| [BF.CARD](https://redis.io/docs/latest/commands/bf.card/) | Returns the cardinality of a Bloom Filter. | O(1) |
+| [BF.EXISTS](https://redis.io/docs/latest/commands/bf.exists/) |  | O(k), where k is the number of hash functions used by the last sub-filter |
+| [TOPK.ADD](https://redis.io/docs/latest/commands/topk.add/) | Increase the count of one or more items by increment. | O(n * k) where n is the number of items and k is the depth |
+| [TOPK.QUERY](https://redis.io/docs/latest/commands/topk.query/) | Checks wheather one or more items are in a sketch. | O(n) where n is the number of items |
+| [TOPK.LIST](https://redis.io/docs/latest/commands/topk.list/) | Returns full list of items in Top K list. | O(k*log(k)) where k is the value of top-k |
 
 
 #### II. [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) 
