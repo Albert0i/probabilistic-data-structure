@@ -366,7 +366,7 @@ cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/Fl
 7. [A problem so hard even Google relies on Random Chance](https://youtu.be/lJYufx0bfpw)
 8. [Counting BILLIONS with Just Kilobytes? Meet HyperLogLog!](https://youtu.be/f69hh3KgFEk)
 9. [HyperLogLog: A Simple but Powerful Algorithm for Data Scientists](https://chengweihu.com/hyperloglog/)
-108. [The Trial by Franz Kafka](https://www.gutenberg.org/cache/epub/7849/pg7849-images.html)
+10. [The Trial by Franz Kafka](https://www.gutenberg.org/cache/epub/7849/pg7849-images.html)
 
 
 #### Epilogue
