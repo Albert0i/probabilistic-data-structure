@@ -199,7 +199,7 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 [TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/)
 
 
-AI is the thing help to improve efficiency but the quality depends. HE may drive you away and astray after all. AI is created by human and I don't believe in human, that's why I don't believe in AI. 
+AI is the thing helps to improve efficiency but quality depends, HE drives you away and astray after all. AI is crafted by human and I don't believe in human, that's why I don't believe in AI. 
 
 
 #### VI. Bibliography 
