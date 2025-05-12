@@ -184,7 +184,11 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 [Bloom Filter Calculator](https://hur.st/bloomfilter/)
 
+[Bloom Filters by Example](https://llimllib.github.io/bloomfilter-tutorial/)
+
 [BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/)
+
+[Configuration Parameters](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/#bf-initial-size) for Bloom filter and Cuckoo filter. 
 
 
 #### III. Cuckoo Filter 
