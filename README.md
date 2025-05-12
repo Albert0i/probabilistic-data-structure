@@ -327,6 +327,9 @@ In a word, Cuckoo Filter can do membership, frequency and delete items; Bloom fi
 (integer) 2160
 ```
 
+More resource: 
+- [Probabilistic Filters By Example](https://bdupras.github.io/filter-tutorial/)
+
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 > The name **HyperLogLog** comes from its predecessor, the **LogLog algorithm**, which was designed for estimating the number of distinct elements in a dataset. HyperLogLog is an **enhanced version** of LogLog, hence the prefix **"Hyper"**, indicating its improved accuracy and efficiency.
