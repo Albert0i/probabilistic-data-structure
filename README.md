@@ -210,7 +210,7 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 > The default capacity for Cuckoo filters is 1024, and the default error rate is 0.01. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/cuckoo-filter/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
-[CF.RESERVE](https://redis.io/docs/latest/commands/cf.reserve/)
+- [CF.RESERVE](https://redis.io/docs/latest/commands/cf.reserve/) in Redis is used to pre-allocate memory for a Cuckoo Filter. It allows you to establish the initial capacity for the filter. 
 
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
