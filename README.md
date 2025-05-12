@@ -256,6 +256,10 @@ CF.RESERVE bikes:models 1000000 BUCKETSIZE 2
   MAXITERATIONS 20 EXPANSION 1
 ```
 
+> [CF.ADD](https://redis.io/docs/latest/commands/cf.add/) returns [] on error (invalid arguments, wrong key type, etc.) and also when the filter is full. 
+
+> Time complexity is O(n + i), where n is the number of sub-filters and i is maxIterations. Adding items requires up to 2 memory accesses per sub-filter. But as the filter fills up, both locations for an item might be full. The filter attempts to Cuckoo swap items up to maxIterations times.
+
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
