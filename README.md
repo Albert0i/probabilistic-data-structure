@@ -200,6 +200,12 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 
 #### III. Cuckoo Filter 
+> The **Cuckoo Filter**, introduced by researchers Bin Fan, David Andersen, and Michael Kaminsky in 2014 titled [Cuckoo Filter: Practically Better Than Bloom](https://www.cs.cmu.edu/~dga/papers/cuckoo-conext2014.pdf), is a **probabilistic data structure** used for approximate membership testing, much like a Bloom filter but with added flexibility.
+
+> The naming comes from **Cuckoo Hashing**, a hashing technique where collisions are resolved by **displacing** existing entries—similar to how a cuckoo chick pushes other eggs out of the nest.
+
+> In **Cuckoo Filters**, when an item is inserted and its designated position is occupied, the filter evicts an existing item and attempts to relocate it to another slot, just like Cuckoo Hashing.
+
 > The default capacity for Cuckoo filters is 1024, and the default error rate is 0.01. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/cuckoo-filter/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 [CF.RESERVE](https://redis.io/docs/latest/commands/cf.reserve/)
