@@ -215,7 +215,7 @@ BF.RESERVE bf_non 0.01 1000 NONSCALING
 
 > [BF.ADD](https://redis.io/docs/latest/commands/bf.add/) returns [] on error (invalid arguments, wrong key type, etc.) and also when the filter is full.
 
-> [BF.INFO](https://redis.io/docs/latest/commands/bf.info/) Returns information about a Bloom filter. 
+> [BF.INFO](https://redis.io/docs/latest/commands/bf.info/) returns information about a Bloom filter. 
 ```
 > BF.INFO PDS:t:member
 1) "Capacity"
