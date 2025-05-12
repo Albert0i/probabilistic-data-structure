@@ -1,6 +1,6 @@
 ### Probabilistic Data Structure
 
-> "Finally his eyes grow dim, and he no longer knows whether it's really getting darker or just his eyes that are deceiving him. But he seems now to see an inextinguishable light begin to shine from the darkness behind the door. He doesn't have long to live now." 
+> "'correct understanding of a matter and a misunderstanding of the same matter are not mutually exclusive'."<br />The Trial by Franz Kafka
 
 
 #### Prologue
@@ -200,18 +200,20 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 
 #### VI. Bibliography 
-1. [Understanding Probabilistic Data Structures with 112,092 UFO Sightings - Guy Royse - NDC Oslo 2023](https://youtu.be/M6XOniVANKI)
-2. [Understanding Probabilistic Data Structures with UFO Sightings | Guy Royse](https://youtu.be/2Dzc7fxA0us)
-3. [Intro to Probabilistic Data Structures by ANDREA IACONO](https://youtu.be/Y66Uy1he3Vo)
-4. [Probabilistic data structures by Andrea Iacono](https://youtu.be/bYyRwGFSFbQ)
-5. [A problem so hard even Google relies on Random Chance](https://youtu.be/lJYufx0bfpw)
-6. [Counting BILLIONS with Just Kilobytes? Meet HyperLogLog!](https://youtu.be/f69hh3KgFEk)
-7. [HyperLogLog: A Simple but Powerful Algorithm for Data Scientists](https://chengweihu.com/hyperloglog/)
-8. [The Trial by Franz Kafka](https://www.gutenberg.org/cache/epub/7849/pg7849-images.html)
+1. [Probabilistic](https://redis.io/docs/latest/develop/data-types/probabilistic/)
+2. [Probabilistic Data Structures - Bloom Filters, HyperLogLogs & Cuckoo Filters](https://youtu.be/dq-0xagF7v8)
+3. [Understanding Probabilistic Data Structures with 112,092 UFO Sightings - Guy Royse - NDC Oslo 2023](https://youtu.be/M6XOniVANKI)
+4. [Understanding Probabilistic Data Structures with UFO Sightings | Guy Royse](https://youtu.be/2Dzc7fxA0us)
+5. [Intro to Probabilistic Data Structures by ANDREA IACONO](https://youtu.be/Y66Uy1he3Vo)
+6. [Probabilistic data structures by Andrea Iacono](https://youtu.be/bYyRwGFSFbQ)
+7. [A problem so hard even Google relies on Random Chance](https://youtu.be/lJYufx0bfpw)
+8. [Counting BILLIONS with Just Kilobytes? Meet HyperLogLog!](https://youtu.be/f69hh3KgFEk)
+9. [HyperLogLog: A Simple but Powerful Algorithm for Data Scientists](https://chengweihu.com/hyperloglog/)
+108. [The Trial by Franz Kafka](https://www.gutenberg.org/cache/epub/7849/pg7849-images.html)
 
 
 #### Epilogue
-> "'correct understanding of a matter and a misunderstanding of the same matter are not mutually exclusive'."
+> "Finally his eyes grow dim, and he no longer knows whether it's really getting darker or just his eyes that are deceiving him. But he seems now to see an inextinguishable light begin to shine from the darkness behind the door. He doesn't have long to live now." <br />The Trial by Franz Kafka
 
 
-### EOF 2025/05/30)
+### EOF (2025/05/30)
