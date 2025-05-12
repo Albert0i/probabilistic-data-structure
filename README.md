@@ -200,11 +200,11 @@ BF.RESERVE key error_rate capacity [EXPANSION expansion]
 
 > Non-scaling filters requires slightly less memory than their scaling counterparts. The filter returns an error when capacity is reached.
 
-Reserved with an error rate 1%, capacity is 1000, expansion factor of 2.
+Reserved with an error rate 1%, capacity 1000, expansion factor of 2.
 ```
 BF.RESERVE bf_exp 0.01 1000 EXPANSION 2 
 ```
-Reserved with an error rate 1%, capacity is 1000, without auto-scaling.
+Reserved with an error rate 1%, capacity 1000, without auto-scaling.
 ```
 BF.RESERVE bf_non 0.01 1000 NONSCALING
 ```
