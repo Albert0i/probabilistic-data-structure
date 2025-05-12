@@ -318,7 +318,7 @@ Cuckoo Filter in Redis has far more tuning parameters then Bloom filter. CF.ADD 
 
 BF.ADD and BF.EXISTS are O(k), where k is the number of hash functions used by the last sub-filter; BF.CARD is O(1).
 
-Both filters are capable of keeping track of cardinality and membership. 
+Both filters are capable of keeping track of cardinality and membership, performance and size differs. 
 ```
 > MEMORY USAGE PDS:t:member
 (integer) 280
