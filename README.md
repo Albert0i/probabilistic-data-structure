@@ -6,6 +6,8 @@
 #### Prologue
 In the year of 2025, everybody is talking and doing AI things... Probabilistic Data Structure, or PDS for short, doesn't have direct bearing on AI but more to do with data analytic issue. If records to be processed are thousands then any RDBMS will do. If records to be processed are billions or trillions and you are more concerned with speed and size rather than accuracy, PDS is an obvios choice. 
 
+AI is the thing helps to improve efficiency but quality depends, HE drives you away and astray after all. AI is crafted by human and I don't believe in human, that's why I don't believe in AI. 
+
 
 #### I. Deterministic vs. Probabilistic 
 Most people of my era have read the book [Algorithms and Data Structures by Niklaus Wirth 1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are simply *organized* data working in a specific way, ie. array, list, stack. queue and tree are *canonical* data structures to be taught in university, so to speak. But there are also hash, collection, bag, dictionary and many more... 
@@ -180,6 +182,10 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 
 #### II. [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) 
+> The **Bloom filter** is named after **Burton Howard Bloom**, the computer scientist who introduced the concept in his 1970 paper titled [*Space/Time Trade-offs in Hash Coding with Allowable Errors*](https://cs.pwr.edu.pl/cichon/2021_22_a/BigData/Bloom.pdf). Bloom devised this probabilistic data structure to efficiently test for set membership while minimizing memory usage.
+
+> Interestingly, Bloom filters have inspired many variations, including **Counting Bloom Filters, Cuckoo Filters, and Partitioned Bloom Filters**, each refining the original concept for different applications. 
+
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 [Bloom Filter Calculator](https://hur.st/bloomfilter/)
@@ -189,6 +195,8 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 [BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/)
 
 [Configuration Parameters](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/#bf-initial-size) for Bloom filter and Cuckoo filter. 
+
+[Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
 
 #### III. Cuckoo Filter 
@@ -209,9 +217,6 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 > The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 [TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/)
-
-
-AI is the thing helps to improve efficiency but quality depends, HE drives you away and astray after all. AI is crafted by human and I don't believe in human, that's why I don't believe in AI. 
 
 
 #### VI. Bibliography 
