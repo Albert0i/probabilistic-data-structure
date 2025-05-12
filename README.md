@@ -213,9 +213,24 @@ Reserved with an error rate 1%, capacity 1000 and without auto-scaling.
 BF.RESERVE bf_non 0.01 1000 NONSCALING
 ```
 
-> [BF.ADD](https://redis.io/docs/latest/commands/bf.add/) returns [] on error (invalid arguments, wrong key type, etc.) and also when the filter is full
+> [BF.ADD](https://redis.io/docs/latest/commands/bf.add/) returns [] on error (invalid arguments, wrong key type, etc.) and also when the filter is full.
 
-Resource: 
+> [BF.INFO](https://redis.io/docs/latest/commands/bf.info/) Returns information about a Bloom filter. 
+```
+> BF.INFO PDS:t:member
+1) "Capacity"
+2) "100"
+3) "Size"
+4) "240"
+5) "Number of filters"
+6) "1"
+7) "Number of items inserted"
+8) "99"
+9) "Expansion rate"
+10) "2"
+```
+
+More resource: 
 - [Bloom Filter Calculator](https://hur.st/bloomfilter/)
 
 - [Bloom Filters by Example](https://llimllib.github.io/bloomfilter-tutorial/)
