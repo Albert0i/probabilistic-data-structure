@@ -274,6 +274,7 @@ CF.RESERVE bikes:models 1000000 BUCKETSIZE 2
 
 [CF.EXISTS](https://redis.io/docs/latest/commands/cf.exists/), [CF.COUNT](https://redis.io/docs/latest/commands/cf.count/) and [CF.INFO](https://redis.io/docs/latest/commands/cf.info/). 
 
+After inserting sample data from `cf.redis`:
 ```
 > CF.EXISTS PDS:t:memdel 'David' 
 (integer) 1
