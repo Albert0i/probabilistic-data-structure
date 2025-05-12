@@ -234,6 +234,22 @@ BF.RESERVE bf_non 0.01 1000 NONSCALING
 CF.RESERVE key capacity [BUCKETSIZE bucketsize]
   [MAXITERATIONS maxiterations] [EXPANSION expansion]
 ```
+> `bucketsize` is an integer between 1 and 255. The default value is 2.
+
+> A higher bucket size value improves the fill rate but also causes a higher error rate and slightly slower performance.
+
+> `maxiterations` is an integer between 1 and 65535. The default value is 20.
+
+> Number of attempts to swap items between buckets before declaring filter as full and creating an additional filter.
+
+> A low value is better for performance and a higher number is better for filter fill rate.
+
+> `expansion` is an integer between 0 and 32768. The default value is 1.
+
+> When a new filter is created, its size is the size of the current filter multiplied by expansion.
+
+> Expansion is rounded to the next 2^n number.
+
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
