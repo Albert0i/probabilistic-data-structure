@@ -45,10 +45,18 @@ SELECT EXISTS(SELECT 1 FROM t WHERE value = 'David') AS exists_check;
 
 1 
 
+SELECT EXISTS(SELECT 1 FROM t WHERE value = 'Leni') AS exists_check;
+
+0
+
 -- Frequency 
 SELECT COUNT(*) as freq FROM t WHERE value='David'; 
 
 3
+
+SELECT COUNT(*) as freq FROM t WHERE value='David'; 
+
+0
 ```
 
 Easy-peasy! As you can see, we use a single data structure, ie. table, to address three problems. Owning to [ACID](https://en.wikipedia.org/wiki/ACID) nature, RDBMS stores data on disk and by dint of index, it just know where to pull out data to make aggregations. 
