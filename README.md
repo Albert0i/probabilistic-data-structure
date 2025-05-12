@@ -188,11 +188,11 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
+- [BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/) in Redis is used to pre-allocate memory for a Bloom Filter. It helps to establish the initial capacity and error rate for the filter before any elements are added to it.
+
 - [Bloom Filter Calculator](https://hur.st/bloomfilter/)
 
 - [Bloom Filters by Example](https://llimllib.github.io/bloomfilter-tutorial/)
-
-- [BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/)
 
 - [Configuration Parameters](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/#bf-initial-size) for Bloom filter and Cuckoo filter. 
 
