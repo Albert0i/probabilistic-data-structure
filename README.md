@@ -183,9 +183,7 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 
 #### II. [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/) 
-> The **Bloom filter** is named after **Burton Howard Bloom**, the computer scientist who introduced the concept in his 1970 paper titled [*Space/Time Trade-offs in Hash Coding with Allowable Errors*](https://cs.pwr.edu.pl/cichon/2021_22_a/BigData/Bloom.pdf). Bloom devised this probabilistic data structure to efficiently test for set membership while minimizing memory usage.
-
-> Interestingly, Bloom filters have inspired many variations, including **Counting Bloom Filters, Cuckoo Filters, and Partitioned Bloom Filters**, each refining the original concept for different applications. 
+> The **Bloom filter** is named after **Burton Howard Bloom**, the computer scientist who introduced the concept in his 1970 paper titled [*Space/Time Trade-offs in Hash Coding with Allowable Errors*](https://cs.pwr.edu.pl/cichon/2021_22_a/BigData/Bloom.pdf). Bloom devised this probabilistic data structure to efficiently test for set membership while minimizing memory usage. Interestingly, Bloom filters have inspired many variations, including **Counting Bloom Filters, Cuckoo Filters, and Partitioned Bloom Filters**, each refining the original concept for different applications. 
 
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
@@ -198,9 +196,7 @@ BF.RESERVE key error_rate capacity [EXPANSION expansion]
 
 > Though the filter can scale up by creating sub-filters, it is recommended to reserve the estimated required capacity since maintaining and querying sub-filters requires additional memory (each sub-filter uses an extra bits and hash function) and consume further CPU time than an equivalent filter that had the right capacity at creation time.
 
-> The size of the new sub-filter is the size of the last sub-filter multiplied by expansion, specified as a positive integer.
-
-> If the number of items to be stored in the filter is unknown, you use an expansion of 2 or more to reduce the number of sub-filters. Otherwise, you use an expansion of 1 to reduce memory consumption. The default value is 2.
+> The size of the new sub-filter is the size of the last sub-filter multiplied by expansion, specified as a positive integer. If the number of items to be stored in the filter is unknown, you use an expansion of 2 or more to reduce the number of sub-filters. Otherwise, you use an expansion of 1 to reduce memory consumption. The default value is 2.
 
 > Non-scaling filters requires slightly less memory than their scaling counterparts. The filter returns an error when capacity is reached.
 
@@ -256,21 +252,15 @@ More resource:
 CF.RESERVE key capacity [BUCKETSIZE bucketsize]
   [MAXITERATIONS maxiterations] [EXPANSION expansion]
 ```
-> `bucketsize` is an integer between 1 and 255. The default value is 2.
+> While the Bloom filter is a bit array with flipped bits at positions decided by the hash function, a Cuckoo filter is an array of buckets, storing fingerprints of the values in one of the buckets at positions decided by the two hash functions. A membership query for item x searches the possible buckets for the fingerprint of x, and returns true if an identical fingerprint is found. A cuckoo filter's fingerprint size will directly determine the false positive rate.
 
-> A higher bucket size value improves the fill rate but also causes a higher error rate and slightly slower performance.
+> `bucketsize` is an integer between 1 and 255. The default value is 2. A higher bucket size value improves the fill rate but also causes a higher error rate and slightly slower performance.
 
-> `maxiterations` is an integer between 1 and 65535. The default value is 20.
+> For example, when `bucketsize` is set to 3, a maximum of 3 fingerprints can be stored in the same location. This setting allows multiple entries in a bucket, with each entry containing a unique fingerprint. This feature helps optimize the fill rate of the filter without leading to false positives and maintains efficient performance.
 
-> Number of attempts to swap items between buckets before declaring filter as full and creating an additional filter.
+> `maxiterations` is an integer between 1 and 65535. The default value is 20. Number of attempts to swap items between buckets before declaring filter as full and creating an additional filter. A low value is better for performance and a higher number is better for filter fill rate.
 
-> A low value is better for performance and a higher number is better for filter fill rate.
-
-> `expansion` is an integer between 0 and 32768. The default value is 1.
-
-> When a new filter is created, its size is the size of the current filter multiplied by expansion.
-
-> Expansion is rounded to the next 2^n number.
+> `expansion` is an integer between 0 and 32768. The default value is 1. When a new filter is created, its size is the size of the current filter multiplied by expansion. Expansion is rounded to the next 2^n number.
 
 Reserved with capacity 1000,000, buckersize 2, maxiterations 20, expansion 1.
 ```
@@ -281,6 +271,43 @@ CF.RESERVE bikes:models 1000000 BUCKETSIZE 2
 > [CF.ADD](https://redis.io/docs/latest/commands/cf.add/) returns [] on error (invalid arguments, wrong key type, etc.) and also when the filter is full. 
 
 > Time complexity is O(n + i), where n is the number of sub-filters and i is maxIterations. Adding items requires up to 2 memory accesses per sub-filter. But as the filter fills up, both locations for an item might be full. The filter attempts to Cuckoo swap items up to maxIterations times.
+
+[CF.EXISTS](https://redis.io/docs/latest/commands/cf.exists/), [CF.COUNT](https://redis.io/docs/latest/commands/cf.count/) and [CF.INFO](https://redis.io/docs/latest/commands/cf.info/). 
+
+```
+> CF.EXISTS PDS:t:memdel 'David' 
+(integer) 1
+
+> CF.EXISTS PDS:t:memdel 'Leni' 
+(integer) 0
+
+> CF.COUNT PDS:t:memdel 'David' 
+(integer) 3
+
+> CF.COUNT PDS:t:memdel 'Leni'
+(integer) 0
+
+> CF.INFO PDS:t:memdel 
+1) "Size"
+2) "2120"
+3) "Number of buckets"
+4) "512"
+5) "Number of filters"
+6) "2"
+7) "Number of items inserted"
+8) "127"
+9) "Number of items deleted"
+10) "0"
+11) "Bucket size"
+12) "2"
+13) "Expansion rate"
+14) "1"
+15) "Max iterations"
+16) "20"
+
+> memory usage PDS:t:memdel
+(integer) 2160
+```
 
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
