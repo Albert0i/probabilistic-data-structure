@@ -188,15 +188,15 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
-[Bloom Filter Calculator](https://hur.st/bloomfilter/)
+- [Bloom Filter Calculator](https://hur.st/bloomfilter/)
 
-[Bloom Filters by Example](https://llimllib.github.io/bloomfilter-tutorial/)
+- [Bloom Filters by Example](https://llimllib.github.io/bloomfilter-tutorial/)
 
-[BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/)
+- [BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/)
 
-[Configuration Parameters](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/#bf-initial-size) for Bloom filter and Cuckoo filter. 
+- [Configuration Parameters](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/#bf-initial-size) for Bloom filter and Cuckoo filter. 
 
-[Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
+- [Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
 
 #### III. Cuckoo Filter 
