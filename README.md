@@ -10,6 +10,7 @@ AI is the thing helps to improve efficiency but quality depends, HE drives you a
 
 
 #### I. Deterministic vs. Probabilistic 
+![alt two-families-of-data-structures](img/two-families-of-data-structures.JPG)
 Most people of my era have read the book [Algorithms and Data Structures by Niklaus Wirth 1985)](https://informatika-21.ru/pdf/AD.pdf). Data structures are simply *organized* data working in a specific way, ie. array, list, stack. queue and tree are *canonical* data structures to be taught in university, so to speak. But there are also hash, collection, bag, dictionary and many more... 
 
 All of them shares common characteristics: 
@@ -200,6 +201,7 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 
 #### III. Cuckoo Filter 
+![alt cuckoo-filter](img/cuckoo-filter.JPG)
 > The **Cuckoo Filter**, introduced by researchers Bin Fan, David Andersen, and Michael Kaminsky in 2014 titled [Cuckoo Filter: Practically Better Than Bloom](https://www.cs.cmu.edu/~dga/papers/cuckoo-conext2014.pdf), is a **probabilistic data structure** used for approximate membership testing, much like a Bloom filter but with added flexibility.
 
 > The naming comes from **Cuckoo Hashing**, a hashing technique where collisions are resolved by **displacing** existing entries—similar to how a cuckoo chick pushes other eggs out of the nest.
