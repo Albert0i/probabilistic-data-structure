@@ -190,6 +190,24 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 > The default capacity for Bloom filters is 100, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/configuration/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 - [BF.RESERVE](https://redis.io/docs/latest/commands/bf.reserve/) in Redis is used to pre-allocate memory for a Bloom Filter. It helps to establish the initial capacity and error rate for the filter before any elements are added to it.
+```
+BF.RESERVE key error_rate capacity [EXPANSION expansion]
+  [NONSCALING]
+```
+> When capacity is reached, an additional sub-filter is created. The size of the new sub-filter is the size of the last sub-filter multiplied by expansion, specified as a positive integer.
+
+> If the number of items to be stored in the filter is unknown, you use an expansion of 2 or more to reduce the number of sub-filters. Otherwise, you use an expansion of 1 to reduce memory consumption. The default value is 2.
+
+> Non-scaling filters requires slightly less memory than their scaling counterparts. The filter returns an error when capacity is reached.
+
+Reserved with an error rate 1%, capacity is 1000, expansion factor of 2.
+```
+BF.RESERVE bf_exp 0.01 1000 EXPANSION 2 
+```
+Reserved with an error rate 1%, capacity is 1000, without auto-scaling.
+```
+BF.RESERVE bf_non 0.01 1000 NONSCALING
+```
 
 - [Bloom Filter Calculator](https://hur.st/bloomfilter/)
 
@@ -212,6 +230,10 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 - [CF.RESERVE](https://redis.io/docs/latest/commands/cf.reserve/) in Redis is used to pre-allocate memory for a Cuckoo Filter. It allows you to establish the initial capacity for the filter. 
 
+```
+CF.RESERVE key capacity [BUCKETSIZE bucketsize]
+  [MAXITERATIONS maxiterations] [EXPANSION expansion]
+```
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
