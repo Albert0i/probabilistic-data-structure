@@ -194,21 +194,28 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 BF.RESERVE key error_rate capacity [EXPANSION expansion]
   [NONSCALING]
 ```
-> When capacity is reached, an additional sub-filter is created. The size of the new sub-filter is the size of the last sub-filter multiplied by expansion, specified as a positive integer.
+> By default, the filter auto-scales by creating additional sub-filters when capacity is reached. The new sub-filter is created with size of the previous sub-filter multiplied by expansion.
+
+> Though the filter can scale up by creating sub-filters, it is recommended to reserve the estimated required capacity since maintaining and querying sub-filters requires additional memory (each sub-filter uses an extra bits and hash function) and consume further CPU time than an equivalent filter that had the right capacity at creation time.
+
+> The size of the new sub-filter is the size of the last sub-filter multiplied by expansion, specified as a positive integer.
 
 > If the number of items to be stored in the filter is unknown, you use an expansion of 2 or more to reduce the number of sub-filters. Otherwise, you use an expansion of 1 to reduce memory consumption. The default value is 2.
 
 > Non-scaling filters requires slightly less memory than their scaling counterparts. The filter returns an error when capacity is reached.
 
-Reserved with an error rate 1%, capacity 1000, expansion factor of 2.
+Reserved with an error rate 1%, capacity 1000 and expansion factor of 2.
 ```
-BF.RESERVE bf_exp 0.01 1000 EXPANSION 2 
+BF.RESERVE bf_exp 0.01 1000 EXPANSION 2
 ```
-Reserved with an error rate 1%, capacity 1000, without auto-scaling.
+Reserved with an error rate 1%, capacity 1000 and without auto-scaling.
 ```
 BF.RESERVE bf_non 0.01 1000 NONSCALING
 ```
 
+> [BF.ADD](https://redis.io/docs/latest/commands/bf.add/) returns [] on error (invalid arguments, wrong key type, etc.) and also when the filter is full
+
+Resource: 
 - [Bloom Filter Calculator](https://hur.st/bloomfilter/)
 
 - [Bloom Filters by Example](https://llimllib.github.io/bloomfilter-tutorial/)
