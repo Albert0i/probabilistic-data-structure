@@ -314,11 +314,11 @@ After inserting sample data from `cf.redis`:
 
 **Caveat**
 
-Cuckoo Filter in Redis has far more tuning parameters then Bloom filter. CF.ADD is O(k + i), where k is the number of sub-filters and i is maxIterations; CF.COUNT, CF.EXISTS and CF.DEL are O(k), where k is the number of sub-filters. 
+- Cuckoo Filter in Redis has far more tuning parameters then Bloom filter. `CF.ADD` is O(k + i), where k is the number of sub-filters and i is maxIterations; `CF.COUNT`, `CF.EXISTS` and `CF.DEL` are O(k), where k is the number of sub-filters. 
 
-BF.ADD and BF.EXISTS are O(k), where k is the number of hash functions used by the last sub-filter; BF.CARD is O(1).
+- `BF.ADD` and `BF.EXISTS` are O(k), where k is the number of hash functions used by the last sub-filter; `BF.CARD` is O(1).
 
-In a word, Cuckoo Filter can do membership, frequency and delete items; Bloom filter can do cardinality, membership but can not delete items; 
+- In a word, Cuckoo Filter can do Membership, Frequency and delete items; Bloom filter can do Cardinality, Membership but can not delete items; 
 ```
 > MEMORY USAGE PDS:t:member
 (integer) 280
