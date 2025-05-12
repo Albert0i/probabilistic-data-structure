@@ -312,6 +312,20 @@ After inserting sample data from `cf.redis`:
 
 > [CF.DEL](https://redis.io/docs/latest/commands/cf.del/) Deletes an item once from the filter. If the item exists only once, it will be removed from the filter. If the item was added multiple times, it will still be present. **Deleting an item that are not in the filter may delete a different item, resulting in false negatives**. 
 
+**Caveat**
+
+Cuckoo Filter in Redis has far more tuning parameters then Bloom filter. CF.ADD is O(k + i), where k is the number of sub-filters and i is maxIterations; CF.COUNT, CF.EXISTS and CF.DEL are O(k), where k is the number of sub-filters. 
+
+BF.ADD and BF.EXISTS are O(k), where k is the number of hash functions used by the last sub-filter; BF.CARD is O(1).
+
+In Redis, both filters are capable of keeping track of cardinality and membership. 
+```
+> MEMORY USAGE PDS:t:member
+(integer) 280
+
+> MEMORY USAGE PDS:t:memdel
+(integer) 2160
+```
 
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
