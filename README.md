@@ -250,6 +250,12 @@ CF.RESERVE key capacity [BUCKETSIZE bucketsize]
 
 > Expansion is rounded to the next 2^n number.
 
+Reserved with capacity 1000,000, buckersize 2, maxiterations 20, expansion 1.
+```
+CF.RESERVE bikes:models 1000000 BUCKETSIZE 2
+  MAXITERATIONS 20 EXPANSION 1
+```
+
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
