@@ -199,6 +199,9 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 [TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/)
 
 
+AI is the thing help to improve efficiency but the quality depends. HE may drive you away and astray after all. AI is created by human and I don't believe in human, that's why I don't believe in AI. 
+
+
 #### VI. Bibliography 
 1. [Probabilistic](https://redis.io/docs/latest/develop/data-types/probabilistic/)
 2. [Probabilistic Data Structures - Bloom Filters, HyperLogLogs & Cuckoo Filters](https://youtu.be/dq-0xagF7v8)
@@ -217,3 +220,16 @@ O(1) is the most favourable. Different PDS may overlap in functions, it is up to
 
 
 ### EOF (2025/05/30)
+
+**The Midwich Cuckoos** is a British sci-fi drama based on John Wyndham’s classic novel. The series takes place in the quiet town of Midwich, where an unexplained phenomenon causes every resident to lose consciousness simultaneously. When they wake, all women of childbearing age discover they are mysteriously pregnant. As time passes, the children born from this event exhibit eerie intelligence, unnatural abilities, and a shared connection, leaving the town in fear of their growing power.
+
+The show explores themes of control, survival, and human instincts, blending psychological horror with science fiction. As the children develop, tensions rise between them and the adults struggling to understand their purpose and motives. The eerie atmosphere, coupled with unsettling performances, keeps the audience on edge, questioning the true nature of these children and their origins. 
+
+Across its seven episodes, the series delivers a gripping narrative filled with moral dilemmas, emotional conflicts, and an overarching mystery that deepens with every revelation. With a mix of suspense and thought-provoking storytelling, **The Midwich Cuckoos** offers a modern twist on Wyndham’s unsettling tale of inexplicable power and the dangers of what lies beyond human comprehension. 
+
+
+Cuckoo birds are **brood parasites**, meaning they do not raise their own young. Instead, a female cuckoo lays her eggs in the nests of other bird species, tricking them into raising her chicks. She carefully chooses host birds with eggs similar in appearance to her own, ensuring the foster parents won’t detect the intruder. Often, she removes one of the host’s eggs to maintain the clutch size, further reducing suspicion.
+
+Once the cuckoo chick hatches, it instinctively pushes the other eggs or hatchlings out of the nest, securing all food and care for itself. The foster parents, unaware of the deception, tirelessly feed and nurture the growing cuckoo chick, which often grows much larger than its unsuspecting caretakers. This process ensures the young cuckoo receives ample resources without competition.
+
+The strategy allows cuckoos to reproduce efficiently without investing in parental care, but it comes at a cost to the host birds, whose own offspring rarely survive. This fascinating yet ruthless survival technique highlights nature’s complex interactions and adaptations. Despite its parasitic behavior, the cuckoo plays an important role in ecological balance, shaping the evolution of host species to develop defenses against deception. 
