@@ -226,7 +226,7 @@ BF.RESERVE bf_non 0.01 1000 NONSCALING
 10) "2"
 ```
 
-> In Redis implementation of a Bloom filter, there are no arrays used as in a Bloom filter. A Bloom filter consists of hashed representations of items, not arrays like a Bloom filter's bit array. For Redis Bloom filters, membership queries check for the presence of item fingerprints in the filter based on hash functions. Y
+> In Redis implementation of a Bloom filter, there are no arrays used as in a Bloom filter. A Bloom filter consists of hashed representations of items, not arrays like a Bloom filter's bit array. For Redis Bloom filters, membership queries check for the presence of item fingerprints in the filter based on hash functions. It utilizes one hash function for hashing elements and determining their storage locations within the data structure.
 
 More resource: 
 - [Bloom Filter Calculator](https://hur.st/bloomfilter/)
@@ -328,7 +328,7 @@ After inserting sample data from `cf.redis`:
 > MEMORY USAGE PDS:t:memdel
 (integer) 2160
 ```
-> In the implementation of a Cuckoo Filter in Redis, there aren't two arrays used as in a Bloom filter. A Cuckoo filter consists of an array of buckets that store fingerprints of values, not two arrays like a Bloom filter's bit array. Membership queries in a Cuckoo filter search for the fingerprint of the item in the buckets based on hash functions. 
+> In the implementation of a Cuckoo Filter in Redis, there aren't two arrays used as in a Bloom filter. A Cuckoo filter consists of an array of buckets that store fingerprints of values, not two arrays like a Bloom filter's bit array. Membership queries in a Cuckoo filter search for the fingerprint of the item in the buckets based on hash functions. It utilizes two hash functions for hashing elements and determining their storage locations within the filter.
 
 More resource: 
 - [Probabilistic Filters By Example](https://bdupras.github.io/filter-tutorial/)
@@ -352,11 +352,18 @@ cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/Fl
 
 [PFMERGE](https://redis.io/docs/latest/commands/pfmerge/)
 
+> In Redis, the implementation of HyperLogLog typically utilizes one hash function for hashing elements and determining their storage locations within the data structure. It uses the harmonic mean for cardinality estimation, which is a factor in determining the number of elements in a set. It achieves efficient memory usage with a standard error of approximately 0.81%. 
+
 
 #### V. [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
 > The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 [TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/)
+
+> In Redis, the Top-K implementation utilizes a hash table for probabilistic counts and a min heap for the K items with the highest counts. This strategy ensures accuracy with shorter execution times compared to previous algorithms. The Redis Top-K implementation does not require hash functions as it is based on probabilistic counting and heap structures for efficient operations.
+
+More resource: 
+- [Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
 
 #### VI. Bibliography 
