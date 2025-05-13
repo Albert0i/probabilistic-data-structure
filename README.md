@@ -385,7 +385,7 @@ Here’s a table of PDS in Redis.
 | **Top-K**           | 2019               | **RedisBloom Module** | Membership and frequency |
 | **T-Digest**        | 2019               | **RedisBloom Module** | Frequency |
 
-There is no doubt Resis is way before RDBMS in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... 
+There is no doubt Redis is way before RDBMS in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... 
 
 
 #### VII. Bibliography 
