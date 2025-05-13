@@ -378,7 +378,7 @@ cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/Fl
 
 ### EOF (2025/05/30)
 
-### Bonus (written by copilot)
+#### Bonus (written by copilot)
 **[The Midwich Cuckoos](https://youtu.be/WCS4v711yck)** is a British sci-fi drama based on John Wyndham’s classic novel. The series takes place in the quiet town of Midwich, where an unexplained phenomenon causes every resident to lose consciousness simultaneously. When they wake, all women of childbearing age discover they are mysteriously pregnant. As time passes, the children born from this event exhibit eerie intelligence, unnatural abilities, and a shared connection, leaving the town in fear of their growing power.
 
 The show explores themes of control, survival, and human instincts, blending psychological horror with science fiction. As the children develop, tensions rise between them and the adults struggling to understand their purpose and motives. The eerie atmosphere, coupled with unsettling performances, keeps the audience on edge, questioning the true nature of these children and their origins. 
