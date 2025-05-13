@@ -382,7 +382,7 @@ Here’s a table of PDS in Redis.
 | **Bloom Filter**     | 2019               | **RedisBloom Module** | Cardinality and Membership |
 | **Cuckoo Filter**    | 2019               | **RedisBloom Module** | Membership and frequency |
 | **Count-Min Sketch** | 2019               | **RedisBloom Module** | Frequency |
-| **Top-K**           | 2019               | **RedisBloom Module** | Frequency |
+| **Top-K**           | 2019               | **RedisBloom Module** | Membership and frequency |
 | **T-Digest**        | 2019               | **RedisBloom Module** | Frequency |
 
 
