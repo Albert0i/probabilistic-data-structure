@@ -374,7 +374,7 @@ More resource:
 
 
 #### VI. Retrospection
-Here’s a table of PDS in Redis.
+As you can see, implementation of PDS in Redis is significantly different from the *original* paper. I don't know it is good or not good, for everything has a reason... Finally, here’s a table of PDS in Redis.
 
 | **Data Structure**   | **Year Introduced** | **Redis Component** | **Purpose** |
 |----------------------|--------------------|----------------------|-------------|
