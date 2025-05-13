@@ -354,6 +354,13 @@ cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/Fl
 
 > In Redis, the implementation of HyperLogLog typically utilizes one hash function for hashing elements and determining their storage locations within the data structure. It uses the harmonic mean for cardinality estimation, which is a factor in determining the number of elements in a set. It achieves efficient memory usage with a standard error of approximately 0.81%. 
 
+More resource: 
+- [Redis HyperLogLog probabilistic cardinality approximation](https://github.com/redis/redis/blob/unstable/src/hyperloglog.c)
+
+- [HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf)
+
+- [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf)
+
 
 #### V. [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
 > The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
