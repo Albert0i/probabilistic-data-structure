@@ -373,7 +373,20 @@ More resource:
 - [Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
 
-#### VI. Bibliography 
+#### VI. Retrospection
+Here’s a table of PDS in Redis.
+
+| **Data Structure**   | **Year Introduced** | **Redis Component** | **Purpose** |
+|----------------------|--------------------|----------------------|-------------|
+| **HyperLogLog**      | 2014               | **Redis Core**       | Estimates cardinality (unique elements in a dataset) efficiently. |
+| **Bloom Filter**     | 2019               | **RedisBloom Module** | Probabilistic membership testing with controlled false positives. |
+| **Cuckoo Filter**    | 2019               | **RedisBloom Module** | Similar to Bloom Filters but supports deletions and lower false-positive rates. |
+| **Count-Min Sketch** | 2019               | **RedisBloom Module** | Estimates frequency of elements in a data stream. |
+| **Top-K**           | 2019               | **RedisBloom Module** | Identifies the most frequent elements in a dataset. |
+| **T-Digest**        | 2019               | **RedisBloom Module** | Approximates percentiles in large datasets. |
+
+
+#### VII. Bibliography 
 1. [Probabilistic](https://redis.io/docs/latest/develop/data-types/probabilistic/)
 2. [Probabilistic Data Structures - Bloom Filters, HyperLogLogs & Cuckoo Filters](https://youtu.be/dq-0xagF7v8)
 3. [Understanding Probabilistic Data Structures with 112,092 UFO Sightings - Guy Royse - NDC Oslo 2023](https://youtu.be/M6XOniVANKI)
