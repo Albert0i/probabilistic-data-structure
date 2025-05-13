@@ -328,7 +328,7 @@ After inserting sample data from `cf.redis`:
 > MEMORY USAGE PDS:t:memdel
 (integer) 2160
 ```
-> In the implementation of a Cuckoo Filter in Redis, there aren't two arrays used as in a Bloom filter. A Cuckoo filter consists of an array of buckets that store fingerprints of values, not two arrays like a Bloom filter's bit array. Membership queries in a Cuckoo filter search for the fingerprint of the item in the buckets based on hash functions. It utilizes two hash functions for hashing elements and determining their storage locations within the filter.
+> In the implementation of a Cuckoo Filter in Redis, it consists of an array of buckets that store fingerprints of values, not two arrays like a Bloom filter's bit array. Membership queries in a Cuckoo filter search for the fingerprint of the item in the buckets based on hash functions. It utilizes two hash functions for hashing elements and determining their storage locations within the filter.
 
 More resource: 
 - [Probabilistic Filters By Example](https://bdupras.github.io/filter-tutorial/)
