@@ -378,12 +378,12 @@ Here’s a table of PDS in Redis.
 
 | **Data Structure**   | **Year Introduced** | **Redis Component** | **Purpose** |
 |----------------------|--------------------|----------------------|-------------|
-| **HyperLogLog**      | 2014               | **Redis Core**       | Estimates cardinality (unique elements in a dataset) efficiently. |
-| **Bloom Filter**     | 2019               | **RedisBloom Module** | Probabilistic membership testing with controlled false positives. |
-| **Cuckoo Filter**    | 2019               | **RedisBloom Module** | Similar to Bloom Filters but supports deletions and lower false-positive rates. |
-| **Count-Min Sketch** | 2019               | **RedisBloom Module** | Estimates frequency of elements in a data stream. |
-| **Top-K**           | 2019               | **RedisBloom Module** | Identifies the most frequent elements in a dataset. |
-| **T-Digest**        | 2019               | **RedisBloom Module** | Approximates percentiles in large datasets. |
+| **HyperLogLog**      | 2014               | **Redis Core**       | Cardinality |
+| **Bloom Filter**     | 2019               | **RedisBloom Module** | Cardinality and Membership |
+| **Cuckoo Filter**    | 2019               | **RedisBloom Module** | Membership and frequency |
+| **Count-Min Sketch** | 2019               | **RedisBloom Module** | Frequency |
+| **Top-K**           | 2019               | **RedisBloom Module** | Frequency |
+| **T-Digest**        | 2019               | **RedisBloom Module** | Frequency |
 
 
 #### VII. Bibliography 
