@@ -358,6 +358,32 @@ If dataset has many distinct values, it is said to be of *high cardinality*; if 
 HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introduced to Redis version 2.8.9 in 2014 and was built into Redis core, not necessarily on Redis Stack. 
 ![alt redis-stack](img/redis-stack.JPG)
 
+> While you cannot directly see the individual elements stored in a HyperLogLog, you can get information about the raw data.
+```
+> TYPE PDS:t:card
+"string"
+
+> GET PDS:t:card
+"HYLL\x01\x00\x00\x00c\x00\x00\x00\x00\x00\x00\x00Ay\x84@E\x84@m\x88@\xd2\x80@\xba\x84@\xb2\x80\x16\x80A\x85\x84\x1d\x80A8\x80@D\x80\x1f\x80@A\x84@R\x80@\xaf\x80\x00\x805\x80\x1c\x88\x1d\x8c@\x8c\x84@\xa8\x88@\xe9\x80@\xff\x80@\x98\x88@\x98\x84@h\x80@t\x84BX\x80B\xc2\x80\x03\x8c$\x8c@K\x80@\xdb\x80\a\x84@i\x80@P\x88\x17\x80@A\x88@E\x80@\x8a\x8c<\x80@\xba\x94\x02\x8c\x1f\x80A\x80\x801\x80\x12\x80A\n\x84@\xcc\x80\x10\x80A\xab\x80@\xcd\x80%\x88A\x12\x80\b\x88A*\x9cB]\x80@O\x904\x8c\x16\x84@\xcf\x80@U\x80@[\x88@C\x800\x80\n\x80@P\x88\x12\x80\x0f\x84Ar\x80AA\x8c\x0f\x80A\xa0\x84\x1c\x84@\xb7\x80A\x15\x84A\xc6\x8c@y\x80@g\x8c@j\x80A)\x80@[\x80B\x8c\x80C\xda\x84@[\x80.\x80<\x90!\x80@\x98\x80@c\x84@G\x80@k\x80@w\x84=\x88\x1c\x80@S\x80@a\x84@E\x84A\xac\x9cB\a"
+
+> DEBUG OBJECT PDS:t:card
+"Value at:00007FD703C2E8A0 refcount:1 encoding:raw serializedlength:285 lru:2373191 lru_seconds_idle:9"
+> 
+```
+
+> The [PFDEBUG](https://redis.io/docs/latest/commands/pfdebug/) command in Redis is used to inspect the internal state of a HyperLogLog data structure. This command is useful for debugging and understanding the internal representation of the HyperLogLog.
+- `PFDEBUG GETREG key`: Returns the raw register values of the HyperLogLog.
+- `PFDEBUG DECODE key`: Decodes the internal representation of the HyperLogLog and provides a human-readable output.
+- `PFDEBUG ENCODING key`: Returns the encoding type of the HyperLogLog.
+
+```
+PFDEBUG GETREG PDS:t:card 
+PFDEBUG DECODE PDS:t:card 
+PFDEBUG ENCODING PDS:t:card
+```
+![alt pfdebug](img/pfdebug.JPG)
+
+
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
