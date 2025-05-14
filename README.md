@@ -371,6 +371,37 @@ HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introdu
 > 
 ```
 
+> The [DEBUG](https://redis.io/docs/latest/commands/debug/) command in Redis provides several subcommands that are useful for debugging and inspecting the internal state of the Redis server and its data structures. Here are the available DEBUG subcommands along with examples of how to use them:
+1. `DEBUG OBJECT key`: Provides information about the internal representation of a key.
+2. `DEBUG SEGFAULT`: Causes a segmentation fault in the server, useful for testing crash recovery.
+3. `DEBUG RELOAD`: Synchronously save the dataset to disk and reload it back.
+4. `DEBUG HTSTATS db`: Provides hash table statistics for a specific database, which ranges from 0 to 15. 
+5. `DEBUG SDSLEN key`: Provides the length of the Simple Dynamic Strings (SDS) used to store the key and value.
+6. `DEBUG DIGEST`: Returns a 64-bit digest of the dataset.
+7. `DEBUG ZIPLIST`: Provides information about the internal representation of a ziplist.
+8. `DEBUG POPULATE count [prefix]`: Populates the database with a specified number of keys for testing.
+9. `DEBUG SETACTIVEEXPIRE percentage`: Sets the active expire cycle to a specified percentage.
+```
+# Provides information about the internal representation of a key
+DEBUG OBJECT my_key
+# Causes a segmentation fault in the server
+DEBUG SEGFAULT
+# Synchronously save the dataset to disk and reload it back
+DEBUG RELOAD
+# Provides hash table statistics for a specific database
+DEBUG HTSTATS 0
+# Provides the length of the Simple Dynamic Strings (SDS) used to store the key and value
+DEBUG SDSLEN my_key
+# Returns a 64-bit digest of the dataset
+DEBUG DIGEST
+# Provides information about the internal representation of a ziplist
+DEBUG ZIPLIST my_ziplist
+# Populates the database with a specified number of keys for testing
+DEBUG POPULATE 1000 my_key_
+# Sets the active expire cycle to a specified percentage
+DEBUG SETACTIVEEXPIRE 50
+```
+
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
