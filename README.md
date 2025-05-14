@@ -345,11 +345,12 @@ More resource:
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 ![alt hyperloglog-image](img/hyperloglog-image.JPG)
-> **HyperLogLog** was introduced by **Philippe Flajolet** and his colleagues in a 2007 paper [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf), refining earlier probabilistic counting methods. It has since become widely used in *big data analytics, databases, and network monitoring* due to its ability to estimate large cardinalities with minimal memory usage.
+> **HyperLogLog** was introduced by **Philippe Flajolet** and his colleagues in a 2007 paper [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf), refining earlier probabilistic counting methods. It has since become widely used in big data analytics, databases, and network monitoring due to its ability to estimate large cardinalities with minimal memory usage.
 
 > The name **HyperLogLog** comes from its predecessor, the **LogLog algorithm**, which was designed for estimating the number of distinct elements in a dataset. HyperLogLog is an enhanced version of LogLog, hence the prefix **"Hyper"**, indicating its improved accuracy and efficiency.
 
-> The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing [Harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) and M-Bucket, significantly reducing estimation error while maintaining a compact memory footprint.
+> The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing [Harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) and **M-Bucket**, significantly reducing estimation error caused by extreme values while maintaining a compact memory footprint. 
+![alt m-buckets](img/m-buckets.JPG)
 
 If dataset has many distinct values, it is said to be of *high cardinality*; if dataset has only a few distinct values, it is said to be of *low cardinality*. HyperLogLog works best on BIG volume of data with randomn distribution and keeps 98% accuracy. 
 ![alt ](img/hyperloglog.JPG)
