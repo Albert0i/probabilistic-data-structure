@@ -340,7 +340,7 @@ More resource:
 ---
 > Bloom Filters and Cuckoo Filters are called "filters" because their primary function is to efficiently determine *whether an element is probably in a set or definitely not* ─── essentially acting as *screening mechanisms* for data. They are used for *fast membership testing* while minimizing memory usage.
 
-> Other probabilistic data structures, like HyperLogLog, Count-Min Sketch, and Top-K, focus on **approximate counting, frequency estimation, or ranking** rather than membership testing. Since these structures *don’t filter elements out* but instead *aggregate data*, they are not classified as "filters."
+> Other probabilistic data structures, like HyperLogLog, Count-Min Sketch, and Top-K, focus on *approximate counting, frequency estimation, or ranking* rather than membership testing. Since these structures *don’t filter elements out* but instead *aggregate data*, they are not classified as "filters."
 
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
