@@ -456,6 +456,9 @@ Note: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means nu
 > The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 [TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/)
+```
+TOPK.RESERVE key topk [width depth decay]
+```
 
 > In Redis, the Top-K implementation utilizes a hash table for probabilistic counts and a min heap for the K items with the highest counts. This strategy ensures accuracy with shorter execution times compared to previous algorithms. The Redis Top-K implementation does not require hash functions as it is based on probabilistic counting and heap structures for efficient operations.
 
