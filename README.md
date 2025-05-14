@@ -338,7 +338,7 @@ More resource:
 - [Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
 ---
-> Bloom Filters and Cuckoo Filters are called "filters" because their primary function is to efficiently determine *whether an element is probably in a set or definitely not* ─── essentially acting as *screening mechanisms* for data. They are used for *fast membership testing* while minimizing memory usage.
+> Note: Bloom Filters and Cuckoo Filters are called "filters" because their primary function is to efficiently determine *whether an element is probably in a set or definitely not* ─── essentially acting as *screening mechanisms* for data. They are used for *fast membership testing* while minimizing memory usage.
 
 > Other probabilistic data structures, like HyperLogLog, Count-Min Sketch, and Top-K, focus on *approximate counting, frequency estimation, or ranking* rather than membership testing. Since these structures *don’t filter elements out* but instead *aggregate data*, they are not classified as "filters."
 
@@ -437,7 +437,7 @@ More resource:
 - [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf)
 
 ---
-If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros to count is 10; Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket is 4. This is why **LogLog** is called. 
+Note: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros to count is 10; Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket is 4. This is why **LogLog** is called. 
 ![alt log log](img/log2.JPG)
 
 
