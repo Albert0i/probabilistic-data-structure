@@ -405,7 +405,7 @@ DEBUG POPULATE 1000 my_key_
 DEBUG SETACTIVEEXPIRE 50
 ```
 
-> Note: In Redis, a ziplist is a specially encoded data structure used to store small collections of elements in a compact way. Ziplists are used internally by Redis to optimize memory usage for certain data types, such as small lists, hashes, and sorted sets. You don't directly create or manage ziplists; instead, Redis automatically uses ziplists for certain data structures when they meet specific criteria.
+> In Redis, a ziplist is a specially encoded data structure used to store small collections of elements in a compact way. Ziplists are used internally by Redis to optimize memory usage for certain data types, such as small lists, hashes, and sorted sets. You don't directly create or manage ziplists; instead, Redis automatically uses ziplists for certain data structures when they meet specific criteria.
 
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
