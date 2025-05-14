@@ -372,7 +372,7 @@ More resource:
 - [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf)
 
 ---
-If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros we need to count is 10. Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket. This is why it is called **LogLog**. 
+If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros we need to count is 10. Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket is 4. This is why it is called **LogLog**. 
 ![alt log log](img/log2.JPG)
 
 
