@@ -353,7 +353,7 @@ More resource:
 
 > Redis started supporting **HyperLogLog** in **version 2.8.9**, released in **2014**. This version introduced the **PFADD, PFCOUNT, and PFMERGE** commands, allowing efficient **cardinality estimation** with minimal memory usage.
 
-HyperLogLog was first introduced to Redis version 2.8.9 in 2014. It was built into Redis core while other PDS are modules. 
+HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introduced to Redis version 2.8.9 in 2014 and was built into Redis core not necessarily on Redis Stack. 
 ![alt redis-stack](img/redis-stack.JPG)
 
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
@@ -372,7 +372,7 @@ More resource:
 - [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf)
 
 ---
-If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros we need to count is 10. Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket is 4. This is why it is called **LogLog**. 
+If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros to count is 10; Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket is 4. This is why **LogLog** is called. 
 ![alt log log](img/log2.JPG)
 
 
