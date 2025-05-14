@@ -337,6 +337,11 @@ More resource:
 
 - [Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
+---
+> Bloom Filters and Cuckoo Filters are called "filters" because their primary function is to efficiently determine *whether an element is probably in a set or definitely not* ─── essentially acting as *screening mechanisms* for data. They are used for *fast membership testing* while minimizing memory usage.
+
+> Other probabilistic data structures, like HyperLogLog, Count-Min Sketch, and Top-K, focus on **approximate counting, frequency estimation, or ranking** rather than membership testing. Since these structures *don’t filter elements out* but instead *aggregate data*, they are not classified as "filters."
+
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 > The name **HyperLogLog** comes from its predecessor, the **LogLog algorithm**, which was designed for estimating the number of distinct elements in a dataset. HyperLogLog is an **enhanced version** of LogLog, hence the prefix **"Hyper"**, indicating its improved accuracy and efficiency.
@@ -374,14 +379,14 @@ More resource:
 
 
 #### VI. Retrospection
-As you can see, implementation of PDS in Redis is significantly different from the *original* paper. I don't know it is good or not good, for everything has a reason... Finally, here’s a table of PDS in Redis.
+As you can see, implementation of PDS in Redis is significantly different from the *original* paper. I don't know this deviation is good or not for everything has a reason... Finally, here’s a table of PDS in Redis.
 
 | **Data Structure**   | **Year Introduced** | **Redis Component** | **Purpose** |
 |----------------------|--------------------|----------------------|-------------|
 | **HyperLogLog**      | 2014               | **Redis Core**       | Cardinality |
 | **Bloom Filter**     | 2019               | **RedisBloom Module** | Cardinality and Membership |
 | **Cuckoo Filter**    | 2019               | **RedisBloom Module** | Membership and frequency |
-| **Count-Min Sketch** | 2019               | **RedisBloom Module** | Frequency |
+| **Count-Min Sketch** | 2019               | **RedisBloom Module** | Frequency (similar to Counting Bloom Filter) |
 | **Top-K**           | 2019               | **RedisBloom Module** | Membership and frequency |
 | **T-Digest**        | 2019               | **RedisBloom Module** | Frequency |
 
