@@ -351,9 +351,10 @@ More resource:
 
 > The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing [Harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) instead of [Arithmetic mean](https://en.wikipedia.org/wiki/Arithmetic_mean) and **M-Bucket**, significantly reducing estimation error caused by extreme values while maintaining a compact memory footprint. 
 ![alt m-buckets](img/m-buckets.JPG)
+![alt unique-entries-formula](img/unique-entries-formula.JPG)
 
 If dataset has many distinct values, it is said to be of *high cardinality*; if dataset has only a few distinct values, it is said to be of *low cardinality*. HyperLogLog works best on BIG volume of data with randomn distribution and keeps 98% accuracy. 
-![alt ](img/hyperloglog.JPG)
+![alt hyperloglog](img/hyperloglog.JPG)
 
 HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introduced to Redis version 2.8.9 in 2014 and was built into Redis core, not necessarily on Redis Stack. 
 ![alt redis-stack](img/redis-stack.JPG)
