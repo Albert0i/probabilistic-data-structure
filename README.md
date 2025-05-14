@@ -349,7 +349,7 @@ More resource:
 
 > The name **HyperLogLog** comes from its predecessor, the **LogLog algorithm**, which was designed for estimating the number of distinct elements in a dataset. HyperLogLog is an enhanced version of LogLog, hence the prefix **"Hyper"**, indicating its improved accuracy and efficiency.
 
-> The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing [Harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) and **M-Bucket**, significantly reducing estimation error caused by extreme values while maintaining a compact memory footprint. 
+> The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing [Harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) instead of [Arithmetic mean](https://en.wikipedia.org/wiki/Arithmetic_mean) and **M-Bucket**, significantly reducing estimation error caused by extreme values while maintaining a compact memory footprint. 
 ![alt m-buckets](img/m-buckets.JPG)
 
 If dataset has many distinct values, it is said to be of *high cardinality*; if dataset has only a few distinct values, it is said to be of *low cardinality*. HyperLogLog works best on BIG volume of data with randomn distribution and keeps 98% accuracy. 
