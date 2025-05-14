@@ -447,6 +447,8 @@ Note: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means nu
 - [MinHeap](https://www.geeksforgeeks.org/what-is-min-heap/) is a [complete binary tree](https://www.geeksforgeeks.org/complete-binary-tree/), where value of each node is smaller than or equal to the values of its children. Therefore, Min Heap stores the **minimum** value at the root of the heap. Min Heap is used to maintain the minimum element in a collection of data.
 - [HeavyKeeper](https://www.usenix.org/system/files/conference/atc18/atc18-gong.pdf) is an algorithm designed for identifying the **top-k "elephant flows"** in network traffic. Elephant flows are large data streams that contribute significantly to overall network traffic. HeavyKeeper uses a **count-with-exponential-decay** strategy to efficiently track and estimate the sizes of these flows while minimizing memory usage.
 
+Note: In computer networking, **elephant flows** refer to large, long-lived data flows that consume a significant portion of network bandwidth. These flows are typically established by protocols like TCP and can persist over extended periods, transferring vast amounts of data. 
+
 
 
 
