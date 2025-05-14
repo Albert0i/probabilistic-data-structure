@@ -351,9 +351,10 @@ More resource:
 
 > The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing [Harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) and M-Bucket, significantly reducing estimation error while maintaining a compact memory footprint.
 
-> Redis started supporting **HyperLogLog** in **version 2.8.9**, released in **2014**. This version introduced the **PFADD, PFCOUNT, and PFMERGE** commands, allowing efficient **cardinality estimation** with minimal memory usage.
+If dataset has many distinct values, it is said to be of *high cardinality*; if dataset has only a few distinct values, it is said to be of *low cardinality*. HyperLogLog works best on BIG volume of data with randomn distribution and keeps 98% accuracy. 
+![alt ](img/hyperloglog.JPG)
 
-HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introduced to Redis version 2.8.9 in 2014 and was built into Redis core not necessarily on Redis Stack. 
+HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introduced to Redis version 2.8.9 in 2014 and was built into Redis core, not necessarily on Redis Stack. 
 ![alt redis-stack](img/redis-stack.JPG)
 
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
