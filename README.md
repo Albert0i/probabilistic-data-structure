@@ -371,19 +371,6 @@ HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introdu
 > 
 ```
 
-> The [PFDEBUG](https://redis.io/docs/latest/commands/pfdebug/) command in Redis is used to inspect the internal state of a HyperLogLog data structure. This command is useful for debugging and understanding the internal representation of the HyperLogLog.
-- `PFDEBUG GETREG key`: Returns the raw register values of the HyperLogLog.
-- `PFDEBUG DECODE key`: Decodes the internal representation of the HyperLogLog and provides a human-readable output.
-- `PFDEBUG ENCODING key`: Returns the encoding type of the HyperLogLog.
-
-```
-PFDEBUG GETREG PDS:t:card 
-PFDEBUG DECODE PDS:t:card 
-PFDEBUG ENCODING PDS:t:card
-```
-![alt pfdebug](img/pfdebug.JPG)
-
-
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
@@ -396,6 +383,18 @@ PFDEBUG ENCODING PDS:t:card
 > The number of buckets used is 16,384 (2¹⁴). These buckets, also known as registers, store the maximum observed leading zero count for hashed elements, which is crucial for estimating cardinality. 
 
 > Each bucket (or register) is 6 bits in size. Since Redis uses 16,384 buckets (2¹⁴), the total memory required for a HyperLogLog structure is 12 KB (16,384 × 6 bits ≈ 12 KB). This fixed memory footprint allows Redis to efficiently estimate cardinality while maintaining a standard error rate of 0.81%. 
+
+> The [PFDEBUG](https://redis.io/docs/latest/commands/pfdebug/) command in Redis is used to inspect the internal state of a HyperLogLog data structure. This command is useful for debugging and understanding the internal representation of the HyperLogLog.
+- `PFDEBUG GETREG key`: Returns the raw register values of the HyperLogLog.
+- `PFDEBUG DECODE key`: Decodes the internal representation of the HyperLogLog and provides a human-readable output.
+- `PFDEBUG ENCODING key`: Returns the encoding type of the HyperLogLog.
+
+```
+PFDEBUG GETREG PDS:t:card 
+PFDEBUG DECODE PDS:t:card 
+PFDEBUG ENCODING PDS:t:card
+```
+![alt pfdebug](img/pfdebug.JPG)
 
 More resource: 
 - [Redis HyperLogLog probabilistic cardinality approximation](https://github.com/redis/redis/blob/unstable/src/hyperloglog.c)
