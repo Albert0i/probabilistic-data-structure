@@ -362,7 +362,8 @@ HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introdu
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
 
-[PFMERGE](https://redis.io/docs/latest/commands/pfmerge/)
+[PFMERGE](https://redis.io/docs/latest/commands/pfmerge/) Merges one or more HyperLogLog values into a single key.
+![alt pfmerge](img/pfmerge.JPG)
 
 > In Redis, the implementation of HyperLogLog typically utilizes one hash function for hashing elements and determining their storage locations within the data structure. It uses the harmonic mean for cardinality estimation, which is a factor in determining the number of elements in a set. It achieves efficient memory usage with a standard error of approximately 0.81%. 
 
