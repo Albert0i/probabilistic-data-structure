@@ -419,9 +419,9 @@ DEBUG SETACTIVEEXPIRE 50
 > Each bucket (or register) is 6 bits in size. Since Redis uses 16,384 buckets (2¹⁴), the total memory required for a HyperLogLog structure is 12 KB (16,384 × 6 bits ≈ 12 KB). This fixed memory footprint allows Redis to efficiently estimate cardinality while maintaining a standard error rate of 0.81%. 
 
 > The [PFDEBUG](https://redis.io/docs/latest/commands/pfdebug/) command in Redis is used to inspect the internal state of a HyperLogLog data structure. This command is useful for debugging and understanding the internal representation of the HyperLogLog.
-- `PFDEBUG GETREG key`: Returns the raw register values of the HyperLogLog.
-- `PFDEBUG DECODE key`: Decodes the internal representation of the HyperLogLog and provides a human-readable output.
-- `PFDEBUG ENCODING key`: Returns the encoding type of the HyperLogLog.
+1. `PFDEBUG GETREG key`: Returns the raw register values of the HyperLogLog.
+2. `PFDEBUG DECODE key`: Decodes the internal representation of the HyperLogLog and provides a human-readable output.
+3. `PFDEBUG ENCODING key`: Returns the encoding type of the HyperLogLog.
 
 ```
 PFDEBUG GETREG PDS:t:card 
