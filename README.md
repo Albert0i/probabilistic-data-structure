@@ -358,6 +358,9 @@ If dataset has many distinct values, it is said to be of *high cardinality*; if 
 HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introduced to Redis version 2.8.9 in 2014 and was built into Redis core, not necessarily on Redis Stack. 
 ![alt redis-stack](img/redis-stack.JPG)
 
+[PFMERGE](https://redis.io/docs/latest/commands/pfmerge/) Merges one or more HyperLogLog values into a single key.
+![alt pfmerge](img/pfmerge.JPG)
+
 > While you cannot directly see the individual elements stored in a HyperLogLog, you can get information about the raw data.
 ```
 > TYPE PDS:t:card
@@ -401,14 +404,12 @@ DEBUG POPULATE 1000 my_key_
 # Sets the active expire cycle to a specified percentage
 DEBUG SETACTIVEEXPIRE 50
 ```
+
 > In Redis, a ziplist is a specially encoded data structure used to store small collections of elements in a compact way. Ziplists are used internally by Redis to optimize memory usage for certain data types, such as small lists, hashes, and sorted sets. You don't directly create or manage ziplists; instead, Redis automatically uses ziplists for certain data structures when they meet specific criteria.
 
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
-
-[PFMERGE](https://redis.io/docs/latest/commands/pfmerge/) Merges one or more HyperLogLog values into a single key.
-![alt pfmerge](img/pfmerge.JPG)
 
 > In Redis, the implementation of HyperLogLog typically utilizes one hash function for hashing elements and determining their storage locations within the data structure. It uses the harmonic mean for cardinality estimation, which is a factor in determining the number of elements in a set. It achieves efficient memory usage with a standard error of approximately 0.81%. 
 
