@@ -367,6 +367,10 @@ HyperLogLog is state-of-the-art cardinality estimation algorithm. It was introdu
 
 > In Redis, the implementation of HyperLogLog typically utilizes one hash function for hashing elements and determining their storage locations within the data structure. It uses the harmonic mean for cardinality estimation, which is a factor in determining the number of elements in a set. It achieves efficient memory usage with a standard error of approximately 0.81%. 
 
+> The number of buckets used is 16,384 (2¹⁴). These buckets, also known as registers, store the maximum observed leading zero count for hashed elements, which is crucial for estimating cardinality. 
+
+> Each bucket (or register) is 6 bits in size. Since Redis uses 16,384 buckets (2¹⁴), the total memory required for a HyperLogLog structure is 12 KB (16,384 × 6 bits ≈ 12 KB). This fixed memory footprint allows Redis to efficiently estimate cardinality while maintaining a standard error rate of 0.81%. 
+
 More resource: 
 - [Redis HyperLogLog probabilistic cardinality approximation](https://github.com/redis/redis/blob/unstable/src/hyperloglog.c)
 
