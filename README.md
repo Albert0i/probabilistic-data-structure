@@ -345,12 +345,11 @@ More resource:
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 ![alt hyperloglog-image](img/hyperloglog-image.JPG)
-> The name **HyperLogLog** comes from its predecessor, the **LogLog algorithm**, which was designed for estimating the number of distinct elements in a dataset. HyperLogLog is an **enhanced version** of LogLog, hence the prefix **"Hyper"**, indicating its improved accuracy and efficiency.
+> **HyperLogLog** was introduced by **Philippe Flajolet** and his colleagues in a 2007 paper [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf), refining earlier probabilistic counting methods. It has since become widely used in *big data analytics, databases, and network monitoring* due to its ability to estimate large cardinalities with minimal memory usage.
 
-> The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing **harmonic averaging** and **multiple registers**, significantly reducing estimation error while maintaining a compact memory footprint.
+> The name **HyperLogLog** comes from its predecessor, the **LogLog algorithm**, which was designed for estimating the number of distinct elements in a dataset. HyperLogLog is an enhanced version of LogLog, hence the prefix **"Hyper"**, indicating its improved accuracy and efficiency.
 
-> HyperLogLog was introduced by **Philippe Flajolet** and his colleagues in a 2007 paper [HyperLogLog: the analysis of a near-optimal
-cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf), refining earlier probabilistic counting methods. It has since become widely used in **big data analytics, databases, and network monitoring** due to its ability to estimate large cardinalities with minimal memory usage.
+> The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing [Harmonic mean](https://en.wikipedia.org/wiki/Harmonic_mean) and M-Bucket, significantly reducing estimation error while maintaining a compact memory footprint.
 
 > The default capacity for HyperLogLog in Redis is up to 12 KB and provides a standard error of 0.81%. For more information, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
