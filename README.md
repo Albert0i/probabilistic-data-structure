@@ -344,6 +344,7 @@ More resource:
 
 
 #### IV. [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
+![alt hyperloglog-image](img/hyperloglog-image.JPG)
 > The name **HyperLogLog** comes from its predecessor, the **LogLog algorithm**, which was designed for estimating the number of distinct elements in a dataset. HyperLogLog is an **enhanced version** of LogLog, hence the prefix **"Hyper"**, indicating its improved accuracy and efficiency.
 
 > The original **LogLog algorithm** was developed based on the idea of using the maximum number of leading zeros in hashed values to estimate cardinality. HyperLogLog builds upon this by introducing **harmonic averaging** and **multiple registers**, significantly reducing estimation error while maintaining a compact memory footprint.
