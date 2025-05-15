@@ -445,11 +445,11 @@ Note: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means nu
 #### V. [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
 > Finding the largest K elements (a.k.a. keyword frequency) in a data set or a stream is a common functionality requirement for many modern applications. This is often a critical task used to track network traffic for either marketing or cyber-security purposes, or serve as a [game leaderboard](https://redis.io/solutions/leaderboards/) or a simple word counter. The latest implementation of Top-K in our [Probabilistic feature](http://redisbloom.io/) uses an algorithm, called HeavyKeeper1, which was proposed by a group of researchers.
 
-Top-K is a combination of MinHeap and HeavyKeeper, the cool thing with HeavyKeeper is is that it is *erosive*. There is a count to keep track of things when added to HeavyKeeper. Repeatedly adding things to HeavyKeeper sometimes will cause a conflict. Things with a higher get lesser chances to decrease, *decay* in original term and this is the probabilistic part of Top-K. 
+Top-K is a combination of MinHeap and HeavyKeeper, the cool thing with HeavyKeeper is is that it is *erosive*. There is a count to keep track of things when added to HeavyKeeper. Repeatedly adding things to HeavyKeeper sometimes will cause a conflict. Things with a higher count get lesser chances to decrease, *decay* in original term and this is the probabilistic part of Top-K. 
 ![alt topk-two-parts](img/topk-two-parts.JPG)
 
 - [MinHeap](https://www.geeksforgeeks.org/what-is-min-heap/) is a [complete binary tree](https://www.geeksforgeeks.org/complete-binary-tree/), where value of each node is smaller than or equal to the values of its children. Therefore, Min Heap stores the **minimum** value at the root of the heap. Min Heap is used to maintain the minimum element in a collection of data.
-
+![alt MinHeap](img/MinHeap.JPG)
 - [HeavyKeeper](https://www.usenix.org/system/files/conference/atc18/atc18-gong.pdf) is an algorithm designed for identifying the **top-k "elephant flows"** in network traffic. Elephant flows are large data streams that contribute significantly to overall network traffic. HeavyKeeper uses a **count-with-exponential-decay** strategy to efficiently track and estimate the sizes of these flows while minimizing memory usage.
 
 [TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/) initializes a TopK with specified parameters.`
