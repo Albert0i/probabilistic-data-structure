@@ -512,7 +512,7 @@ Optional parameters
 More resource: 
 - [Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
-Note: 
+Note 1: 
 > The Top-K data structure in RedisBloom is indeed a combination of several algorithms, including MinHeap and HeavyKeeper, to efficiently track the most frequent items in a stream of data. Each component plays a specific role in ensuring the data structure is both memory-efficient and capable of providing approximate counts with high accuracy.
 
 **Why MinHeap?**
@@ -545,6 +545,41 @@ A MinHeap is used in the Top-K data structure to maintain the top K elements eff
 
 - MinHeap: Maintains the top K elements by efficiently keeping track of the minimum element. When a new item is added, it is compared with the minimum element in the heap. If the new item has a higher frequency, it replaces the minimum element, and the heap is restructured to maintain the heap property.
 - HeavyKeeper: Uses multiple hash functions and counters to probabilistically track the frequency of items. It helps in quickly identifying items that are likely to be in the top K and provides approximate counts.
+
+Note 2: 
+The parameters `width`, `depth`, and `decay` in the Top-K data structure of RedisBloom play crucial roles in determining the performance and accuracy of the data structure. Here's a detailed explanation of how each parameter affects the Top-K data structure:
+
+**Width**
+- Definition: The width parameter specifies the number of counters in each row of the HeavyKeeper component.
+- Impact on Performance:
+1. Memory Usage: Increasing the width increases the number of counters, which in turn increases the memory usage.
+2. Speed: A larger width can slow down the insertion and query operations because more counters need to be updated and checked.
+- Impact on Accuracy:
+1. Collision Reduction: A larger width reduces the likelihood of hash collisions, which can improve the accuracy of frequency estimates.
+2. False Positives: With more counters, the chances of false positives (incorrectly identifying an item as frequent) are reduced.
+
+**Depth**
+
+- Definition: The depth parameter specifies the number of rows (or hash functions) in the HeavyKeeper component.
+- Impact on Performance:
+1. Memory Usage: Increasing the depth increases the number of rows, which also increases the memory usage.
+2. Speed: A larger depth can slow down the insertion and query operations because more rows need to be updated and checked.
+- Impact on Accuracy:
+1. Redundancy: A larger depth provides more redundancy, which can improve the accuracy of frequency estimates by averaging out the noise from individual counters.
+2. Error Reduction: With more rows, the chances of errors in frequency estimation are reduced, leading to more accurate results.
+
+**Decay**
+
+- Definition: The decay parameter is a factor that reduces the weight of older items in the HeavyKeeper component.
+- Impact on Performance:
+1. Computational Overhead: The decay factor introduces additional computational overhead as it requires periodic updates to reduce the weights of older items.
+- Impact on Accuracy:
+1. Adaptability: A higher decay factor (closer to 1) means that older items retain their weight longer, which can be useful in scenarios where the frequency of items does not change rapidly.
+2. Responsiveness: A lower decay factor (closer to 0) makes the data structure more responsive to recent changes in item frequencies, which can be useful in dynamic environments where the frequency of items changes rapidly.
+
+**Balancing the Parameters**
+- Memory vs. Accuracy: Increasing the width and depth improves accuracy but also increases memory usage. Finding the right balance is crucial for optimizing both memory efficiency and accuracy.
+- Speed vs. Accuracy: Higher width and depth can slow down operations but improve accuracy. The decay factor can also affect the speed of updates. Balancing these parameters is important for maintaining acceptable performance while achieving the desired accuracy.
 
 
 #### VI. Retrospection
