@@ -512,6 +512,40 @@ Optional parameters
 More resource: 
 - [Probabilistic data structure commands](https://redis.io/docs/latest/operate/oss_and_stack/stack-with-enterprise/bloom/commands/) for Bloom filter, Cuckoo filter and Top-k. 
 
+Note: 
+> The Top-K data structure in RedisBloom is indeed a combination of several algorithms, including MinHeap and HeavyKeeper, to efficiently track the most frequent items in a stream of data. Each component plays a specific role in ensuring the data structure is both memory-efficient and capable of providing approximate counts with high accuracy.
+
+**Why MinHeap?**
+
+A MinHeap is used in the Top-K data structure to maintain the top K elements efficiently. Here are some reasons why MinHeap is chosen and its advantages over other data structures:
+
+1. Efficient Minimum Element Access:
+- MinHeap: Provides O(1) time complexity for accessing the minimum element, which is crucial for maintaining the top K elements.
+- Other Data Structures: Data structures like arrays or linked lists do not provide such efficient access to the minimum element.
+
+2. Efficient Insertion and Deletion:
+- MinHeap: Allows for efficient insertion and deletion operations with O(log K) time complexity. This is important for maintaining the top K elements as new items are added and the least frequent items are evicted.
+- Other Data Structures: Data structures like balanced binary search trees (e.g., AVL trees, Red-Black trees) also provide O(log K) insertion and deletion, but they are generally more complex to implement and manage.
+
+3. Memory Efficiency:
+- MinHeap: Uses a fixed amount of memory proportional to K, making it memory-efficient for tracking the top K elements.
+- Other Data Structures: Some data structures may require additional memory overhead for pointers or balancing information, making them less memory-efficient.
+
+4. Simplicity and Performance:
+- MinHeap: Simple to implement and provides good performance for the specific use case of maintaining the top K elements.
+- Other Data Structures: More complex data structures may introduce additional overhead and complexity without significant performance benefits for this specific use case.
+
+**Caveat**
+
+- No Hard Limit: There is no hard-coded maximum number for the size of the MinHeap (K) in the Top-K data structure. However, practical considerations such as memory usage and performance should guide the choice of K.
+- Memory and Performance: Larger values of K require more memory and can impact performance due to the O(log K) complexity of heap operations.
+- Balance: It is important to balance the value of K with the other parameters (width, depth, decay) to maintain accuracy and efficiency.
+
+**How MinHeap and HeavyKeeper Work Together**
+
+- MinHeap: Maintains the top K elements by efficiently keeping track of the minimum element. When a new item is added, it is compared with the minimum element in the heap. If the new item has a higher frequency, it replaces the minimum element, and the heap is restructured to maintain the heap property.
+- HeavyKeeper: Uses multiple hash functions and counters to probabilistically track the frequency of items. It helps in quickly identifying items that are likely to be in the top K and provides approximate counts.
+
 
 #### VI. Retrospection
 As you can see, implementation of PDS in Redis is significantly different from the *original* paper. I don't know this deviation is good or not for everything has a reason... Finally, here’s a table of PDS in Redis.
