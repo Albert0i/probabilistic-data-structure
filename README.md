@@ -438,8 +438,29 @@ More resource:
 - [HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm](https://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf)
 
 ---
-Note: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros to count is 10; Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket is 4. This is why **LogLog** is called. 
+Note 1: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means number of leading/trailing zeros to count is 10; Log(10) ≈ 3.32 (base 2) which means number of bits required in each bucket is 4. This is why **LogLog** is called. 
 ![alt log log](img/log2.JPG)
+
+Note 2: The HyperLogLog (HLL) data structure in Redis is designed to use a fixed amount of memory, typically around 12 KB, to store the data structure itself. However, Redis uses an optimization where it initially stores the HyperLogLog in a **sparse** representation, which consumes much less memory. This sparse representation is used until the data structure reaches a certain threshold of elements, after which it is converted to the full 12 KB **dense** representation. This threshold is not explicitly documented in the Redis documentation, but it is generally understood to be around 10,000 unique elements.
+```
+> MEMORY USAGE PDS:t:card
+(integer) 14392
+
+> PFDEBUG DECODE PDS:t:card
+"ERR HLL encoding is not sparse"
+
+> PFDEBUG ENCODING PDS:t:card
+"dense"
+
+> PFDEBUG GETREG PDS:t:card 
+1) "0"
+2) "0"
+3) "0"
+4) "0"
+5) "0"
+. . . 
+16384) "0"
+```
 
 
 #### V. [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
