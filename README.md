@@ -1,5 +1,5 @@
 ### Probabilistic Data Structure
-![alt cover](img/cover.png)
+![alt HyperLogLog](img/HyperLogLog.png)
 > "'correct understanding of a matter and a misunderstanding of the same matter are not mutually exclusive'."<br />The Trial by Franz Kafka
 
 
