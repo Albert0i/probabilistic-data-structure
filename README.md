@@ -493,18 +493,6 @@ Optional parameters
 > As a rule of thumb, width of k*log(k), depth of log(k) or minimum of 5, and decay of 0.9, yield good results. You could run a few tests to fine tune these parameters to the nature of your data.
 ![alt parts-of-a-heavy-keeper](img/parts-of-a-heavy-keeper.JPG)
 
-```
-> topk.info PDS:t:freq
-1) "k"
-2) "100"
-3) "width"
-4) "8"
-5) "depth"
-6) "7"
-7) "decay"
-8) "0.9"
-```
-
 > The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 > In Redis, the Top-K implementation utilizes a hash table for probabilistic counts and a min heap for the K items with the highest counts. This strategy ensures accuracy with shorter execution times compared to previous algorithms. The Redis Top-K implementation does not require hash functions as it is based on probabilistic counting and heap structures for efficient operations.
@@ -617,7 +605,20 @@ Given the parameters `TOPK.RESERVE mytopk 100 8 7 0.9`, the approximate memory c
 - Total Memory: 2848 bytes
 
 This calculation provides an estimate of the memory usage. The actual memory usage may vary slightly due to additional overhead and metadata managed by Redis.
+```
+> TOPK.INFO PDS:t:freq
+1) "k"
+2) "100"
+3) "width"
+4) "8"
+5) "depth"
+6) "7"
+7) "decay"
+8) "0.9"
 
+> MEMORY USAGE PDS:t:freq
+(integer) 4976
+```
 
 #### VI. Retrospection
 As you can see, implementation of PDS in Redis is significantly different from the *original* paper. I don't know this deviation is good or not for everything has a reason... Finally, here’s a table of PDS in Redis.
