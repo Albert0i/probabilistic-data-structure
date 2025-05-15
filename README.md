@@ -480,7 +480,7 @@ As you can see, implementation of PDS in Redis is significantly different from t
 | **Top-K**           | 2019               | **RedisBloom Module** | Membership and frequency |
 | **T-Digest**        | 2019               | **RedisBloom Module** | Frequency |
 
-There is no doubt Redis is way before in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... 
+There is no doubt Redis is way before in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... PDS are advanced dsta structures you won't learn in college text book. They are ingenious design and fascinating in nature. 
 
 
 #### VII. Bibliography 
@@ -493,7 +493,9 @@ There is no doubt Redis is way before in Vectors, which is the root of AI, and P
 7. [A problem so hard even Google relies on Random Chance](https://youtu.be/lJYufx0bfpw)
 8. [Counting BILLIONS with Just Kilobytes? Meet HyperLogLog!](https://youtu.be/f69hh3KgFEk)
 9. [HyperLogLog: A Simple but Powerful Algorithm for Data Scientists](https://chengweihu.com/hyperloglog/)
-10. [The Trial by Franz Kafka](https://www.gutenberg.org/cache/epub/7849/pg7849-images.html)
+10. [HeavyKeeper: An Accurate Algorithm for Finding Top-k Elephant Flows](https://www.usenix.org/system/files/conference/atc18/atc18-gong.pdf)
+11. [Meet Top-K: an Awesome Probabilistic Addition to Redis Features](https://redis.io/blog/meet-top-k-awesome-probabilistic-addition-redis/)
+12. [The Trial by Franz Kafka](https://www.gutenberg.org/cache/epub/7849/pg7849-images.html)
 
 
 #### Epilogue
