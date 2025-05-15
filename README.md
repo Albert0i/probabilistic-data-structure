@@ -581,6 +581,43 @@ Note 2:
 - Memory vs. Accuracy: Increasing the width and depth improves accuracy but also increases memory usage. Finding the right balance is crucial for optimizing both memory efficiency and accuracy.
 - Speed vs. Accuracy: Higher width and depth can slow down operations but improve accuracy. The decay factor can also affect the speed of updates. Balancing these parameters is important for maintaining acceptable performance while achieving the desired accuracy.
 
+Note 3: 
+> To calculate the memory consumption of the Top-K data structure in RedisBloom given the parameters `TOPK.RESERVE mytopk 100 8 7 0.9`, we need to consider the memory used by both the MinHeap and the HeavyKeeper components.
+1. MinHeap Memory Usage
+The MinHeap is used to maintain the top K elements. Each element in the MinHeap typically includes:
+- The item itself (a string or integer)
+- A counter for the frequency
+
+The memory usage for the MinHeap can be approximated as: 
+MinHeap Memory = K × (size of item + size of counter)
+
+Assuming:
+- The average size of an item (string) is 16 bytes (this can vary based on the actual data)
+- The size of a counter (integer) is 8 bytes
+MinHeap Memory = 100 × (16 + 8) = 100 × 24 = 2400 bytes
+
+2. HeavyKeeper Memory Usage
+The HeavyKeeper component uses multiple hash functions and counters to probabilistically track the frequency of items. The memory usage for the HeavyKeeper can be calculated as: 
+HeavyKeeper Memory = Width × Depth × size of counter
+
+Assuming:
+
+The size of a counter (integer) is 8 bytes
+HeavyKeeper Memory = 8 × 7 × 8 = 448 bytes
+
+3. Total Memory Usage
+The total memory usage is the sum of the memory used by the MinHeap and the HeavyKeeper components:
+Total Memory = MinHeap Memory + HeavyKeeper Memory
+Total Memory = 2400 bytes + 448 bytes = 2848 bytes
+
+4. Summary
+Given the parameters `TOPK.RESERVE mytopk 100 8 7 0.9`, the approximate memory consumption is:
+- MinHeap Memory: 2400 bytes
+- HeavyKeeper Memory: 448 bytes
+- Total Memory: 2848 bytes
+
+This calculation provides an estimate of the memory usage. The actual memory usage may vary slightly due to additional overhead and metadata managed by Redis.
+
 
 #### VI. Retrospection
 As you can see, implementation of PDS in Redis is significantly different from the *original* paper. I don't know this deviation is good or not for everything has a reason... Finally, here’s a table of PDS in Redis.
