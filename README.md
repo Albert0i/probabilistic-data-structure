@@ -504,7 +504,7 @@ As you can see, implementation of PDS in Redis is significantly different from t
 | **Top-K**           | 2019               | **RedisBloom Module** | Membership and frequency |
 | **T-Digest**        | 2019               | **RedisBloom Module** | Frequency |
 
-There is no doubt Redis is way before in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... PDS are advanced data structures you won't see in college text book. They are ingenious in design and fascinating in nature. 
+There is no doubt Redis is way before in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... PDS are advanced data structures you won't see in college text book. They are ingenious in design and yet fascinating in nature. 
 
 
 #### VII. Bibliography 
