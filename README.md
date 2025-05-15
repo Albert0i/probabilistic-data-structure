@@ -445,7 +445,9 @@ Note: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means nu
 #### V. [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
 > Finding the largest K elements (a.k.a. keyword frequency) in a data set or a stream is a common functionality requirement for many modern applications. This is often a critical task used to track network traffic for either marketing or cyber-security purposes, or serve as a [game leaderboard](https://redis.io/solutions/leaderboards/) or a simple word counter. The latest implementation of Top-K in our [Probabilistic feature](http://redisbloom.io/) uses an algorithm, called HeavyKeeper1, which was proposed by a group of researchers.
 
-Top-K is a combination of MinHeap and HeavyKeeper, the cool thing with HeavyKeeper is is that it is *erosive*. There is a count to keep track of things when added to HeavyKeeper. Repeatedly adding things to HeavyKeeper sometimes will cause a conflict. Things with a higher count get lesser chances to decrease, *decay* in original term and this is the probabilistic part of Top-K. 
+Top-K is a combination of MinHeap and HeavyKeeper, the cool thing with HeavyKeeper is is that it is *erosive*. There is a count to keep track of things when added to HeavyKeeper. Repeatedly adding things to HeavyKeeper sometimes will cause a conflict. Things with a higher count get lesser chances to decrease, *decay* in original term and this is the probabilistic part of Top-K.
+
+Along the way, we also update MinHeap. So, MinHeap keeps the list of top K things with most occurrences and HeavyKeep keeps occurrences of everything *approximately*. 
 
 ![alt topk-two-parts](img/topk-two-parts.JPG)
 
@@ -468,6 +470,7 @@ Optional parameters
 - `decay`: The probability of reducing a counter in an occupied bucket. It is raised to power of it's counter (decay ^ bucket[i].counter). Therefore, as the counter gets higher, the chance of a reduction is being reduced. (Default 0.9)
 
 > As a rule of thumb, width of k*log(k), depth of log(k) or minimum of 5, and decay of 0.9, yield good results. You could run a few tests to fine tune these parameters to the nature of your data.
+![alt ](img/parts-of-a-heavy-keeper.JPG)
 
 ```
 > topk.info PDS:t:freq
