@@ -444,23 +444,39 @@ Note: If the size of dataset is 1000, Log(1000) ≈ 9.96 (base 2) which means nu
 
 #### V. [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
 ![alt topk-two-parts](img/topk-two-parts.JPG)
+> Finding the largest K elements (a.k.a. keyword frequency) in a data set or a stream is a common functionality requirement for many modern applications. This is often a critical task used to track network traffic for either marketing or cyber-security purposes, or serve as a [game leaderboard](https://redis.io/solutions/leaderboards/) or a simple word counter. The latest implementation of Top-K in our [Probabilistic feature](http://redisbloom.io/) uses an algorithm, called HeavyKeeper1, which was proposed by a group of researchers.
+
 - [MinHeap](https://www.geeksforgeeks.org/what-is-min-heap/) is a [complete binary tree](https://www.geeksforgeeks.org/complete-binary-tree/), where value of each node is smaller than or equal to the values of its children. Therefore, Min Heap stores the **minimum** value at the root of the heap. Min Heap is used to maintain the minimum element in a collection of data.
 - [HeavyKeeper](https://www.usenix.org/system/files/conference/atc18/atc18-gong.pdf) is an algorithm designed for identifying the **top-k "elephant flows"** in network traffic. Elephant flows are large data streams that contribute significantly to overall network traffic. HeavyKeeper uses a **count-with-exponential-decay** strategy to efficiently track and estimate the sizes of these flows while minimizing memory usage.
 
-Note: In computer networking, **elephant flows** refer to large, long-lived data flows that consume a significant portion of network bandwidth. These flows are typically established by protocols like TCP and can persist over extended periods, transferring vast amounts of data. 
-
-
-
-
-
-
-
-> The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
-
-[TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/)
+[TOPK.RESERVE](https://redis.io/docs/latest/commands/topk.reserve/) initializes a TopK with specified parameters.`
 ```
 TOPK.RESERVE key topk [width depth decay]
 ```
+Parameters: 
+- `key`: Key under which the sketch is to be found.
+- `topk`: Number of top occurring items to keep.
+
+Optional parameters
+- `width`: Number of counters kept in each array. (Default 8)
+- `depth`: Number of arrays. (Default 7)
+- `decay`: The probability of reducing a counter in an occupied bucket. It is raised to power of it's counter (decay ^ bucket[i].counter). Therefore, as the counter gets higher, the chance of a reduction is being reduced. (Default 0.9)
+
+> As a rule of thumb, width of k*log(k), depth of log(k) or minimum of 5, and decay of 0.9, yield good results. You could run a few tests to fine tune these parameters to the nature of your data.
+
+```
+> topk.info PDS:t:freq
+1) "k"
+2) "100"
+3) "width"
+4) "8"
+5) "depth"
+6) "7"
+7) "decay"
+8) "0.9"
+```
+
+> The default capacity for Top-K in Redis is 1000, and the default error rate is 0.01. For more details, you can refer to the documentation [here](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/?utm_source=redisinsight&utm_medium=app&utm_campaign=ai_assistant).
 
 > In Redis, the Top-K implementation utilizes a hash table for probabilistic counts and a min heap for the K items with the highest counts. This strategy ensures accuracy with shorter execution times compared to previous algorithms. The Redis Top-K implementation does not require hash functions as it is based on probabilistic counting and heap structures for efficient operations.
 
