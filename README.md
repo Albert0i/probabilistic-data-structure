@@ -547,7 +547,7 @@ A MinHeap is used in the Top-K data structure to maintain the top K elements eff
 - HeavyKeeper: Uses multiple hash functions and counters to probabilistically track the frequency of items. It helps in quickly identifying items that are likely to be in the top K and provides approximate counts.
 
 Note 2: 
-The parameters `width`, `depth`, and `decay` in the Top-K data structure of RedisBloom play crucial roles in determining the performance and accuracy of the data structure. Here's a detailed explanation of how each parameter affects the Top-K data structure:
+> The parameters `width`, `depth`, and `decay` in the Top-K data structure of RedisBloom play crucial roles in determining the performance and accuracy of the data structure. Here's a detailed explanation of how each parameter affects the Top-K data structure:
 
 **Width**
 - Definition: The width parameter specifies the number of counters in each row of the HeavyKeeper component.
