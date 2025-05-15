@@ -465,12 +465,12 @@ Parameters:
 - `topk`: Number of top occurring items to keep.
 
 Optional parameters
-- `width`: Number of counters kept in each array. (Default 8)
-- `depth`: Number of arrays. (Default 7)
+- `width`: Number of counters (buckers) kept in each array. (Default 8)
+- `depth`: Number of arrays (hash functions). (Default 7)
 - `decay`: The probability of reducing a counter in an occupied bucket. It is raised to power of it's counter (decay ^ bucket[i].counter). Therefore, as the counter gets higher, the chance of a reduction is being reduced. (Default 0.9)
 
 > As a rule of thumb, width of k*log(k), depth of log(k) or minimum of 5, and decay of 0.9, yield good results. You could run a few tests to fine tune these parameters to the nature of your data.
-![alt ](img/parts-of-a-heavy-keeper.JPG)
+![alt parts-of-a-heavy-keeper](img/parts-of-a-heavy-keeper.JPG)
 
 ```
 > topk.info PDS:t:freq
@@ -504,7 +504,7 @@ As you can see, implementation of PDS in Redis is significantly different from t
 | **Top-K**           | 2019               | **RedisBloom Module** | Membership and frequency |
 | **T-Digest**        | 2019               | **RedisBloom Module** | Frequency |
 
-There is no doubt Redis is way before in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... PDS are advanced dsta structures you won't learn in college text book. They are ingenious design and fascinating in nature. 
+There is no doubt Redis is way before in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... PDS are advanced data structures you won't see in college text book. They are ingenious in design and fascinating in nature. 
 
 
 #### VII. Bibliography 
