@@ -1,4 +1,6 @@
 ### Probabilistic Data Structure
+[![alt LogLog](img/LogLog.png)](https://chengweihu.com/hyperloglog/)
+[![alt SuperLogLog](img/SuperLogLog.png)](https://chengweihu.com/hyperloglog/)
 [![alt HyperLogLog](img/HyperLogLog.png)](https://chengweihu.com/hyperloglog/)
 > "'correct understanding of a matter and a misunderstanding of the same matter are not mutually exclusive'."<br />The Trial by Franz Kafka
 
