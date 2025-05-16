@@ -5,7 +5,7 @@ const streamKey = 'PDS:demo:users:stream';        // User streams
 const trackingKey = 'PDS:demo:users:lastId';      // last processed id
 const trackingCount = 'PDS:demo:users:lastCount'; // last processed count
 const cardinalityKey = 'PDS:demo:users:card';     // cardinality     
-const top1000Key = 'PDS:demo:users:freq'          // top 1000   
+const top100Key = 'PDS:demo:users:freq'           // top 100 
 const totalUsers = 100000;
 
 async function addStream () {
@@ -17,7 +17,7 @@ async function addStream () {
     await redis.del(trackingKey); 
     await redis.del(trackingCount); 
     await redis.del(cardinalityKey); 
-    await redis.del(top1000Key); 
+    await redis.del(top100Key); 
 
     console.log(`Inserting ${totalUsers} users...`);
     for (let i = 0; i < totalUsers; i += 1) {

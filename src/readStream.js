@@ -4,7 +4,7 @@ const streamKey = 'PDS:demo:users:stream';        // User streams
 const trackingKey = 'PDS:demo:users:lastId';      // last processed id
 const trackingCount = 'PDS:demo:users:lastCount'; // last processed count
 const cardinalityKey = 'PDS:demo:users:card';     // cardinality
-const top1000Key = 'PDS:demo:users:freq'          // top 1000   
+const top100Key = 'PDS:demo:users:freq'           // top 100   
 const batchSize = 1000;   // Batch size 
 const expireTime = 5000;  // Block for 5 seconds
 
@@ -23,7 +23,7 @@ async function processMessage(message) {
                     set(trackingKey, message.id).
                     incr(trackingCount).
                 exec();
-    await redis.sendCommand(["TOPK.ADD", top1000Key, message.message.fullname])    
+    await redis.sendCommand(["TOPK.ADD", top100Key, message.message.fullname])    
 }
 async function readStream() {
   await redis.connect();
@@ -36,8 +36,8 @@ async function readStream() {
   else 
     console.log(`Resuming from ID: ${lastId}, processed is: ${lastProcessed}`);
 
-  // TOPK.RESERVE PDS:demo:users:freq 1000 
-  await redis.sendCommand(['TOPK.RESERVE', 'PDS:demo:users:freq', '100']);
+  // TOPK.RESERVE mytopk 100 1000 10 0.999
+  await redis.sendCommand(['TOPK.RESERVE', 'PDS:demo:users:freq', '100', '1000', '10', '0.999']);
   while (true) {
     try {
       const results = await redis.xRead(
@@ -55,26 +55,17 @@ async function readStream() {
         processMessage(message)
         lastId = message.id 
       })
-      //console.log(`results =`, JSON.parse(results[0].messages[0].message))
-      //console.log(Object.keys(results[0].messages[0])); 
-      //console.log('id=', results[0].messages[0].id); 
-      //console.log('message=', results[0].messages[0].message); 
-      //console.log('result =', results[0].messages[0])
-    //   result[0].messages.forEach(message => {
-    //     console.log(message)
-    //   })
-    //   for (const entry of results[streamKey]) {
-    //     const [entryId, data] = entry;
-    //     console.log(`Processing: ${entryId}`, data);
-
-    //     lastId = entryId; // Update last processed ID
-    //     await redis.set(trackingKey, lastId); // Persist progress
-    //   }
     } catch (error) {
       console.error('Error processing stream:', error);
       break;
     }
   }
+
+  const card = await redis.pfCount(cardinalityKey)
+  const topkResult = await redis.sendCommand(["TOPK.LIST", top100Key, 'WITHCOUNT'])
+
+  console.log('cardinality =', card)
+  console.log('topkResult =', topkResult)
 
   await redis.quit();
 }
