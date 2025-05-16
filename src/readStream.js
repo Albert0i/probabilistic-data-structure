@@ -37,7 +37,8 @@ async function readStream() {
     console.log(`Resuming from ID: ${lastId}, processed is: ${lastProcessed}`);
 
   // TOPK.RESERVE mytopk 100 1000 10 0.999
-  await redis.sendCommand(['TOPK.RESERVE', 'PDS:demo:users:freq', '100', '1000', '10', '0.999']);
+  // TOPK.RESERVE mytopk 100 2000 15 0.9999
+  await redis.sendCommand(['TOPK.RESERVE', 'PDS:demo:users:freq', '100', '2000', '15', '0.9999']);
   while (true) {
     try {
       const results = await redis.xRead(
