@@ -29,6 +29,7 @@ while (true) {
     // read next event from the stream if nothing was claimed
     if (event === null) {
       event = await readNextEvent(streamKey, consumerGroupName, consumerName)
+
       if (event) console.log("Read event", event)
     }
 
