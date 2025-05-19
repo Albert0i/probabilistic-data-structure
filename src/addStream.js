@@ -8,18 +8,20 @@ function convertObjectToFlatArray(obj) {
   );
 }
 
-
-async function addStream (size) {
-  const promises = [];
-
+async function addStream (size) {  
   try {
     console.log(`Inserting ${size} users...`);
+    
+    // Not work as expected... 
+    /*        
+        for (let i = 0; i < size; i += 1) {
+          await redis.xAdd(streamKey, '*', generateUser(), { MAXLENX: 300 } );         
+        }    
+        console.log(`Done! ${await redis.xLen(streamKey)} users so far...`);    
+    */    
+    const promises = [];    // Collect promises 
     for (let i = 0; i < size; i += 1) {
-      /*
-         await redis.xAdd(streamKey, '*', generateUser(), { MAXLEN: 300 } );
-      */      
-      // Node Redis will automatically pipeline requests that are made during the same "tick".
-      // Collect promises 
+      // Node Redis will automatically pipeline requests that are made during the same "tick".      
       promises.push(redis.sendCommand([
                         'XADD', 
                         streamKey, 
@@ -28,15 +30,17 @@ async function addStream (size) {
                         ...convertObjectToFlatArray(generateUser()) 
                       ]) 
                    ); 
-    }    
+    }
     const results = await Promise.all(promises); // Resolve all at once
-
     console.log(`Done! Success is ${results.length}, ${await redis.xLen(streamKey)} users so far...`);    
   } catch (error) {
     console.error('Error:', error);
   }
 };
 
+/*
+   main 
+*/
 const args = process.argv.slice(2);
 //console.log(args[0]); 
 

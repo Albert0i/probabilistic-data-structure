@@ -19,7 +19,6 @@ export function generateUser() {
       phone: faker.phone.imei(),
       jobTitle: faker.person.jobTitle(),
       jobDescriptor: faker.person.jobDescriptor(),
-      description: faker.lorem.paragraph({ min: 5, max: 10 }), 
       createdAt: faker.date.past().toISOString(),
     };
   } 
