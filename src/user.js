@@ -17,7 +17,10 @@ export function generateUser() {
       birthdate: String(formatDateToYYYYMMDD(faker.date.birthdate())),
       sex: faker.person.sex(),
       phone: faker.phone.imei(),
-      registeredAt: faker.date.past().toISOString(),
+      jobTitle: faker.person.jobTitle(),
+      jobDescriptor: faker.person.jobDescriptor(),
+      description: faker.lorem.paragraph({ min: 5, max: 10 }), 
+      createdAt: faker.date.past().toISOString(),
     };
   } 
 /*
