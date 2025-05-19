@@ -28,16 +28,21 @@ export async function removeIdleConsumers(stream, group) {
 
   for (const consumer of consumers) {
     if (consumer.pending === 0) {
-      console.log(`Deleting consumer ${consumer.name}`)
+      console.log(`Deleting consumer '${consumer.name}'`)
       await redis.xGroupDelConsumer(stream, group, consumer.name)
     }
   }
 }
 
 export async function claimPendingEvent(stream, group, consumer) {
+  /*
+     '-': Starts scanning from the oldest pending message.
+     '0-0': Indicates that the entire stream has been scanned and 
+            there are no more pending messages to claim.
+  */
   const response = await redis.xAutoClaim(
     stream, group, consumer,
-    consumerIdleTime, '0-0', { COUNT: 1 })
+    consumerIdleTime, '-', { COUNT: 1 })
 
   const event = response.messages.length === 0 ? null : response.messages[0]
   return event

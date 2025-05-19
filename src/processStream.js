@@ -1,4 +1,3 @@
-import { ulid } from 'ulid'
 import { redis } from './redis/redis.js'
 import { streamKey, consumerGroupName } from './config.js'
 //import { summarize, embed } from './embed.js'
@@ -12,8 +11,10 @@ import { createConsumerGroup, removeIdleConsumers, claimPendingEvent, readNextEv
 await redis.connect();
 
 // create a unique name for this consumer
-const consumerName = `consumer-${ulid()}`
+//const consumerName = `consumer-${ulid()}`
+const consumerName = `consumer-${generateRandom3Digit()}`
 
+console.log(`I am consumer '${consumerName}'`)
 // create the consumer group and remove idle consumers
 await createConsumerGroup(streamKey, consumerGroupName)
 await removeIdleConsumers(streamKey, consumerGroupName)
@@ -64,4 +65,8 @@ async function processEvent(event) {
   // // update Hash in Redis with the summary and embedding
   // const key = `bigfoot:sighting:${sightingId}`
   // await redis.hSet(key, { summary: sightingSummary, embedding: embeddingBytes })
+}
+
+function generateRandom3Digit() {
+  return Math.floor(100 + Math.random() * 900);
 }
