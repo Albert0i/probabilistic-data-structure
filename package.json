@@ -24,6 +24,7 @@
   "dependencies": {
     "dotenv": "^16.5.0",
     "node-redis": "^0.1.7",
-    "redis": "^5.0.1"
+    "redis": "^5.0.1",
+    "ulid": "^3.0.0"
   }
 }
