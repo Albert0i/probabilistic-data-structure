@@ -12,7 +12,7 @@ export async function createConsumerGroup(stream, group) {
     await redis.xGroupCreate(stream, group, '$', { MKSTREAM: true })
   } catch(error) {
     if (error.message !== "BUSYGROUP Consumer Group name already exists") throw error
-    console.log("Consumer group already exists, skipping creation")
+    console.log(`Consumer group '${group}' already exists, skipping creation`)
   }
 }
 
@@ -28,7 +28,7 @@ export async function removeIdleConsumers(stream, group) {
 
   for (const consumer of consumers) {
     if (consumer.pending === 0) {
-      console.log(`Deleting consumer '${consumer.name}'`)
+      console.log(`Removing '${consumer.name}'`)
       await redis.xGroupDelConsumer(stream, group, consumer.name)
     }
   }
