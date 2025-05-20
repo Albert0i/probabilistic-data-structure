@@ -17,8 +17,6 @@ export function generateUser() {
       birthdate: String(formatDateToYYYYMMDD(faker.date.birthdate())),
       sex: faker.person.sex(),
       phone: faker.phone.imei(),
-      jobTitle: faker.person.jobTitle(),
-      jobDescriptor: faker.person.jobDescriptor(),
       createdAt: faker.date.past().toISOString(),
     };
   } 
