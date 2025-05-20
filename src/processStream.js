@@ -12,7 +12,7 @@ await redis.connect();
 //const consumerName = `consumer-${ulid()}`
 const consumerName = `consumer-${generateRandom3Digit()}`
 
-console.log(`Hi, I am '${consumerName}'`)
+console.log(`Hey! I'm '${consumerName}'`)
 // create the consumer group and remove idle consumers
 await createConsumerGroup(streamKey, consumerGroupName1)
 await removeIdleConsumers(streamKey, consumerGroupName1)
@@ -53,19 +53,15 @@ while (true) {
 async function processEvent(event) {
   // imitate delay 
   await new Promise(resolve => setTimeout(resolve, generateRandom3Digit()));
-  await redis.pfAdd(cardinalityKey, event.message.fullname)
-  await redis.sendCommand(["TOPK.ADD", topKKey, event.message.fullname])    
-  // // get the message contents
-  // const sightingId = event.message.id
-  // const sightingText = event.message.observed
 
-  // // summarize and embed the sighting
-  // const sightingSummary = await summarize(sightingText) // this can take a while
-  // const embeddingBytes = await embed(sightingSummary)
-
-  // // update Hash in Redis with the summary and embedding
-  // const key = `bigfoot:sighting:${sightingId}`
-  // await redis.hSet(key, { summary: sightingSummary, embedding: embeddingBytes })
+  await Promise.all([
+    redis.multi(),
+    redis.pfAdd(cardinalityKey, event.message.fullname),
+    redis.sendCommand(["TOPK.ADD", topKKey, event.message.fullname]),
+    redis.exec()
+  ]); 
+  // await redis.pfAdd(cardinalityKey, event.message.fullname)
+  // await redis.sendCommand(["TOPK.ADD", topKKey, event.message.fullname])    
 }
 
 function generateRandom3Digit() {
