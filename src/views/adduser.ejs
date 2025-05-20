@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add User</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-6 shadow-md rounded-lg w-96">
+        <h2 class="text-xl font-bold mb-4">Add User</h2>
+        <form action="/api/v1/users/add" method="POST" class="space-y-4">
+            <input type="text" name="fullname" placeholder="Full Name" class="w-full p-2 border rounded" required>
+            <input type="email" name="email" placeholder="Email" class="w-full p-2 border rounded" required>
+            <input type="password" name="password" placeholder="Password" class="w-full p-2 border rounded" required>
+            <input type="text" name="birthdate" placeholder="YYYYMMDD" class="w-full p-2 border rounded" required>
+            <select name="sex" class="w-full p-2 border rounded">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <input type="text" name="phone" placeholder="Phone" class="w-full p-2 border rounded" required>
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

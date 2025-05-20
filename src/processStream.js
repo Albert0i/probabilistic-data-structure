@@ -9,7 +9,6 @@ import { createConsumerGroup, removeIdleConsumers, claimPendingEvent, readNextEv
 await redis.connect();
 
 // create a unique name for this consumer
-//const consumerName = `consumer-${ulid()}`
 const consumerName = `consumer-${generateRandom3Digit()}`
 
 console.log(`Hey! I'm '${consumerName}'`)
@@ -59,7 +58,7 @@ async function processEvent(event) {
     redis.sendCommand(['PFADD', cardinalityKey, event.message.fullname]),
     redis.sendCommand(["TOPK.ADD", topKKey, event.message.fullname]),
     redis.sendCommand(['EXEC']),
-  ]); 
+  ]);   
 }
 
 function generateRandom3Digit() {

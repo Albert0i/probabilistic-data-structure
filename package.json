@@ -5,6 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "sample": "node src/sampleUser.js",
+    "add": "node src/addStream.js",
+    "process": "node src/processStream.js",
+    "sink": "node src/sinkStream.js",
+    "dev": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,8 +27,10 @@
     "@faker-js/faker": "^9.8.0"
   },
   "dependencies": {
+    "body-parser": "^2.2.0",
     "dotenv": "^16.5.0",
-    "node-redis": "^0.1.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
     "redis": "^5.0.1"
   }
 }
