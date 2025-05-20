@@ -56,7 +56,7 @@ async function processEvent(event) {
   await Promise.all([
     redis.sendCommand(['MULTI']),
     redis.sendCommand(['PFADD', cardinalityKey, event.message.fullname]),
-    redis.sendCommand(["TOPK.ADD", topKKey, event.message.fullname]),
+    redis.sendCommand(['TOPK.ADD', topKKey, event.message.fullname]),
     redis.sendCommand(['EXEC']),
   ]);   
 }

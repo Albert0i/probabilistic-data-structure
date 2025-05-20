@@ -1,5 +1,7 @@
 import express from "express";
 import crypto from "crypto";
+import { redis } from '../redis/redis.js'
+import { cardinalityKey, topKKey } from '../config.js'
 
 const router = express.Router();
 let users = []; // Simulated database
@@ -32,8 +34,14 @@ router.post("/add", (req, res) => {
     res.redirect("/"); // Redirect to the dashboard after adding
 });
 
-router.get("/stats", (req, res) => {
-    res.json({ totalUsers: users.length });
+router.get("/stats", async (req, res) => {
+    await redis.connect()
+    const results = await Promise.all([
+            redis.sendCommand(['PFCOUNT', cardinalityKey]),
+            redis.sendCommand(['TOPK.LIST', topKKey, 'WITHCOUNT']),
+      ]);   
+    await redis.close();    
+    res.json({ results });    
 });
 
 export default router;

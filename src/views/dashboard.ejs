@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard</title>
-    <script src="/script.js"></script>
+    <title>User Statistics</title>
+    <script>
+        function updateStats() {
+            fetch('/api/v1/users/stats')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('cardinality').innerText = data.results[0];
+
+                    const topUsersList = document.getElementById('topUsers');
+                    topUsersList.innerHTML = ""; // Clear previous data
+
+                    let usersArray = data.results[1]; // Extract user list
+                    for (let i = 0; i < usersArray.length; i += 2) {
+                        let name = usersArray[i];
+                        let count = usersArray[i + 1];
+                        let listItem = document.createElement('li');
+                        listItem.innerHTML = `<span class="font-bold">${name}</span>: <span class="text-blue-500">${count}</span>`;
+                        topUsersList.appendChild(listItem);
+                    }
+                });
+        }
+
+        setInterval(updateStats, 1000);
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-center p-10">
-    <h1 class="text-2xl font-bold">User Dashboard</h1>
-    <p class="text-lg">Total Users: <span id="userCount"><%= totalUsers %></span></p>
+<body class="bg-gray-100 flex flex-col items-center p-10">
+    <h1 class="text-3xl font-bold mb-4">User Dashboard</h1>
+    <p class="text-lg">Total Users: <span id="cardinality" class="font-semibold text-red-500">0</span></p>
+
+    <h2 class="text-2xl font-semibold mt-6">Top Users</h2>
+    <ul id="topUsers" class="mt-4 space-y-2 bg-white p-4 rounded shadow-md">
+        <!-- Dynamically updated top user list -->
+    </ul>
 </body>
 </html>
