@@ -1,4 +1,4 @@
-### Probabilistic Data Structure
+### Probabilistic Data Structure (Part 1/3)
 [![alt LogLog](img/LogLog.png)](https://chengweihu.com/hyperloglog/)
 [![alt SuperLogLog](img/SuperLogLog.png)](https://chengweihu.com/hyperloglog/)
 [![alt HyperLogLog](img/HyperLogLog.png)](https://chengweihu.com/hyperloglog/)
@@ -636,6 +636,8 @@ As you can see, implementation of PDS in Redis is significantly different from t
 
 There is no doubt Redis is way before in Vectors, which is the root of AI, and PDS. It is ahead of the game, so to speak... PDS are advanced data structures you won't see in college text book. They are ingenious in design and yet fascinating in nature. 
 
+[Continue to Part 2](README.2.md)
+
 
 #### VII. Bibliography 
 1. [Probabilistic](https://redis.io/docs/latest/develop/data-types/probabilistic/)
@@ -656,7 +658,7 @@ There is no doubt Redis is way before in Vectors, which is the root of AI, and P
 > "Finally his eyes grow dim, and he no longer knows whether it's really getting darker or just his eyes that are deceiving him. But he seems now to see an inextinguishable light begin to shine from the darkness behind the door. He doesn't have long to live now." <br />The Trial by Franz Kafka
 
 
-### EOF (2025/05/30)
+### EOF (2025/05/23)
 
 #### Bonus (written by copilot)
 ![alt The-Midwich-Cuckoos](img/The-Midwich-Cuckoos.jpg)
