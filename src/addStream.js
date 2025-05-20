@@ -1,6 +1,6 @@
 import { redis } from './redis/redis.js'
 import { generateUser } from './user.js'
-import { streamKey, maxSize, incrementSize, numberOfStreams } from './config.js';
+import { streamKey, incrementSize, maxUsers } from './config.js';
 
 function convertObjectToFlatArray(obj) {
   return Object.entries(obj).flatMap(([key, value]) => 
@@ -10,46 +10,37 @@ function convertObjectToFlatArray(obj) {
 
 async function addStream (size) { 
   try {
-    console.log(`Inserting ${size} users among ${numberOfStreams} streams...`);
+    console.log(`Inserting ${size} users...`);
     
-    let promises = [];    // Collect promises 
+    const promises = [];    // Collect promises 
     for (let i = 0; i < size; i += 1) {
       /*
          Node Redis will automatically pipeline requests that are made 
-         during the same "tick".
+         during the same "tick".      
       */
       promises.push(redis.sendCommand([
                         'XADD', 
-                        `${streamKey}:${getRandomNumber(numberOfStreams)}`, 
-                        'MAXLEN', '~', (Math.floor(maxSize / numberOfStreams)).toString(), 
+                        streamKey, 
+                        'MAXLEN', '~', maxUsers.toString(), 
                         '*', 
                         ...convertObjectToFlatArray(generateUser()) 
                       ]) 
                    ); 
-    }    
+    }
     await Promise.all(promises); // Resolve all at once
     console.log('Done!')
 
     // Show insert results
-    promises = [];
-    for (let i = 1; i <= numberOfStreams; i += 1) { 
-      promises.push(redis.xLen(`${streamKey}:${i}`))
-    }
-    const results = await Promise.all(promises); 
-    let j = 0; 
-    for (let i = 0; i < results.length; i += 1) {       
-      console.log(`Length of '${streamKey}:${i+1}' is ${results[i]}`);
-      j = j + results[i]
-    }
-    console.log(`Total Length is is ${j}`);
+    const [streamLength, streamSize] = await Promise.all([
+      redis.xLen(streamKey), 
+      redis.sendCommand(['MEMORY', 'USAGE', streamKey])
+    ]) 
+    console.log(`Length of '${streamKey}' is ${streamLength}, size is ${ (streamSize / 1024 / 1024).toFixed(2) }MB.`);
   } catch (error) {
     console.error('Error:', error);
   }
 };
 
-function getRandomNumber(n) {
-  return Math.floor(Math.random() * n) + 1;
-}
 /*
    main 
 */
@@ -65,9 +56,72 @@ await redis.close();
 
    node src/addStream.js 1
 
-   // Not work as expected... 
+   Not work as expected... 
    for (let i = 0; i < size; i += 1) {
-     await redis.xAdd(streamKey, '*', generateUser(), { MAXLENX: 300 } );         
+     await redis.xAdd(streamKey, '*', generateUser(), { MAXLENX: 300 } );
    }    
-   console.log(`Done! ${await redis.xLen(streamKey)} users so far...`);    
+   console.log(`Done! ${await redis.xLen(streamKey)} users so far...`);
+
+  [
+    'length',
+    7000,
+    'radix-tree-keys',
+    277,
+    'radix-tree-nodes',
+    484,
+    'last-generated-id',
+    '1747711184472-30',
+    'max-deleted-entry-id',
+    '0-0',
+    'entries-added',
+    7000,
+    'recorded-first-entry-id',
+    '1747710634793-0',
+    'groups',
+    0,
+    'first-entry',
+    [
+      '1747710634793-0',
+      [
+        'id',
+        '01JVNTQTP2GYHZ0V1GW4J283AY',
+        'fullname',
+        'Annette Wyman',
+        'email',
+        'Sallie9@yahoo.com',
+        'password',
+        'FZb243SMuuCNLkb',
+        'birthdate',
+        '19870815',
+        'sex',
+        'male',
+        'phone',
+        '97-807175-365981-1',
+        'createdAt',
+        '2025-05-06T20:47:51.414Z'
+      ]
+    ],
+    'last-entry',
+    [
+      '1747711184472-30',
+      [
+        'id',
+        '01JVNV8KBHGF710CE2T0GEQCPT',
+        'fullname',
+        'Diana VonRueden',
+        'email',
+        'Tad.Will10@hotmail.com',
+        'password',
+        'zi1OjhrzHJYgVN8',
+        'birthdate',
+        '19871225',
+        'sex',
+        'female',
+        'phone',
+        '76-270090-253779-7',
+        'createdAt',
+        '2025-03-01T07:26:42.970Z'
+      ]
+    ]
+  ]
 */

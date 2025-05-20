@@ -1,9 +1,9 @@
 
-export const maxSize = 100000      // Capped
-export const incrementSize = 100
-export const streamKey = 'PDS:demo:users:stream';   // Users streams 
-export const consumerGroupName = 'PDS:demo:users:group';
-export const numberOfStreams = 4
+export const maxUsers = 100000      // Capped streams
+export const incrementSize = 1000
+export const streamKey = 'PDS:demo:users:stream';   // User streams 
+export const consumerGroupName1 = 'PDS:demo:users:group:1';
+export const consumerGroupName2 = 'PDS:demo:users:group:2';
 
 export const cardinalityKey = 'PDS:demo:users:card';
 export const topKKey = 'PDS:demo:users:freq'
