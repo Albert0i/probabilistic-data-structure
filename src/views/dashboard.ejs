@@ -3,8 +3,6 @@
 <head>
     <title>User Statistics</title>
     <script>
-        const INTERVAL = 1000;  // in ms
-
         function updateStats() {
             fetch('/api/v1/users/stats')
                 .then(res => res.json())
@@ -19,23 +17,37 @@
                         let name = usersArray[i];
                         let count = usersArray[i + 1];
                         let listItem = document.createElement('li');
-                        listItem.innerHTML = `<span class="font-bold">${name}</span>: <span class="text-blue-500">${count}</span>`;
+                        listItem.innerHTML = `<div class="flex justify-between w-full">
+                            <span class="font-bold">${name}</span>
+                            <span class="text-blue-500">${count}</span>
+                        </div>`;
                         topUsersList.appendChild(listItem);
                     }
                 });
         }
 
-        setInterval(updateStats, INTERVAL);
+        setInterval(updateStats, 1000);
     </script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex flex-col items-center p-10">
     <h1 class="text-3xl font-bold mb-4">User Dashboard</h1>
-    <p class="text-lg">Total Users: <span id="cardinality" class="font-semibold text-red-500">0</span></p>
+
+    <div class="bg-white p-4 rounded shadow-md flex justify-between">
+        <span class="text-lg font-semibold mx-4">Total Users</span>
+        <span id="cardinality" class="text-lg font-semibold text-red-500">0</span>
+    </div>
+
+    <!-- Add New User Button -->
+    <a href="/users/adduser" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">
+        Add New User
+    </a>
 
     <h2 class="text-2xl font-semibold mt-6">Top Users</h2>
-    <ul id="topUsers" class="mt-4 space-y-2 bg-white p-4 rounded shadow-md">
-        <!-- Dynamically updated top user list -->
-    </ul>
+    <div class="w-3/4 bg-white p-4 rounded shadow-md mt-4">
+        <ul id="topUsers" class="mx-4 space-y-2">
+            <!-- Dynamically updated top user list -->
+        </ul>
+    </div>
 </body>
 </html>

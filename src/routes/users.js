@@ -6,13 +6,13 @@ import { cardinalityKey, topKKey } from '../config.js'
 const router = express.Router();
 let users = []; // Simulated database
 
-// Serve the Add User Form
-router.get("/adduser", (req, res) => {
-    res.render("adduser");
-});
+// // Serve the Add User Form
+// router.get("/adduser", (req, res) => {
+//     res.render("adduser");
+// });
 
 // Handle User Submission
-router.post("/add", (req, res) => {
+router.post("/adduser", (req, res) => {
     const { fullname, email, password, birthdate, sex, phone } = req.body;
 
     if (!fullname || !email || !password || !birthdate || !sex || !phone) {

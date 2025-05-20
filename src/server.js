@@ -17,6 +17,12 @@ app.set("views", path.join(__dirname, "/views"));
 
 app.use("/api/v1/users", usersRouter);
 
+// Serve the Add User Form
+app.get("/users/adduser", (req, res) => {
+    res.render("adduser");
+});
+
+// Home page / dashboard 
 app.get("/", (req, res) => {
     res.render("dashboard", { totalUsers: 10 });
 });
