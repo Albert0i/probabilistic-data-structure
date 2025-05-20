@@ -3,6 +3,8 @@
 <head>
     <title>User Statistics</title>
     <script>
+        const INTERVAL = 1000;  // in ms
+
         function updateStats() {
             fetch('/api/v1/users/stats')
                 .then(res => res.json())
@@ -23,7 +25,7 @@
                 });
         }
 
-        setInterval(updateStats, 1000);
+        setInterval(updateStats, INTERVAL);
     </script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
