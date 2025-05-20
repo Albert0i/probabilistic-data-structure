@@ -55,13 +55,11 @@ async function processEvent(event) {
   await new Promise(resolve => setTimeout(resolve, generateRandom3Digit()));
 
   await Promise.all([
-    redis.multi(),
-    redis.pfAdd(cardinalityKey, event.message.fullname),
+    redis.sendCommand(['MULTI']),
+    redis.sendCommand(['PFADD', cardinalityKey, event.message.fullname]),
     redis.sendCommand(["TOPK.ADD", topKKey, event.message.fullname]),
-    redis.exec()
+    redis.sendCommand(['EXEC']),
   ]); 
-  // await redis.pfAdd(cardinalityKey, event.message.fullname)
-  // await redis.sendCommand(["TOPK.ADD", topKKey, event.message.fullname])    
 }
 
 function generateRandom3Digit() {
