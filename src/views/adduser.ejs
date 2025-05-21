@@ -1,61 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add User</title>
+    <title>New User</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script>
-        function generateTimestamps() {
-            document.getElementById("createdAt").value = Math.floor(Date.now() / 1000);
-            document.getElementById("id").value = crypto.randomUUID(); // Requires backend processing
-        }
+        async function submitUser(event) {
+            event.preventDefault(); // Prevent default form submission
 
-        function formatBirthdate() {
-            const dateInput = document.getElementById("birthdate");
-            if (dateInput.value) {
-                const formattedDate = dateInput.value.replace(/-/g, ""); // Remove dashes
-                dateInput.value = formattedDate;
-            }
-        }
+            const formData = new FormData(event.target);
+            const userData = Object.fromEntries(formData.entries());
 
-        function confirmSubmit(event) {
-            if (!confirm("Are you sure you want to submit this user?")) {
-                event.preventDefault();
-            }
-        }
+            const response = await fetch('/api/v1/user/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
 
-        window.onload = generateTimestamps;
+            const result = await response.json();
+            const messageBox = document.getElementById("responseMessage");
+
+            messageBox.innerHTML = result.success 
+                ? `<p class="text-green-500">${result.message || "User added successfully!"}</p>` 
+                : `<p class="text-red-500">${result.message || "Failed to add user."}</p>`;
+
+            if (result.success) event.target.reset(); // Clear form only on success
+        }
     </script>
 </head>
 <body class="bg-gray-100 flex justify-center items-center h-screen">
-    <div class="bg-white p-6 shadow-md rounded-lg w-96">
-        <h2 class="text-xl font-bold mb-4">Add User</h2>
-        <form action="/api/v1/users/adduser" method="POST" class="space-y-4" onsubmit="confirmSubmit(event)">
-            <input type="hidden" id="id" name="id">
-            <input type="hidden" id="createdAt" name="createdAt">
-
+    <div class="bg-white p-6 shadow-md rounded-lg w-96 text-center">
+        <h2 class="text-xl font-bold mb-4">New User</h2>
+        <form id="userForm" class="space-y-4" onsubmit="submitUser(event)">
             <input type="text" name="fullname" placeholder="Full Name" class="w-full p-2 border rounded" required autofocus>
             <input type="email" name="email" placeholder="Email" class="w-full p-2 border rounded" required>
             <input type="password" name="password" placeholder="Password" class="w-full p-2 border rounded" required>
+            <input type="text" name="birthdate" placeholder="YYYYMMDD" class="w-full p-2 border rounded" required pattern="\d{8}" title="Enter in YYYYMMDD format">
 
-            <!-- Fixed Birthdate Input -->
-            <input type="date" id="birthdate" name="birthdate" class="w-full p-2 border rounded" onchange="formatBirthdate()" required>
-
-            <div class="flex gap-4">
-                <label>
-                    <input type="radio" name="sex" value="male" required> Male
-                </label>
-                <label>
-                    <input type="radio" name="sex" value="female" required> Female
-                </label>
-                <label>
-                    <input type="radio" name="sex" value="unknown" required> Unknown
-                </label>
+            <div class="flex justify-center gap-4">
+                <label><input type="radio" name="sex" value="male" checked> Male</label>
+                <label><input type="radio" name="sex" value="female"> Female</label>
+                <label><input type="radio" name="sex" value="unknown"> Unknown</label>
             </div>
 
             <input type="text" name="phone" placeholder="Phone" class="w-full p-2 border rounded" required>
 
-            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Submit</button>
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Add</button>
         </form>
+
+        <div id="responseMessage" class="mt-4"></div>
     </div>
 </body>
 </html>

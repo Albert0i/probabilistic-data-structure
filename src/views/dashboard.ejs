@@ -4,7 +4,7 @@
     <title>User Statistics</title>
     <script>
         function updateStats() {
-            fetch('/api/v1/users/stats')
+            fetch('/api/v1/user/stats')
                 .then(res => res.json())
                 .then(data => {
                     document.getElementById('cardinality').innerText = data.results[0];
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Add New User Button -->
-    <a href="/users/adduser" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">
+    <a href="/user/adduser" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">
         Add New User
     </a>
 

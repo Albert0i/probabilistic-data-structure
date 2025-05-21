@@ -1,7 +1,7 @@
 import express from "express";
-import crypto from "crypto";
+import { ulid } from 'ulid'
 import { redis } from '../redis/redis.js'
-import { cardinalityKey, topKKey } from '../config.js'
+import { streamKey, cardinalityKey, topKKey } from '../config.js'
 
 const router = express.Router();
 let users = []; // Simulated database
@@ -11,27 +11,16 @@ let users = []; // Simulated database
 //     res.render("adduser");
 // });
 
-// Handle User Submission
-router.post("/adduser", (req, res) => {
-    const { fullname, email, password, birthdate, sex, phone } = req.body;
-
-    if (!fullname || !email || !password || !birthdate || !sex || !phone) {
-        return res.status(400).json({ message: "All fields are required" });
+// Handle Add User Submission
+router.post("/add", async (req, res) => {
+    await redis.connect()
+    try {
+        const messageId = await redis.xAdd(streamKey, '*', 
+                { id: ulid(), ...req.body, createdAt: new Date().toISOString()} );
+        res.status(201).json({ success: true, id: messageId });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
     }
-
-    const newUser = {
-        id: crypto.randomUUID(),
-        fullname,
-        email,
-        password,
-        birthdate,
-        sex,
-        phone,
-        createdAt: new Date().toISOString(),
-    };
-
-    users.push(newUser);
-    res.redirect("/"); // Redirect to the dashboard after adding
 });
 
 router.get("/stats", async (req, res) => {
