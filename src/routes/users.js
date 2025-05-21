@@ -7,26 +7,21 @@ const router = express.Router();
 
 // Handle Add User Submission
 router.post("/add", async (req, res) => {
-    await redis.connect()
     try {
         const messageId = await redis.xAdd(streamKey, '*', 
-                { id: ulid(), ...req.body, createdAt: new Date().toISOString()} );
-        await redis.close();  
+                { id: ulid(), ...req.body, createdAt: new Date().toISOString()} );        
         res.status(201).json({ success: true, id: messageId });
     } catch (error) {
-        await redis.close();  
         res.status(500).json({ success: false, message: error.message });
     }
 });
 
-// Handle User Statistic 
+// Handle User Statistics
 router.get("/stats", async (req, res) => {
-    await redis.connect()
     const results = await Promise.all([
             redis.sendCommand(['PFCOUNT', cardinalityKey]),
             redis.sendCommand(['TOPK.LIST', topKKey, 'WITHCOUNT']),
       ]);   
-    await redis.close();    
     res.json({ results });    
 });
 
