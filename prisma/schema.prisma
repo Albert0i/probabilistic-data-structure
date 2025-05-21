@@ -7,6 +7,7 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
+  relationMode = "prisma"
 }
 
 datasource db {
@@ -30,15 +31,27 @@ model User {
   createdAt DateTime @default(now()) // ISO 8601 timestamp
 }
 
-model Product {
-  id          String   @id @default(uuid()) // Unique product ID
-  name        String
-  description String?  @db.Text // Optional, stored as TEXT
-  price       Decimal
-  stock       Int      @default(0) // Default stock quantity
-  createdAt   DateTime @default(now())
-}
+// model Product {
+//   id          String   @id @default(uuid()) // Unique product ID
+//   name        String
+//   description String?  @db.Text // Optional, stored as TEXT
+//   price       Decimal
+//   stock       Int      @default(0) // Default stock quantity
+//   createdAt   DateTime @default(now())
+//   salesdetails SalesDetail[]
+// }
 
+// model SalesDetail {
+//   id         String  @id @default(uuid()) // Unique sales detail ID
+//   product    Product @relation(fields: [productId], references: [id]) // Links to Product    
+//   productId  String  
+//   // user       User   @relation(fields: [userId], references: [id]) // Links to User
+//   // userId     String  
+//   quantity   Int     @default(1) // Number of products purchased
+//   totalPrice Decimal // Final calculated price
+//   saleDate   DateTime @default(now()) // Timestamp of the sale
+// }
+//@relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 // @unique
 // @@fulltext([fullname]) // ✅ Correct for full-text search
 //
@@ -58,5 +71,7 @@ model Product {
 // https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping
 // Getting started with Prisma Migrate
 // https://www.prisma.io/docs/orm/prisma-migrate/getting-started
+// Relation mode
+// https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/relation-mode
 // 
 // 
