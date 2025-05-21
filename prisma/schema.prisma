@@ -23,11 +23,20 @@ model User {
   sex       String  // "male", "female", or "unknown"
   phone     String
 
-//  jobTitle  String
-//  jobType   String
-//  jobDescription  String @db.Text
+  jobTitle  String @default("---")
+  jobType   String @default("---")
+  jobDescription  String @default("---") @db.Text 
 
   createdAt DateTime @default(now()) // ISO 8601 timestamp
+}
+
+model Product {
+  id          String   @id @default(uuid()) // Unique product ID
+  name        String
+  description String?  @db.Text // Optional, stored as TEXT
+  price       Decimal
+  stock       Int      @default(0) // Default stock quantity
+  createdAt   DateTime @default(now())
 }
 
 // @unique
@@ -47,3 +56,7 @@ model User {
 // https://www.prisma.io/docs/orm/reference/prisma-cli-reference#db
 // Models
 // https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping
+// Getting started with Prisma Migrate
+// https://www.prisma.io/docs/orm/prisma-migrate/getting-started
+// 
+// 

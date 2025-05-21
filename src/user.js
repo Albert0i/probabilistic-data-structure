@@ -17,6 +17,7 @@ export function generateUser() {
       birthdate: String(formatDateToYYYYMMDD(faker.date.birthdate())),
       sex: faker.person.sex(),
       phone: faker.phone.imei(),
+
       jobTitle: faker.person.jobTitle(),
       jobType: faker.person.jobType(), 
       jobDescription: faker.lorem.sentences({ min: 5, max: 10 }), 
