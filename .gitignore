@@ -10,5 +10,8 @@ node_modules
 # Ignore node_modules directories in all directories
 **/models 
 
-# Ignore all migrations 
+# Ignore prisma migrations 
 prisma/migrations/*
+
+# Ignore prisma generated 
+src/generated
