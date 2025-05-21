@@ -879,6 +879,9 @@ export namespace Prisma {
     birthdate: string | null
     sex: string | null
     phone: string | null
+    jobTitle: string | null
+    jobType: string | null
+    jobDescription: string | null
     createdAt: Date | null
   }
 
@@ -890,6 +893,9 @@ export namespace Prisma {
     birthdate: string | null
     sex: string | null
     phone: string | null
+    jobTitle: string | null
+    jobType: string | null
+    jobDescription: string | null
     createdAt: Date | null
   }
 
@@ -901,6 +907,9 @@ export namespace Prisma {
     birthdate: number
     sex: number
     phone: number
+    jobTitle: number
+    jobType: number
+    jobDescription: number
     createdAt: number
     _all: number
   }
@@ -914,6 +923,9 @@ export namespace Prisma {
     birthdate?: true
     sex?: true
     phone?: true
+    jobTitle?: true
+    jobType?: true
+    jobDescription?: true
     createdAt?: true
   }
 
@@ -925,6 +937,9 @@ export namespace Prisma {
     birthdate?: true
     sex?: true
     phone?: true
+    jobTitle?: true
+    jobType?: true
+    jobDescription?: true
     createdAt?: true
   }
 
@@ -936,6 +951,9 @@ export namespace Prisma {
     birthdate?: true
     sex?: true
     phone?: true
+    jobTitle?: true
+    jobType?: true
+    jobDescription?: true
     createdAt?: true
     _all?: true
   }
@@ -1020,6 +1038,9 @@ export namespace Prisma {
     birthdate: string
     sex: string
     phone: string
+    jobTitle: string
+    jobType: string
+    jobDescription: string
     createdAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -1048,6 +1069,9 @@ export namespace Prisma {
     birthdate?: boolean
     sex?: boolean
     phone?: boolean
+    jobTitle?: boolean
+    jobType?: boolean
+    jobDescription?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1061,10 +1085,13 @@ export namespace Prisma {
     birthdate?: boolean
     sex?: boolean
     phone?: boolean
+    jobTitle?: boolean
+    jobType?: boolean
+    jobDescription?: boolean
     createdAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullname" | "email" | "password" | "birthdate" | "sex" | "phone" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullname" | "email" | "password" | "birthdate" | "sex" | "phone" | "jobTitle" | "jobType" | "jobDescription" | "createdAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1077,6 +1104,9 @@ export namespace Prisma {
       birthdate: string
       sex: string
       phone: string
+      jobTitle: string
+      jobType: string
+      jobDescription: string
       createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -1454,6 +1484,9 @@ export namespace Prisma {
     readonly birthdate: FieldRef<"User", 'String'>
     readonly sex: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
+    readonly jobTitle: FieldRef<"User", 'String'>
+    readonly jobType: FieldRef<"User", 'String'>
+    readonly jobDescription: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -1798,6 +1831,9 @@ export namespace Prisma {
     birthdate: 'birthdate',
     sex: 'sex',
     phone: 'phone',
+    jobTitle: 'jobTitle',
+    jobType: 'jobType',
+    jobDescription: 'jobDescription',
     createdAt: 'createdAt'
   };
 
@@ -1819,7 +1855,10 @@ export namespace Prisma {
     password: 'password',
     birthdate: 'birthdate',
     sex: 'sex',
-    phone: 'phone'
+    phone: 'phone',
+    jobTitle: 'jobTitle',
+    jobType: 'jobType',
+    jobDescription: 'jobDescription'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -1865,6 +1904,9 @@ export namespace Prisma {
     birthdate?: StringFilter<"User"> | string
     sex?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    jobTitle?: StringFilter<"User"> | string
+    jobType?: StringFilter<"User"> | string
+    jobDescription?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
   }
 
@@ -1876,6 +1918,9 @@ export namespace Prisma {
     birthdate?: SortOrder
     sex?: SortOrder
     phone?: SortOrder
+    jobTitle?: SortOrder
+    jobType?: SortOrder
+    jobDescription?: SortOrder
     createdAt?: SortOrder
     _relevance?: UserOrderByRelevanceInput
   }
@@ -1891,6 +1936,9 @@ export namespace Prisma {
     birthdate?: StringFilter<"User"> | string
     sex?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    jobTitle?: StringFilter<"User"> | string
+    jobType?: StringFilter<"User"> | string
+    jobDescription?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
   }, "id">
 
@@ -1902,6 +1950,9 @@ export namespace Prisma {
     birthdate?: SortOrder
     sex?: SortOrder
     phone?: SortOrder
+    jobTitle?: SortOrder
+    jobType?: SortOrder
+    jobDescription?: SortOrder
     createdAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -1919,6 +1970,9 @@ export namespace Prisma {
     birthdate?: StringWithAggregatesFilter<"User"> | string
     sex?: StringWithAggregatesFilter<"User"> | string
     phone?: StringWithAggregatesFilter<"User"> | string
+    jobTitle?: StringWithAggregatesFilter<"User"> | string
+    jobType?: StringWithAggregatesFilter<"User"> | string
+    jobDescription?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
@@ -1930,6 +1984,9 @@ export namespace Prisma {
     birthdate: string
     sex: string
     phone: string
+    jobTitle: string
+    jobType: string
+    jobDescription: string
     createdAt?: Date | string
   }
 
@@ -1941,6 +1998,9 @@ export namespace Prisma {
     birthdate: string
     sex: string
     phone: string
+    jobTitle: string
+    jobType: string
+    jobDescription: string
     createdAt?: Date | string
   }
 
@@ -1952,6 +2012,9 @@ export namespace Prisma {
     birthdate?: StringFieldUpdateOperationsInput | string
     sex?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    jobTitle?: StringFieldUpdateOperationsInput | string
+    jobType?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -1963,6 +2026,9 @@ export namespace Prisma {
     birthdate?: StringFieldUpdateOperationsInput | string
     sex?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    jobTitle?: StringFieldUpdateOperationsInput | string
+    jobType?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -1974,6 +2040,9 @@ export namespace Prisma {
     birthdate: string
     sex: string
     phone: string
+    jobTitle: string
+    jobType: string
+    jobDescription: string
     createdAt?: Date | string
   }
 
@@ -1985,6 +2054,9 @@ export namespace Prisma {
     birthdate?: StringFieldUpdateOperationsInput | string
     sex?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    jobTitle?: StringFieldUpdateOperationsInput | string
+    jobType?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -1996,6 +2068,9 @@ export namespace Prisma {
     birthdate?: StringFieldUpdateOperationsInput | string
     sex?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    jobTitle?: StringFieldUpdateOperationsInput | string
+    jobType?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -2039,6 +2114,9 @@ export namespace Prisma {
     birthdate?: SortOrder
     sex?: SortOrder
     phone?: SortOrder
+    jobTitle?: SortOrder
+    jobType?: SortOrder
+    jobDescription?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -2050,6 +2128,9 @@ export namespace Prisma {
     birthdate?: SortOrder
     sex?: SortOrder
     phone?: SortOrder
+    jobTitle?: SortOrder
+    jobType?: SortOrder
+    jobDescription?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -2061,6 +2142,9 @@ export namespace Prisma {
     birthdate?: SortOrder
     sex?: SortOrder
     phone?: SortOrder
+    jobTitle?: SortOrder
+    jobType?: SortOrder
+    jobDescription?: SortOrder
     createdAt?: SortOrder
   }
 

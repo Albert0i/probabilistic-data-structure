@@ -22,8 +22,28 @@ model User {
   birthdate String  // Stored in YYYYMMDD format
   sex       String  // "male", "female", or "unknown"
   phone     String
+
+  jobTitle  String
+  jobType   String
+  jobDescription  String @db.Text
+
   createdAt DateTime @default(now()) // ISO 8601 timestamp
 }
 
 // @unique
 // @@fulltext([fullname]) // ✅ Correct for full-text search
+//
+//jobTitle: String,
+//jobType: String,
+//jobDescription: Text, 
+
+// Prisma Client API reference
+// https://www.prisma.io/docs/orm/reference/prisma-client-reference
+// MySQL/MariaDB
+// https://www.prisma.io/docs/orm/overview/databases/mysql#type-mapping-between-mysql-to-prisma-schema
+// Database mapping
+// https://www.prisma.io/docs/orm/prisma-schema/data-model/database-mapping
+// Prisma CLI reference
+// https://www.prisma.io/docs/orm/reference/prisma-cli-reference#db
+// Models
+// https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping

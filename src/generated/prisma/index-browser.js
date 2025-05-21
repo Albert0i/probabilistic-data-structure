@@ -128,6 +128,9 @@ exports.Prisma.UserScalarFieldEnum = {
   birthdate: 'birthdate',
   sex: 'sex',
   phone: 'phone',
+  jobTitle: 'jobTitle',
+  jobType: 'jobType',
+  jobDescription: 'jobDescription',
   createdAt: 'createdAt'
 };
 
@@ -143,7 +146,10 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   password: 'password',
   birthdate: 'birthdate',
   sex: 'sex',
-  phone: 'phone'
+  phone: 'phone',
+  jobTitle: 'jobTitle',
+  jobType: 'jobType',
+  jobDescription: 'jobDescription'
 };
 
 
