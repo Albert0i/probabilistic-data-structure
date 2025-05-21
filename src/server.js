@@ -13,7 +13,7 @@ const PORT = 3000;
 app.use(express.json()); // ✅ Allow JSON data in API requests
 app.use(express.urlencoded({ extended: true })); // ✅ Support form data
 
-app.use(express.static(path.join(__dirname, "src/public")));
+app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
@@ -30,3 +30,8 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+
+/*
+   Favicon Generators
+   https://favicon.io/
+*/

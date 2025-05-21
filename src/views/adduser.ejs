@@ -19,13 +19,15 @@
             const result = await response.json();
             const messageBox = document.getElementById("responseMessage");
 
-            messageBox.innerHTML = result.success 
-                ? `<p class="text-green-500">${result.message || "User added successfully!"}</p>` 
-                : `<p class="text-red-500">${result.message || "Failed to add user."}</p>`;
-
-            if (result.success) event.target.reset(); // Clear form only on success
+            if (result.success) {
+                messageBox.innerHTML = `<p class="text-green-500 font-bold">User added successfully! ID: ${result.id}</p>`;
+                event.target.reset(); // Clear form on success
+            } else {
+                messageBox.innerHTML = `<p class="text-red-500 font-bold">Error: ${result.message}</p>`;
+            }
         }
     </script>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body class="bg-gray-100 flex justify-center items-center h-screen">
     <div class="bg-white p-6 shadow-md rounded-lg w-96 text-center">

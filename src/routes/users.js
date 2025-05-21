@@ -4,12 +4,6 @@ import { redis } from '../redis/redis.js'
 import { streamKey, cardinalityKey, topKKey } from '../config.js'
 
 const router = express.Router();
-let users = []; // Simulated database
-
-// // Serve the Add User Form
-// router.get("/adduser", (req, res) => {
-//     res.render("adduser");
-// });
 
 // Handle Add User Submission
 router.post("/add", async (req, res) => {
@@ -23,6 +17,7 @@ router.post("/add", async (req, res) => {
     }
 });
 
+// Handle User Statistic 
 router.get("/stats", async (req, res) => {
     await redis.connect()
     const results = await Promise.all([
