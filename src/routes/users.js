@@ -11,8 +11,10 @@ router.post("/add", async (req, res) => {
     try {
         const messageId = await redis.xAdd(streamKey, '*', 
                 { id: ulid(), ...req.body, createdAt: new Date().toISOString()} );
+        await redis.close();  
         res.status(201).json({ success: true, id: messageId });
     } catch (error) {
+        await redis.close();  
         res.status(500).json({ success: false, message: error.message });
     }
 });
