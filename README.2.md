@@ -1,7 +1,7 @@
 ### Probabilistic Data Structure (Part 2/3)
 
 #### Prologue
-**Enough is enough!** I am a software developer NOT mathematician... What the dickens do I need to learn these? 
+**Enough is enough!** I am a software developer NOT mathematician... What the dickens to learn inner workings of PDS? 
 To be honest... Around 90% of code is written by AI, 9% of code borrows  from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search), the last 1% is written by myself. 
 
 
