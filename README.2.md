@@ -7,3 +7,6 @@ https://youtu.be/zcCEFByssQU
 
 I replaced my Redis cache with Postgres... Here's what happened
 https://youtu.be/KWaShWxJzxQ
+
+Count-Min Sketch: An efficient probabilistic Data Structure by Raphael De Lio
+https://youtu.be/KRaSkSzwCkE

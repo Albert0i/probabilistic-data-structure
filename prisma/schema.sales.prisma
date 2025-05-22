@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+//
+// Sales database designed by AI
+// npx prisma validate --schema ./prisma/schema.sales.prisma
+// npx prisma migrate dev --name sales --schema ./prisma/schema.sales.prisma
+// 
+model Customer {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+  phone String
+  orders Order[]
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@index([name])
+  @@map("customers")
+}
+
+enum OrderStatus {
+  pending     @map("pending")
+  processing  @map("processing")
+  shipped     @map("shipped")
+  delivered   @map("delivered")
+  canceled    @map("canceled")
+}
+
+model Order {
+  id             Int       @id @default(autoincrement())
+  customer       Customer  @relation(fields: [customerId], references: [id])
+  customerId     Int
+  orderDate      DateTime  @default(now())
+  status         OrderStatus  // Consider ENUM mapping
+  // Stores final amount after discounts & shipping
+  totalCost      Decimal   
+  // Optional discount applied to order
+  discount       Decimal @default(0) 
+  // Optional shipping fee
+  shippingCharge Decimal @default(0) 
+  orderDetails   OrderDetail[]
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@map("orders")
+}
+
+model OrderDetail {
+  id        Int     @id @default(autoincrement())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int
+  price     Decimal
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@map("order_details")
+}
+
+model Product {
+  id        Int    @id @default(autoincrement())
+  name      String
+  price     Decimal
+  stock     Int
+  details   String?
+  imageUrls Json  // Store array of image URLs
+  orderDetails OrderDetail[]
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@map("products")
+}

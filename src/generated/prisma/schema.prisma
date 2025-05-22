@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -14,65 +8,70 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// "male", "female", or "unknown"
-enum Gender {
-  male    @map("male")
-  female  @map("female")
-  unknown @map("unknown")
-}
-
-model User {
-  id        String   @id @default(uuid()) // Unique user ID
-  fullname  String
+//
+// Sales database designed by AI
+// npx prisma validate --schema ./prisma/schema.sales.prisma
+// 
+model Customer {
+  id        Int      @id @default(autoincrement())
+  name      String
   email     String   @unique
-  birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format
-  gender    Gender
   phone     String
-  // jobTitle  String @default("")
-  // jobType   String @default("")
-  // jobDescription  String @default("") @db.Text 
+  orders    Order[]
   createdAt DateTime @default(now()) // ISO 8601 timestamp
 
-  @@fulltext([fullname])
-  @@map("users")
+  @@index([name])
+  @@map("customers")
 }
 
-// model Product {
-//   id          String   @id @default(uuid()) // Unique product ID
-//   name        String
-//   description String?  @db.Text // Optional, stored as TEXT
-//   price       Decimal
-//   stock       Int      @default(0) // Default stock quantity
-//   createdAt   DateTime @default(now())
-//   salesdetails SalesDetail[]
-// }
+enum OrderStatus {
+  pending    @map("pending")
+  processing @map("processing")
+  shipped    @map("shipped")
+  delivered  @map("delivered")
+  canceled   @map("canceled")
+}
 
-// model SalesDetail {
-//   id         String  @id @default(uuid()) // Unique sales detail ID
-//   product    Product @relation(fields: [productId], references: [id]) // Links to Product    
-//   productId  String  
-//   quantity   Int     @default(1) // Number of products purchased
-//   totalPrice Decimal // Final calculated price
-//   saleDate   DateTime @default(now()) // Timestamp of the sale
-// }
+model Order {
+  id             Int           @id @default(autoincrement())
+  customer       Customer      @relation(fields: [customerId], references: [id])
+  customerId     Int
+  orderDate      DateTime      @default(now())
+  status         OrderStatus // Consider ENUM mapping
+  // Stores final amount after discounts & shipping
+  totalCost      Decimal
+  // Optional discount applied to order
+  discount       Decimal       @default(0)
+  // Optional shipping fee
+  shippingCharge Decimal       @default(0)
+  orderDetails   OrderDetail[]
+  createdAt      DateTime      @default(now()) // ISO 8601 timestamp
 
-//jobTitle: String,
-//jobType: String,
-//jobDescription: Text, 
+  @@map("orders")
+}
 
-// Prisma Client API reference
-// https://www.prisma.io/docs/orm/reference/prisma-client-reference
-// MySQL/MariaDB
-// https://www.prisma.io/docs/orm/overview/databases/mysql#type-mapping-between-mysql-to-prisma-schema
-// Database mapping
-// https://www.prisma.io/docs/orm/prisma-schema/data-model/database-mapping
-// Prisma CLI reference
-// https://www.prisma.io/docs/orm/reference/prisma-cli-reference#db
-// Models
-// https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping
-// Getting started with Prisma Migrate
-// https://www.prisma.io/docs/orm/prisma-migrate/getting-started
-// Relation mode
-// https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/relation-mode
-// 
-// 
+model OrderDetail {
+  id        Int      @id @default(autoincrement())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int
+  price     Decimal
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@map("order_details")
+}
+
+model Product {
+  id           Int           @id @default(autoincrement())
+  name         String
+  price        Decimal
+  stock        Int
+  details      String?
+  imageUrls    Json // Store array of image URLs
+  orderDetails OrderDetail[]
+  createdAt    DateTime      @default(now()) // ISO 8601 timestamp
+
+  @@map("products")
+}

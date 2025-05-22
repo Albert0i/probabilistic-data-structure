@@ -120,13 +120,41 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
+exports.Prisma.CustomerScalarFieldEnum = {
   id: 'id',
-  fullname: 'fullname',
+  name: 'name',
   email: 'email',
-  birthdate: 'birthdate',
-  gender: 'gender',
   phone: 'phone',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  orderDate: 'orderDate',
+  status: 'status',
+  totalCost: 'totalCost',
+  discount: 'discount',
+  shippingCharge: 'shippingCharge',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OrderDetailScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  quantity: 'quantity',
+  price: 'price',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  stock: 'stock',
+  details: 'details',
+  imageUrls: 'imageUrls',
   createdAt: 'createdAt'
 };
 
@@ -135,20 +163,49 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  id: 'id',
-  fullname: 'fullname',
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.CustomerOrderByRelevanceFieldEnum = {
+  name: 'name',
   email: 'email',
   phone: 'phone'
 };
-exports.Gender = exports.$Enums.Gender = {
-  male: 'male',
-  female: 'female',
-  unknown: 'unknown'
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.ProductOrderByRelevanceFieldEnum = {
+  name: 'name',
+  details: 'details'
+};
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  pending: 'pending',
+  processing: 'processing',
+  shipped: 'shipped',
+  delivered: 'delivered',
+  canceled: 'canceled'
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  Customer: 'Customer',
+  Order: 'Order',
+  OrderDetail: 'OrderDetail',
+  Product: 'Product'
 };
 
 /**
