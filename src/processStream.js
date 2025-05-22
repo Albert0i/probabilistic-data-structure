@@ -1,5 +1,5 @@
 import { redis } from './redis/redis.js'
-import { streamKey, consumerGroupName1, cardinalityKey, topKKey } from './config.js'
+import { streamKey, hyperLogLogKey, bloomFilterKey, topKKey, consumerGroupName1 } from './config.js'
 import { createConsumerGroup, removeIdleConsumers, claimPendingEvent, readNextEvent, acknowledgeEvent } from './stream.js'
 
 /*
@@ -55,7 +55,8 @@ async function processEvent(event) {
 
   await Promise.all([
     redis.sendCommand(['MULTI']),
-    redis.sendCommand(['PFADD', cardinalityKey, event.message.fullname]),
+    redis.sendCommand(['PFADD', hyperLogLogKey, event.message.fullname]),
+    redis.sendCommand(['BF.ADD', bloomFilterKey, event.message.fullname]),
     redis.sendCommand(['TOPK.ADD', topKKey, event.message.fullname]),
     redis.sendCommand(['EXEC']),
   ]);   
