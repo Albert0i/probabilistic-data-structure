@@ -13,15 +13,12 @@ export function generateUser() {
       id: faker.string.ulid(),
       fullname: faker.person.fullName(),
       email: faker.internet.email(),
-      password: faker.internet.password(),
-      birthdate: String(formatDateToYYYYMMDD(faker.date.birthdate())),
-      sex: faker.person.sex(),
+      birthdate: formatDateToYYYYMMDD(faker.date.birthdate()),
+      gender: faker.person.sex(),
       phone: faker.phone.imei(),
-
       // jobTitle: faker.person.jobTitle(),
       // jobType: faker.person.jobType(), 
       // jobDescription: faker.lorem.sentences({ min: 5, max: 10 }), 
-
       createdAt: faker.date.past().toISOString(),
     };
   } 

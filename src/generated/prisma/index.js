@@ -97,13 +97,9 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   fullname: 'fullname',
   email: 'email',
-  password: 'password',
   birthdate: 'birthdate',
-  sex: 'sex',
+  gender: 'gender',
   phone: 'phone',
-  jobTitle: 'jobTitle',
-  jobType: 'jobType',
-  jobDescription: 'jobDescription',
   createdAt: 'createdAt'
 };
 
@@ -116,15 +112,13 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   id: 'id',
   fullname: 'fullname',
   email: 'email',
-  password: 'password',
-  birthdate: 'birthdate',
-  sex: 'sex',
-  phone: 'phone',
-  jobTitle: 'jobTitle',
-  jobType: 'jobType',
-  jobDescription: 'jobDescription'
+  phone: 'phone'
 };
-
+exports.Gender = exports.$Enums.Gender = {
+  male: 'male',
+  female: 'female',
+  unknown: 'unknown'
+};
 
 exports.Prisma.ModelName = {
   User: 'User'
@@ -144,7 +138,6 @@ const config = {
       "fromEnvVar": null
     },
     "config": {
-      "relationMode": "prisma",
       "engineType": "library"
     },
     "binaryTargets": [
@@ -177,8 +170,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider     = \"prisma-client-js\"\n  output       = \"../src/generated/prisma\"\n  relationMode = \"prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String @id @default(uuid()) // Unique user ID\n  fullname  String\n  email     String\n  password  String\n  birthdate String // Stored in YYYYMMDD format\n  sex       String // \"male\", \"female\", or \"unknown\"\n  phone     String\n\n  jobTitle       String @default(\"---\")\n  jobType        String @default(\"---\")\n  jobDescription String @default(\"---\") @db.Text\n\n  createdAt DateTime @default(now()) // ISO 8601 timestamp\n}\n\n// model Product {\n//   id          String   @id @default(uuid()) // Unique product ID\n//   name        String\n//   description String?  @db.Text // Optional, stored as TEXT\n//   price       Decimal\n//   stock       Int      @default(0) // Default stock quantity\n//   createdAt   DateTime @default(now())\n//   salesdetails SalesDetail[]\n// }\n\n// model SalesDetail {\n//   id         String  @id @default(uuid()) // Unique sales detail ID\n//   product    Product @relation(fields: [productId], references: [id]) // Links to Product    \n//   productId  String  \n//   // user       User   @relation(fields: [userId], references: [id]) // Links to User\n//   // userId     String  \n//   quantity   Int     @default(1) // Number of products purchased\n//   totalPrice Decimal // Final calculated price\n//   saleDate   DateTime @default(now()) // Timestamp of the sale\n// }\n//@relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)\n// @unique\n// @@fulltext([fullname]) // ✅ Correct for full-text search\n//\n//jobTitle: String,\n//jobType: String,\n//jobDescription: Text, \n\n// Prisma Client API reference\n// https://www.prisma.io/docs/orm/reference/prisma-client-reference\n// MySQL/MariaDB\n// https://www.prisma.io/docs/orm/overview/databases/mysql#type-mapping-between-mysql-to-prisma-schema\n// Database mapping\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/database-mapping\n// Prisma CLI reference\n// https://www.prisma.io/docs/orm/reference/prisma-cli-reference#db\n// Models\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping\n// Getting started with Prisma Migrate\n// https://www.prisma.io/docs/orm/prisma-migrate/getting-started\n// Relation mode\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/relation-mode\n// \n// \n",
-  "inlineSchemaHash": "0600c1da9f657bd80c0fc0832415b6c3509b1f9484a8f92b4e94ea8eab890b70",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// \"male\", \"female\", or \"unknown\"\nenum Gender {\n  male    @map(\"male\")\n  female  @map(\"female\")\n  unknown @map(\"unknown\")\n}\n\nmodel User {\n  id        String   @id @default(uuid()) // Unique user ID\n  fullname  String\n  email     String   @unique\n  birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format\n  gender    Gender\n  phone     String\n  // jobTitle  String @default(\"\")\n  // jobType   String @default(\"\")\n  // jobDescription  String @default(\"\") @db.Text \n  createdAt DateTime @default(now()) // ISO 8601 timestamp\n\n  @@fulltext([fullname])\n  @@map(\"users\")\n}\n\n// model Product {\n//   id          String   @id @default(uuid()) // Unique product ID\n//   name        String\n//   description String?  @db.Text // Optional, stored as TEXT\n//   price       Decimal\n//   stock       Int      @default(0) // Default stock quantity\n//   createdAt   DateTime @default(now())\n//   salesdetails SalesDetail[]\n// }\n\n// model SalesDetail {\n//   id         String  @id @default(uuid()) // Unique sales detail ID\n//   product    Product @relation(fields: [productId], references: [id]) // Links to Product    \n//   productId  String  \n//   quantity   Int     @default(1) // Number of products purchased\n//   totalPrice Decimal // Final calculated price\n//   saleDate   DateTime @default(now()) // Timestamp of the sale\n// }\n\n//jobTitle: String,\n//jobType: String,\n//jobDescription: Text, \n\n// Prisma Client API reference\n// https://www.prisma.io/docs/orm/reference/prisma-client-reference\n// MySQL/MariaDB\n// https://www.prisma.io/docs/orm/overview/databases/mysql#type-mapping-between-mysql-to-prisma-schema\n// Database mapping\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/database-mapping\n// Prisma CLI reference\n// https://www.prisma.io/docs/orm/reference/prisma-cli-reference#db\n// Models\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping\n// Getting started with Prisma Migrate\n// https://www.prisma.io/docs/orm/prisma-migrate/getting-started\n// Relation mode\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/relation-mode\n// \n// \n",
+  "inlineSchemaHash": "ffd8691be88037540612b2e5a5fe1645c92d1d7c0ebdab8acbf0b6412098e889",
   "copyEngine": true
 }
 
@@ -199,7 +192,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   config.isBundled = true
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"uuid\",\"args\":[4]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fullname\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"password\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sex\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"phone\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jobTitle\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":\"---\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jobType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":\"---\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jobDescription\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":[\"Text\",[]],\"default\":\"---\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"dbName\":\"users\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"uuid\",\"args\":[4]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fullname\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"BigInt\",\"nativeType\":null,\"default\":\"19000101\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gender\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Gender\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"phone\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{\"Gender\":{\"values\":[{\"name\":\"male\",\"dbName\":\"male\"},{\"name\":\"female\",\"dbName\":\"female\"},{\"name\":\"unknown\",\"dbName\":\"unknown\"}],\"dbName\":null}},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 config.compilerWasm = undefined
