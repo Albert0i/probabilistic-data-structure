@@ -16,16 +16,16 @@ datasource db {
 
 // "male", "female", or "unknown"
 enum Gender {
-  male @map("male")
-  female @map("female")
+  male    @map("male")
+  female  @map("female")
   unknown @map("unknown")
 }
 
 model User {
-  id        String  @id @default(uuid())  // Unique user ID
+  id        String   @id @default(uuid()) // Unique user ID
   fullname  String
-  email     String  @unique
-  birthdate BigInt  @default(19000101)  // Stored in YYYYMMDD format
+  email     String   @unique
+  birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format
   gender    Gender
   phone     String
   // jobTitle  String @default("")
@@ -36,7 +36,6 @@ model User {
   @@fulltext([fullname])
   @@map("users")
 }
-
 
 // model Product {
 //   id          String   @id @default(uuid()) // Unique product ID
