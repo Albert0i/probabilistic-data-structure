@@ -93,41 +93,13 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.CustomerScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  fullname: 'fullname',
   email: 'email',
+  birthdate: 'birthdate',
+  gender: 'gender',
   phone: 'phone',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.OrderScalarFieldEnum = {
-  id: 'id',
-  customerId: 'customerId',
-  orderDate: 'orderDate',
-  status: 'status',
-  totalCost: 'totalCost',
-  discount: 'discount',
-  shippingCharge: 'shippingCharge',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.OrderDetailScalarFieldEnum = {
-  id: 'id',
-  orderId: 'orderId',
-  productId: 'productId',
-  quantity: 'quantity',
-  price: 'price',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.ProductScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  price: 'price',
-  stock: 'stock',
-  details: 'details',
-  imageUrls: 'imageUrls',
   createdAt: 'createdAt'
 };
 
@@ -136,49 +108,20 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
-};
-
-exports.Prisma.CustomerOrderByRelevanceFieldEnum = {
-  name: 'name',
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  fullname: 'fullname',
   email: 'email',
   phone: 'phone'
 };
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
-};
-
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
-exports.Prisma.ProductOrderByRelevanceFieldEnum = {
-  name: 'name',
-  details: 'details'
-};
-exports.OrderStatus = exports.$Enums.OrderStatus = {
-  pending: 'pending',
-  processing: 'processing',
-  shipped: 'shipped',
-  delivered: 'delivered',
-  canceled: 'canceled'
+exports.Gender = exports.$Enums.Gender = {
+  male: 'male',
+  female: 'female',
+  unknown: 'unknown'
 };
 
 exports.Prisma.ModelName = {
-  Customer: 'Customer',
-  Order: 'Order',
-  OrderDetail: 'OrderDetail',
-  Product: 'Product'
+  User: 'User'
 };
 /**
  * Create the Client
@@ -205,7 +148,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\RU\\probabilistic-data-structure\\prisma\\schema.sales.prisma",
+    "sourceFilePath": "D:\\RU\\probabilistic-data-structure\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -227,8 +170,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n//\n// Sales database designed by AI\n// npx prisma validate --schema ./prisma/schema.sales.prisma\n// \nmodel Customer {\n  id        Int      @id @default(autoincrement())\n  name      String\n  email     String   @unique\n  phone     String\n  orders    Order[]\n  createdAt DateTime @default(now()) // ISO 8601 timestamp\n\n  @@index([name])\n  @@map(\"customers\")\n}\n\nenum OrderStatus {\n  pending    @map(\"pending\")\n  processing @map(\"processing\")\n  shipped    @map(\"shipped\")\n  delivered  @map(\"delivered\")\n  canceled   @map(\"canceled\")\n}\n\nmodel Order {\n  id             Int           @id @default(autoincrement())\n  customer       Customer      @relation(fields: [customerId], references: [id])\n  customerId     Int\n  orderDate      DateTime      @default(now())\n  status         OrderStatus // Consider ENUM mapping\n  // Stores final amount after discounts & shipping\n  totalCost      Decimal\n  // Optional discount applied to order\n  discount       Decimal       @default(0)\n  // Optional shipping fee\n  shippingCharge Decimal       @default(0)\n  orderDetails   OrderDetail[]\n  createdAt      DateTime      @default(now()) // ISO 8601 timestamp\n\n  @@map(\"orders\")\n}\n\nmodel OrderDetail {\n  id        Int      @id @default(autoincrement())\n  order     Order    @relation(fields: [orderId], references: [id])\n  orderId   Int\n  product   Product  @relation(fields: [productId], references: [id])\n  productId Int\n  quantity  Int\n  price     Decimal\n  createdAt DateTime @default(now()) // ISO 8601 timestamp\n\n  @@map(\"order_details\")\n}\n\nmodel Product {\n  id           Int           @id @default(autoincrement())\n  name         String\n  price        Decimal\n  stock        Int\n  details      String?\n  imageUrls    Json // Store array of image URLs\n  orderDetails OrderDetail[]\n  createdAt    DateTime      @default(now()) // ISO 8601 timestamp\n\n  @@map(\"products\")\n}\n",
-  "inlineSchemaHash": "7b47e0c397eb2c5ebfb5983e54aac46b6acca2078864b579aef533b4296be569",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// \"male\", \"female\", or \"unknown\"\nenum Gender {\n  male    @map(\"male\")\n  female  @map(\"female\")\n  unknown @map(\"unknown\")\n}\n\nmodel User {\n  id        String   @id @default(uuid()) // Unique user ID\n  fullname  String\n  email     String   @unique\n  birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format\n  gender    Gender\n  phone     String\n  // jobTitle  String @default(\"\")\n  // jobType   String @default(\"\")\n  // jobDescription  String @default(\"\") @db.Text \n  createdAt DateTime @default(now()) // ISO 8601 timestamp\n\n  @@fulltext([fullname])\n  @@map(\"users\")\n}\n\n// model Product {\n//   id          String   @id @default(uuid()) // Unique product ID\n//   name        String\n//   description String?  @db.Text // Optional, stored as TEXT\n//   price       Decimal\n//   stock       Int      @default(0) // Default stock quantity\n//   createdAt   DateTime @default(now())\n//   salesdetails SalesDetail[]\n// }\n\n// model SalesDetail {\n//   id         String  @id @default(uuid()) // Unique sales detail ID\n//   product    Product @relation(fields: [productId], references: [id]) // Links to Product    \n//   productId  String  \n//   quantity   Int     @default(1) // Number of products purchased\n//   totalPrice Decimal // Final calculated price\n//   saleDate   DateTime @default(now()) // Timestamp of the sale\n// }\n\n//jobTitle: String,\n//jobType: String,\n//jobDescription: Text, \n\n// Prisma Client API reference\n// https://www.prisma.io/docs/orm/reference/prisma-client-reference\n// MySQL/MariaDB\n// https://www.prisma.io/docs/orm/overview/databases/mysql#type-mapping-between-mysql-to-prisma-schema\n// Database mapping\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/database-mapping\n// Prisma CLI reference\n// https://www.prisma.io/docs/orm/reference/prisma-cli-reference#db\n// Models\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping\n// Getting started with Prisma Migrate\n// https://www.prisma.io/docs/orm/prisma-migrate/getting-started\n// Relation mode\n// https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/relation-mode\n// \n// \n",
+  "inlineSchemaHash": "ffd8691be88037540612b2e5a5fe1645c92d1d7c0ebdab8acbf0b6412098e889",
   "copyEngine": true
 }
 
@@ -249,7 +192,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   config.isBundled = true
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Customer\":{\"dbName\":\"customers\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"phone\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orders\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Order\",\"nativeType\":null,\"relationName\":\"CustomerToOrder\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Order\":{\"dbName\":\"orders\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"customer\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Customer\",\"nativeType\":null,\"relationName\":\"CustomerToOrder\",\"relationFromFields\":[\"customerId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"customerId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"OrderStatus\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"totalCost\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Decimal\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"discount\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Decimal\",\"nativeType\":null,\"default\":0,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"shippingCharge\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Decimal\",\"nativeType\":null,\"default\":0,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderDetails\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"OrderDetail\",\"nativeType\":null,\"relationName\":\"OrderToOrderDetail\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"OrderDetail\":{\"dbName\":\"order_details\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"order\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Order\",\"nativeType\":null,\"relationName\":\"OrderToOrderDetail\",\"relationFromFields\":[\"orderId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"product\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Product\",\"nativeType\":null,\"relationName\":\"OrderDetailToProduct\",\"relationFromFields\":[\"productId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"productId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"quantity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"price\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Decimal\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Product\":{\"dbName\":\"products\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"price\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Decimal\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"stock\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"details\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"imageUrls\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderDetails\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"OrderDetail\",\"nativeType\":null,\"relationName\":\"OrderDetailToProduct\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{\"OrderStatus\":{\"values\":[{\"name\":\"pending\",\"dbName\":\"pending\"},{\"name\":\"processing\",\"dbName\":\"processing\"},{\"name\":\"shipped\",\"dbName\":\"shipped\"},{\"name\":\"delivered\",\"dbName\":\"delivered\"},{\"name\":\"canceled\",\"dbName\":\"canceled\"}],\"dbName\":null}},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"dbName\":\"users\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"uuid\",\"args\":[4]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fullname\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"birthdate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"BigInt\",\"nativeType\":null,\"default\":\"19000101\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gender\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Gender\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"phone\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{\"Gender\":{\"values\":[{\"name\":\"male\",\"dbName\":\"male\"},{\"name\":\"female\",\"dbName\":\"female\"},{\"name\":\"unknown\",\"dbName\":\"unknown\"}],\"dbName\":null}},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 config.compilerWasm = undefined
