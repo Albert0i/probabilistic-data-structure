@@ -22,7 +22,18 @@ router.get("/stats", async (req, res) => {
             redis.sendCommand(['PFCOUNT', cardinalityKey]),
             redis.sendCommand(['TOPK.LIST', topKKey, 'WITHCOUNT']),
       ]);   
-    res.json({ results });    
+    res.json({ results });
 });
+
+// Handle User Email Check
+router.post("/emailcheck", async (req, res) => {
+    // const results = await Promise.all([
+    //         redis.sendCommand(['PFCOUNT', cardinalityKey]),
+    //         redis.sendCommand(['TOPK.LIST', topKKey, 'WITHCOUNT']),
+    //   ]);   
+    // res.json({ results });    
+    res.json({ taken: false })
+});
+
 
 export default router;

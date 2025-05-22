@@ -27,14 +27,53 @@
             }
         }
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const emailField = document.getElementById("email");
+            const emailStatus = document.getElementById("responseMessage");
+            const addButton = document.getElementById("addButton");
+            
+            emailField.addEventListener("blur", async () => {                
+                const email = emailField.value.trim();
+                
+                if (email) {
+                    try {
+                        const response = await fetch('/api/v1/user/emailcheck', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email })
+                        });
+                        const data = await response.json();
+
+                        if (data.taken) {
+                            emailStatus.textContent = "❌ Email is already taken!";
+                            emailStatus.style.color = "red";
+                            addButton.disabled = true;
+                        } else {
+                            emailStatus.textContent = "✅ Email is OK!";
+                            emailStatus.style.color = "green";
+                            addButton.disabled = false;
+                        }
+                    } catch (error) {
+                        console.error("Error checking email:", error);
+                        emailStatus.textContent = "⚠️ Error validating email.";
+                        emailStatus.style.color = "orange";
+                        addButton.disabled = true;
+                    }
+                }
+            });
+        });
+    </script>
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body class="bg-gray-100 flex justify-center items-center h-screen">
     <div class="bg-white p-6 shadow-md rounded-lg w-96 text-center">
-        <h2 class="text-xl font-bold mb-4">New User</h2>
+        <h2 class="text-xl font-bold mb-4">New User</h2>    
         <form id="userForm" class="space-y-4" onsubmit="submitUser(event)">
             <input type="text" name="fullname" placeholder="Full Name" class="w-full p-2 border rounded" required autofocus>
-            <input type="email" name="email" placeholder="Email" class="w-full p-2 border rounded" required>
+            <input type="email" id="email" name="email" placeholder="Email" class="w-full p-2 border rounded" required>
             <input type="password" name="password" placeholder="Password" class="w-full p-2 border rounded" required>
             <input type="text" name="birthdate" placeholder="YYYYMMDD" class="w-full p-2 border rounded" required pattern="\d{8}" title="Enter in YYYYMMDD format">
 
@@ -46,7 +85,10 @@
 
             <input type="text" name="phone" placeholder="Phone" class="w-full p-2 border rounded" required>
 
-            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Add</button>
+            <button id="addButton" type="submit" disabled 
+                class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 
+                       disable:bg-gray-500 disable:cursor-not-allowed" >Add
+            </button>
         </form>
 
         <div id="responseMessage" class="mt-4"></div>
