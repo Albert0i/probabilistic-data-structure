@@ -13,6 +13,7 @@ datasource db {
 // Sales database designed by AI
 // npx prisma validate --schema ./prisma/schema.sales.prisma
 // npx prisma migrate dev --name sales --schema ./prisma/schema.sales.prisma
+// npx prisma studio --schema ./prisma/schema.sales.prisma
 // 
 model Customer {
   id    Int    @id @default(autoincrement())
