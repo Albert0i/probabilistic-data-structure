@@ -13,7 +13,7 @@ await redis.connect();
 // create a unique name for this consumer
 const consumerName = `consumer-${generateRandom3Digit()}`
 
-console.log(`Hey! I'm '${consumerName}'`)
+console.log(`Hey! I'm '${consumerName}' of '${consumerGroupName2}'`)
 // create the consumer group and remove idle consumers
 await createConsumerGroup(streamKey, consumerGroupName2)
 await removeIdleConsumers(streamKey, consumerGroupName2)

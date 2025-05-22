@@ -1,7 +1,7 @@
 import express from "express";
 import { ulid } from 'ulid'
 import { redis } from '../redis/redis.js'
-import { streamKey, cardinalityKey, topKKey } from '../config.js'
+import { streamKey, hyperLogLogKey, bloomFilterKey, topKKey } from '../config.js'
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router.post("/add", async (req, res) => {
 // Handle User Statistics
 router.get("/stats", async (req, res) => {
     const results = await Promise.all([
-            redis.sendCommand(['PFCOUNT', cardinalityKey]),
+            redis.sendCommand(['PFCOUNT', hyperLogLogKey]),
             redis.sendCommand(['TOPK.LIST', topKKey, 'WITHCOUNT']),
       ]);   
     res.json({ results });
@@ -27,13 +27,8 @@ router.get("/stats", async (req, res) => {
 
 // Handle User Email Check
 router.post("/emailcheck", async (req, res) => {
-    // const results = await Promise.all([
-    //         redis.sendCommand(['PFCOUNT', cardinalityKey]),
-    //         redis.sendCommand(['TOPK.LIST', topKKey, 'WITHCOUNT']),
-    //   ]);   
-    // res.json({ results });    
-    res.json({ taken: false })
+    const taken = await redis.sendCommand(['BF.EXISTS', bloomFilterKey, req.body.email])
+    res.json({ taken });
 });
-
 
 export default router;

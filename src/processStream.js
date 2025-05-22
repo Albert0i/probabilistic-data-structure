@@ -11,7 +11,7 @@ await redis.connect();
 // create a unique name for this consumer
 const consumerName = `consumer-${generateRandom3Digit()}`
 
-console.log(`Hey! I'm '${consumerName}'`)
+console.log(`Hey! I'm '${consumerName}' of '${consumerGroupName1}'`)
 // create the consumer group and remove idle consumers
 await createConsumerGroup(streamKey, consumerGroupName1)
 await removeIdleConsumers(streamKey, consumerGroupName1)
@@ -56,7 +56,7 @@ async function processEvent(event) {
   await Promise.all([
     redis.sendCommand(['MULTI']),
     redis.sendCommand(['PFADD', hyperLogLogKey, event.message.fullname]),
-    redis.sendCommand(['BF.ADD', bloomFilterKey, event.message.fullname]),
+    redis.sendCommand(['BF.ADD', bloomFilterKey, event.message.email]),
     redis.sendCommand(['TOPK.ADD', topKKey, event.message.fullname]),
     redis.sendCommand(['EXEC']),
   ]);   
