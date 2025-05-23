@@ -98,7 +98,11 @@ Let's check the result again:
 ```
 
 
-#### II. 
+#### II. Project setup
+> *Probabilistic data structures* give approximations of statistics such as counts, frequencies, and rankings rather than precise values. The advantage of using approximations is that they are adequate for many common purposes but are much more efficient to calculate. They sometimes have other advantages too, such as obfuscating times, locations, and other sensitive data.
+
+Typical usage is real-time checking for large dataset, 7 billions for example. 
+
 ```
 {
   id: '01JVY30JE6CFXD09B65HX0MH4H',
