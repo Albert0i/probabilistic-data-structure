@@ -26,7 +26,8 @@ Software developers are not mathematician but we need mathematics anyway... PDS,
 
 Well, if you need 100% accuracy, I recommend you using [Set](https://redis.io/docs/latest/develop/data-types/sets/) for cardinality ([SCARD](https://redis.io/docs/latest/commands/scard/) is O(1)) and membership ([SISMEMBER](https://redis.io/docs/latest/commands/sismember/) is O(1)); [Sorted Set](https://redis.io/docs/latest/develop/data-types/sorted-sets/) for ranking ([ZRANGE](https://redis.io/docs/latest/commands/zrange/) is O(log(N)+M) with N being the number of elements in the sorted set and M the number of elements returned.). The only concern is that they are *deterministic* and will grow in size. 
 
-[HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/) in redis can be used right away, no privision is needed. 
+[HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/) in redis can be used right away, no privision is required. 
+
 > The Redis HyperLogLog implementation uses up to 12 KB and provides a standard error of 0.81%.
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
