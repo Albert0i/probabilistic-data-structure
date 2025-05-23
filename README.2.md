@@ -23,7 +23,23 @@ Given the requirement to handle 1,000,000 values and achieve an error rate of 0.
 - Number of hash functions (k): 20
 - Size of the Bloom filter (m): 28,755,172 bits (approximately 3.43 MB)
 ```
-BF.RESERVE PDS:demo:users:email 0.000001 1000000
+> BF.RESERVE PDS:demo:users:email 0.000001 1000000
+"OK"
+
+> BF.INFO PDS:demo:users:email 
+1) "Capacity"
+2) "1000000"
+3) "Size"
+4) "3774832"  <---  3.60 MB
+5) "Number of filters"
+6) "1"
+7) "Number of items inserted"
+8) "0"
+9) "Expansion rate"
+10) "2"
+
+> MEMORY USAGE PDS:demo:users:email
+(integer) 3774880  <---  3.60 MB
 ```
 
 [Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
@@ -40,73 +56,23 @@ The approximate memory consumption with these parameters is:
 - Total Memory: 962400 bytes
 - Total Memory in MB: 0.9178 MB
 ```
-TOPK.RESERVE PDS:demo:users:list 100 10000 12 0.9999
+> TOPK.RESERVE PDS:demo:users:list 100 10000 12 0.9999
+"OK"
+
+> TOPK.INFO PDS:demo:users:list 
+1) "k"
+2) "100"
+3) "width"
+4) "10000"
+5) "depth"
+6) "12"
+7) "decay"
+8) "0.9999"
+
+> MEMORY USAGE PDS:demo:users:list
+(integer) 964536  <--- 0.92 MB
 ```
 
-
-
-
-
-Error Rate: 0.000001
-Capacity: 1,000,000
-Number of hash functions (k): 20
-Size of the Bloom filter (m): 28,755,172 bits (approximately 3.43 MB)
-
-
-/*
-    Bloom filter
-    Given the requirement to handle 1,000,000 values and achieve an error rate of 0.000001, the optimal parameters for TOPK.RESERVE and memory usage in MB: 
-    - Error Rate: 0.00001
-    - Capacity: 1,000,000
-    - Number of hash functions (k): 20
-    - Size of the Bloom filter (m): 28,755,172 bits (approximately 3.43 MB)
-    
-    BF.RESERVE PDS:demo:users:email 0.00001 1000000
-
-
-    Top-K
-    Given the requirement to handle 1,000,000 values and achieve an error rate of 0.001%, the recommended parameters are:
-    - Width: 10000
-    - Depth: 12
-    - Decay: 0.9999
-    
-    The approximate memory consumption with these parameters is:
-    - MinHeap Memory: 2400 bytes
-    - HeavyKeeper Memory: 960000 bytes
-    - Total Memory: 962400 bytes (approximately 0.92 MB)
-
-    TOPK.RESERVE PDS:demo:users:list 100 10000 12 0.9999
-*/
-/*
-    > MEMORY USAGE PDS:demo:users:email
-    (integer) 3175816 <-- 3.02 MB
-
-    > MEMORY USAGE PDS:demo:users:list
-    (integer) 964536 <-- 0.92 MB
-*/
-/*
-    > BF.INFO PDS:demo:users:email 
-    1) "Capacity"
-    2) "1000000"
-    3) "Size"
-    4) "3175768"
-    5) "Number of filters"
-    6) "1"
-    7) "Number of items inserted"
-    8) "0"
-    9) "Expansion rate"
-    10) "2"
-
-    > TOPK.INFO PDS:demo:users:list 
-    1) "k"
-    2) "100"
-    3) "width"
-    4) "10000"
-    5) "depth"
-    6) "12"
-    7) "decay"
-    8) "0.9999"
-*/
 
 #### II. 
 
