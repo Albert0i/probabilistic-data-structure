@@ -9,6 +9,8 @@ Insteas of making this project more real, I decided to make it more fun... To be
 #### I. Project setup 
 
 #### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
+Software developers are not mathematician but they need to do mathematics anyway. 
+
 [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 
 > The Redis HyperLogLog implementation uses up to 12 KB and provides a standard error of 0.81%.
