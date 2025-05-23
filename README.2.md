@@ -1,12 +1,13 @@
 ### Probabilistic Data Structure (Part 2/3)
 
+
 #### Prologue
 Q: **Enough is enough!** I am a software developer NOT mathematician... What *the dickens* have to learn the inner workings of PDS? 
 
 A: Things never go smooth in life, my son. Even a little drizzle can save many grains. Chances are these trivial widgets may of great help in your future career, who knows? 
 
 
-#### I. Project setup 
+#### I. Talking about AI
 Instead of making this project more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
 
 Previously, my slogan was "When in doubt, ask Google.", now my slogan is "When in doubt, ask AI". However, AI tends to give answers which you want to hear, they never say NO by retorting your proposal with: 
@@ -16,7 +17,7 @@ Previously, my slogan was "When in doubt, ask Google.", now my slogan is "When i
 - Oh! how moronic you are to raise SUCH a question? 
 - How many times I told you! It just WON'T work..
 
- AI is your assistant, not your friend. A good friend would always help by warning you beforehand, not just bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict it, hanging around with it. Drifting in strong current and keeping the right direction is no easy way... They will continuously drag you astray and until you lost. 
+AI is your assistant, not your friend. A good friend would always help by warning you beforehand, not just bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict it, hanging around with it. Drifting in strong current and keeping the right direction is no easy way... They will continuously drag you astray and until you lost. 
 
 
 #### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
@@ -99,19 +100,36 @@ Let's check the result again:
 
 #### II. 
 
+
 #### III. 
+
 
 #### IV. 
 
+
 #### V.
 
+
 #### VI.
+
 
 [Continue to Part 3](README.3.md)
 
 #### VII. Bibliography 
+1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
+2. []()
+3. []()
+4. []()
+5. []()
+6. []()
+7. []()
+8. []()
+9. []()
+10. []()
+
 
 #### Epilogue
+
 
 ### EOF (2025/05/30)
 
