@@ -7,9 +7,16 @@ A: Things never go smooth in life, my son. Even a little drizzle can save many g
 
 
 #### I. Project setup 
-Insteas of making this project more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
+Previously, my slogan was "When in doubt, ask Google.", now my slogan is "When in doubt, ask AI". However, AI tends to give answers which you want to hear, they never say NO by retorting your proposal with: 
+- This is so stupid! I mean YOUR idea... 
+- You are so wrong! NEVER do it again... 
+- ONLY imbecile will ask such a question!
+- Oh! how moronic you are to raise SUCH a question? 
+- How many times I told you! It just WON'T work..
 
-Previously, my slogan was "When in doubt, ask Google.", now my slogan is "When in doubt, ask AI.". So, pen down your questions and ask your favourite AI agents... However, AI tends to give answers which you want to hear, they never retort your proposal by replying "This is so stupid an idea! Only imbecile will ask such a question... Oh! how moronic you are? How many times I told you... It just won't work...". AI is your assistant, not your friend. A good friend always warns you beforehand, not bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict it, hanging around with it. Drifting in strong current and keeping the right direction is no easy way... 
+ AI is your assistant, not your friend. A good friend always warns you beforehand, not bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict it, hanging around with it. Drifting in strong current and keeping the right direction is no easy way... They will continuously drag you astray and until you lost. 
+
+Instead of making this project more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
 
 
 #### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
@@ -19,6 +26,7 @@ Software developers are not mathematician but we need mathematics anyway... PDS,
 
 Well, if you need 100% accuracy, I recommend you using [Set](https://redis.io/docs/latest/develop/data-types/sets/) for cardinality ([SCARD](https://redis.io/docs/latest/commands/scard/) is O(1)) and membership ([SISMEMBER](https://redis.io/docs/latest/commands/sismember/) is O(1)); [Sorted Set](https://redis.io/docs/latest/develop/data-types/sorted-sets/) for ranking ([ZRANGE](https://redis.io/docs/latest/commands/zrange/) is O(log(N)+M) with N being the number of elements in the sorted set and M the number of elements returned.). The only concern is that they are *deterministic* and will grow in size. 
 
+So, pen down your questions and ask your favourite AI agents... 
 Without further ado, let's begin the calculation. 
 
 [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
