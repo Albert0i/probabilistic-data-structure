@@ -1,12 +1,14 @@
 ### Probabilistic Data Structure (Part 2/3)
 
 #### Prologue
-**Enough is enough!** I am a software developer NOT mathematician... What *the dickens* have to learn the inner workings of PDS? Things never go smooth in life, my son. Even a little drizzle can save many grains. Chances are these trivial techniques may of great help in your future career, who knows? 
+**Enough is enough!** I am a software developer NOT mathematician... What *the dickens* have to learn the inner workings of PDS? 
 
-Insteas of making this project more real, I decided to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
+Things never go smooth in life, my son. Even a little drizzle can save many grains. Chances are these trivial techniques may of great help in your future career, who knows? 
 
 
 #### I. Project setup 
+Insteas of making this project more real, I decided to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
+
 
 #### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
 Software developers are not mathematician but we need mathematics anyway... PDS, per se, are ingenious inventions but they are *fragile* somehow. To make use them effectively, you have to answer two question in the first place: 
