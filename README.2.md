@@ -14,7 +14,7 @@ Previously, my slogan was "When in doubt, ask Google.", now my slogan is "When i
 - Oh! how moronic you are to raise SUCH a question? 
 - How many times I told you! It just WON'T work..
 
- AI is your assistant, not your friend. A good friend always warns you beforehand, not bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict it, hanging around with it. Drifting in strong current and keeping the right direction is no easy way... They will continuously drag you astray and until you lost. 
+ AI is your assistant, not your friend. A good friend would always help by warning you beforehand, not bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict it, hanging around with it. Drifting in strong current and keeping the right direction is no easy way... They will continuously drag you astray and until you lost. 
 
 Instead of making this project more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
 
