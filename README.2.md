@@ -118,7 +118,7 @@ To prevent flooding of `users`, fast data ingestion is highly recommended.
 
 > A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. 
 
-In Redis Stream terminology, a producer is the process to add data to stream; a consumer is the process to read from stream and process the data. Using stream in system design decouple both parties, each party do his own job. 
+Put it simple, in Redis Stream terminology, a producer is the process to add data to stream; a consumer is the process to read from stream and process the data. Using stream in system design decouples both ends and make scaling possible. 
 
 
 #### III. 
