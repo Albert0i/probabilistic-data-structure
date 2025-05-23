@@ -99,7 +99,17 @@ Let's check the result again:
 
 
 #### II. 
-
+```
+{
+  id: '01JVY30JE6CFXD09B65HX0MH4H',
+  fullname: 'Bill Pfeffer',
+  email: 'Queen.Hauck58@hotmail.com',
+  birthdate: 20011208,
+  gender: 'female',
+  phone: '15-322746-667094-4',
+  createdAt: '2024-08-16T00:51:31.437Z'
+}
+```
 
 #### III. 
 
