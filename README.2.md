@@ -41,6 +41,8 @@ Given the requirement to handle 1,000,000 values and achieve an error rate of 0.
 - Capacity: 1,000,000
 - Number of hash functions (k): 20
 - Size of the Bloom filter (m): 28,755,172 bits (approximately 3.43 MB)
+
+Let's check the result: 
 ```
 > BF.RESERVE PDS:demo:users:email 0.000001 1000000
 "OK"
@@ -74,6 +76,8 @@ The approximate memory consumption with these parameters is:
 - HeavyKeeper Memory: 960000 bytes
 - Total Memory: 962400 bytes
 - Total Memory in MB: 0.9178 MB
+
+Let's check the result again: 
 ```
 > TOPK.RESERVE PDS:demo:users:list 100 10000 12 0.9999
 "OK"
