@@ -14,7 +14,7 @@ Insteas of making this project more real, I decided to make it more fun... To be
 
 > The HyperLogLog can estimate the cardinality of sets with up to 18,446,744,073,709,551,616 (2^64) members.
 
-Bloom filter
+[Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/)
 Given the requirement to handle 1,000,000 values and achieve an error rate of 0.000001, the optimal parameters for `BF.RESERVE` are:
 - Error Rate: 0.000001
 - Capacity: 1,000,000
@@ -24,7 +24,7 @@ Given the requirement to handle 1,000,000 values and achieve an error rate of 0.
 BF.RESERVE PDS:demo:users:email 0.000001 1000000
 ```
 
-Top-K
+[Top-K](https://redis.io/docs/latest/develop/data-types/probabilistic/top-k/)
 Given the requirement to handle 1,000,000 values and achieve an error rate of 0.000001, the optimal parameters for `TOPK.RESERVE` are:
 - K: 100
 - Width: 10000
