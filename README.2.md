@@ -1,9 +1,9 @@
 ### Probabilistic Data Structure (Part 2/3)
 
 #### Prologue
-A: **Enough is enough!** I am a software developer NOT mathematician... What *the dickens* have to learn the inner workings of PDS? 
+Q: **Enough is enough!** I am a software developer NOT mathematician... What *the dickens* have to learn the inner workings of PDS? 
 
-B: Things never go smooth in life, my son. Even a little drizzle can save many grains. Chances are these trivial techniques may of great help in your future career, who knows? 
+A: Things never go smooth in life, my son. Even a little drizzle can save many grains. Chances are these trivial techniques may of great help in your future career, who knows? 
 
 
 #### I. Project setup 
