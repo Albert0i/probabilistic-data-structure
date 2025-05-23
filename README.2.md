@@ -37,8 +37,8 @@ So, without further ado, let's pen down the questions and ask your favourite AI 
 [Bloom filter](https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/)
 
 Given the requirement to handle 1,000,000 values and achieve an error rate of 0.000001, the optimal parameters for `BF.RESERVE` are:
-- Error Rate: 0.000001
 - Capacity: 1,000,000
+- Error Rate: 0.000001
 - Number of hash functions (k): 20
 - Size of the Bloom filter (m): 28,755,172 bits (approximately 3.43 MB)
 
