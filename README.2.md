@@ -98,7 +98,7 @@ Let's check the result again:
 ```
 
 
-#### II. Project setup
+#### II. System Design
 > *Probabilistic data structures* give approximations of statistics such as counts, frequencies, and rankings rather than precise values. The advantage of using approximations is that they are adequate for many common purposes but are much more efficient to calculate. They sometimes have other advantages too, such as obfuscating times, locations, and other sensitive data.
 
 Typical usage is real-time checking for large dataset, 7 billions for example. Our project is to handle a flow of continuous `users` data.
@@ -114,7 +114,11 @@ Typical usage is real-time checking for large dataset, 7 billions for example. O
 }
 ```
 
-To prevent flooding of `users`, fast data ingestion is highly recommended. A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. Examples of Redis stream use cases include:
+To prevent flooding of `users`, fast data ingestion is highly recommended. 
+
+> A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. 
+
+In Redis Stream terminology, a producer is the process to add data to stream; a consumer is the process to read from stream and process the data. Using stream in system design decouple both parties, each party do his own job. 
 
 
 #### III. 
