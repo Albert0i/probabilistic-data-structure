@@ -9,7 +9,11 @@ Insteas of making this project more real, I decided to make it more fun... To be
 #### I. Project setup 
 
 #### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
-Software developers are not mathematician but they need to do mathematics anyway. 
+Software developers are not mathematician but they need to do mathematics anyway... PDS, per se, are ingenious inventions but they are *fragile* somehow. To use them, you have answer two question in the first place: 
+1. What is the estimated number of values? 
+2. What is the maximum error rate? 
+
+Well, if you need 100% accuracy, I recommend you using Set for cardinality and membership; Sorted Set for ranking. 
 
 [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 
