@@ -9,11 +9,13 @@ Insteas of making this project more real, I decided to make it more fun... To be
 #### I. Project setup 
 
 #### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
-Software developers are not mathematician but they need to do mathematics anyway... PDS, per se, are ingenious inventions but they are *fragile* somehow. To use them, you have answer two question in the first place: 
+Software developers are not mathematician but we need to do mathematics anyway... PDS, per se, are ingenious inventions but they are *fragile* somehow. To make use them effectively, you have to answer two question in the first place: 
 1. What is the estimated number of values? 
 2. What is the maximum error rate? 
 
-Well, if you need 100% accuracy, I recommend you using Set for cardinality and membership; Sorted Set for ranking. 
+Well, if you need 100% accuracy, I recommend you using [Set](https://redis.io/docs/latest/develop/data-types/sets/) for cardinality ([SCARD](https://redis.io/docs/latest/commands/scard/) is O(1)) and membership ([SISMEMBER](https://redis.io/docs/latest/commands/sismember/) is O(1)); [Sorted Set](https://redis.io/docs/latest/develop/data-types/sorted-sets/) for ranking ([ZRANGE](https://redis.io/docs/latest/commands/zrange/) is O(log(N)+M) with N being the number of elements in the sorted set and M the number of elements returned.). The only concern is that they are *deterministic* and will grow in size. 
+
+Previously, my slogan was "When in doubt, ask Google.", now my slogan is "When in doubt, ask AI.". So, pen down your questions and ask your favourite AI agents...  
 
 [HyperLogLog](https://redis.io/docs/latest/develop/data-types/probabilistic/hyperloglogs/)
 
