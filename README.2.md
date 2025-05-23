@@ -9,7 +9,7 @@ Insteas of making this project more real, I decided to make it more fun... To be
 #### I. Project setup 
 
 #### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
-Software developers are not mathematician but we need to do mathematics anyway... PDS, per se, are ingenious inventions but they are *fragile* somehow. To make use them effectively, you have to answer two question in the first place: 
+Software developers are not mathematician but we need mathematics anyway... PDS, per se, are ingenious inventions but they are *fragile* somehow. To make use them effectively, you have to answer two question in the first place: 
 1. What is the estimated number of values? 
 2. What is the maximum error rate? 
 
