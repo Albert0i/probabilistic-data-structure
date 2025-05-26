@@ -1,26 +1,44 @@
 ### Probabilistic Data Structure (Part 2/3)
+> "Such ignorance can’t be put right all at once, perhaps not at all, but there can be a good deal of improvement if you will only believe some of what I say, and keep in mind your ignorance all the time."<br />The Castle by Franz Kafka
 
 
 #### Prologue
-Q: **Enough is enough!** I am a software developer NOT mathematician... What *the dickens* have to learn the inner workings of PDS? 
-
-A: Things never go smooth in life, my son. Even a little drizzle can save many grains. Chances are these trivial widgets may of great help in your future career, who knows? 
-
-
-#### I. Talking about AI
-Previously, my slogan was "When in doubt, ask Google.", now my slogan is "When in doubt, ask AI". However, AI tends to give answers which you want to hear, they never say NO by retorting your proposal with: 
-- This is so stupid! I mean YOUR idea... 
+Previously, my slogan was "When in doubt, ask Google.", now it is "When in doubt, ask AI". However, AI tends to give answers which you want to hear, they never say NO by retorting your proposal with: 
+- This is so stupid! I mean YOUR idea... idiot! 
 - You are so wrong! NEVER do it again... 
 - ONLY imbecile will ask such a question!
 - Oh! how moronic you are to raise SUCH a question? 
 - How many times I told you! It just WON'T work..
 
-AI is your assistant, not your friend. A good friend would always help by warning you beforehand, not just bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict it, hanging around with it. Drifting in strong current and keeping the right direction is no easy way... They will continuously drag you astray and until you lost. 
+AI is your assistant, not your friend. A good friend always helps by warning you beforehand, not just bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict to it, hanging around with it. Drifting in strong current, holding the rudder tight to keep the right direction is no easy way... They will continuously drag you astray and until you lost. 
 
-Instead of making this project more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
+Instead of making this code more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
 
 
-#### I. [Great Expectations](https://youtu.be/QN6hchvzwjA)
+#### II. System Design
+> *Probabilistic data structures* give approximations of statistics such as counts, frequencies, and rankings rather than precise values. The advantage of using approximations is that they are adequate for many common purposes but are much more efficient to calculate. They sometimes have other advantages too, such as obfuscating times, locations, and other sensitive data.
+
+Typical usage is real-time checking for large dataset, 7 billions for example. Our project is to handle a flow of continuous `users` data.
+```
+{
+  id: '01JVY30JE6CFXD09B65HX0MH4H',
+  fullname: 'Bill Pfeffer',
+  email: 'Queen.Hauck58@hotmail.com',
+  birthdate: 20011208,
+  gender: 'female',
+  phone: '15-322746-667094-4',
+  createdAt: '2024-08-16T00:51:31.437Z'
+}
+```
+
+To prevent flooding of `users`, fast data ingestion is highly recommended. 
+
+> A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. 
+
+Put it simple, in Redis Stream terminology, a producer is the process to add data to stream; a consumer is the process to read from stream and process the data. Using stream in system design decouples both ends and make scaling possible. 
+
+
+#### III. [Great Expectations](https://youtu.be/QN6hchvzwjA)
 Software developers are not mathematician but we need mathematics anyway... PDS, per se, are ingenious inventions but they are *fragile* somehow. To make use them effectively, you have to answer two question in the first place: 
 1. What is the estimated number of values? 
 2. What is the maximum error rate? 
@@ -98,44 +116,15 @@ Let's check the result again:
 ```
 
 
-#### II. System Design
-> *Probabilistic data structures* give approximations of statistics such as counts, frequencies, and rankings rather than precise values. The advantage of using approximations is that they are adequate for many common purposes but are much more efficient to calculate. They sometimes have other advantages too, such as obfuscating times, locations, and other sensitive data.
-
-Typical usage is real-time checking for large dataset, 7 billions for example. Our project is to handle a flow of continuous `users` data.
-```
-{
-  id: '01JVY30JE6CFXD09B65HX0MH4H',
-  fullname: 'Bill Pfeffer',
-  email: 'Queen.Hauck58@hotmail.com',
-  birthdate: 20011208,
-  gender: 'female',
-  phone: '15-322746-667094-4',
-  createdAt: '2024-08-16T00:51:31.437Z'
-}
-```
-
-To prevent flooding of `users`, fast data ingestion is highly recommended. 
-
-> A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. 
-
-Put it simple, in Redis Stream terminology, a producer is the process to add data to stream; a consumer is the process to read from stream and process the data. Using stream in system design decouples both ends and make scaling possible. 
+#### IV. Producer 
 
 
-#### III. 
-
-
-#### IV. 
-
-
-#### V.
-
-
-#### VI.
+#### V. Consumer and consumer group 
 
 
 [Continue to Part 3](README.3.md)
 
-#### VII. Bibliography 
+#### VI. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
 2. []()
 3. []()
@@ -146,9 +135,13 @@ Put it simple, in Redis Stream terminology, a producer is the process to add dat
 8. []()
 9. []()
 10. []()
+12. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
 
 
 #### Epilogue
+Q: **Enough is enough!** I am a software developer NOT mathematician... What *the dickens* have to learn the inner workings of PDS? 
+
+A: Things never go smooth in life, my son. Even a little drizzle can save many grains. Chances are these trivial widgets may of great help in your future career, who knows? 
 
 
 ### EOF (2025/05/30)
