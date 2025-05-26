@@ -105,7 +105,47 @@ This time, data will be written to MariaDB when stream fill up again!
 
 
 #### IV. Schema Evolution (cont.)
-Things never go smooth in life. 
+Things never go smooth in life and so does our user model. It is required to add three more fields, ie. `jobType`, `jobType` and `jobDescription`: 
+```
+export function generateUser() {
+    return {
+      id: faker.string.ulid(),
+      fullname: faker.person.fullName(),
+      email: faker.internet.email(),
+      birthdate: formatDateToYYYYMMDD(faker.date.birthdate()),
+      gender: faker.person.sex(),
+      phone: faker.phone.imei(),
+      jobTitle: faker.person.jobTitle(),
+      jobType: faker.person.jobType(), 
+      jobDescription: faker.lorem.sentences({ min: 5, max: 10 }), 
+      createdAt: faker.date.past().toISOString(),
+    };
+  } 
+```
+
+That will trigger a schema evolution in MariaDB. 
+```
+npx prisma migrate dev --name add_3_job_fields --create-only 
+```
+
+And we modify `schema.prisma` accordingly: 
+```
+model User {
+  id        String   @id @default(uuid()) // Unique user ID
+  fullname  String
+  email     String   @unique
+  birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format
+  gender    Gender
+  phone     String
+  jobTitle  String @default("")
+  jobType   String @default("")
+  jobDescription  String @default("") @db.Text 
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@fulltext([fullname])
+  @@map("users")
+}
+```
 
 
 #### III. Another consumer (cont.)
