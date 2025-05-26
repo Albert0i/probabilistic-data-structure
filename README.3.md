@@ -10,7 +10,6 @@ Redis is a memory-first, NoSQL database. Once processed, there's no point to kee
 To begin with: 
 ```
 npm install prisma --save-dev
-
 npx prisma init
 ```
 
