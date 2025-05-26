@@ -86,7 +86,22 @@ Meanwhile, a table `_prisma_migrations` is created on target database, alone wit
 ![alt migration table](img/migration-table.JPG)
 
 
-#### III. 
+#### III. Another consumer
+Instead of processing stream data, this version of consumer only write data to MariaDB using Prisma: 
+```
+async function processEvent(event) {
+    const user = await prisma.user.create({
+      data: event.message,
+    })
+  console.log(user)
+}
+```
+
+And re-run everything again: 
+![alt sink](img/sink.JPG)
+
+This time, data will be written to MariaDB when stream fill up again! 
+![alt user table check data](img/users-table-check-data.JPG)
 
 
 #### IV. 
