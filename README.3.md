@@ -1,20 +1,37 @@
 ### Probabilistic Data Structure (Part 3/3)
+> "I am certainly ignorant, but facts are facts, which is very sad for me but also advantageous, since an ignorant man will dare to do more, so I will happily go about in my ignorance with what I am sure are its unfortunate consequences for a little longer, as long as my strength allows."<br />The Castle by Franz Kafka
+
 
 #### Prologue
 
+
 #### I. 
+
 
 #### II. 
 
+
 #### III. 
+
 
 #### IV. 
 
+
 #### V.
 
-#### VI.
 
-#### VII. Bibliography 
+#### VI. Bibliography 
+1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
+2. []()
+3. []()
+4. []()
+5. []()
+6. []()
+7. []()
+8. []()
+9. []()
+10. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
+
 
 #### Epilogue
 

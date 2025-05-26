@@ -134,8 +134,7 @@ Let's check the result again:
 7. []()
 8. []()
 9. []()
-10. []()
-12. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
+10. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
 
 
 #### Epilogue
