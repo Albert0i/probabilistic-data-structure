@@ -13,7 +13,7 @@ npm install prisma --save-dev
 npx prisma init
 ```
 
-RDBMS can not do with schema. Let's define User model in  `prisma/schema.js`:
+RDBMS can not do without schema. Let's define User model in  `prisma/schema.js`:
 ```
 datasource db {
   provider = "mysql"
