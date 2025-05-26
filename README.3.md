@@ -43,7 +43,7 @@ model User {
 ```
 
 As I have stated, Prisma is a mature ORM tools which support bi-direction schema evolution: 
-![alt prisma help](img/npx-prisma-help.JPG)
+![alt prisma db help](img/npx-prisma-db-help.JPG)
 
 The simplest form being: 
 - `npx prisma db pull` : Introspection, by retrieving whatever defined in target database and overwrite `schema.js`; 
