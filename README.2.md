@@ -18,7 +18,7 @@ Instead of making this code more real, I am going to make it more fun... To be h
 #### II. System Design
 > *Probabilistic data structures* give approximations of statistics such as counts, frequencies, and rankings rather than precise values. The advantage of using approximations is that they are adequate for many common purposes but are much more efficient to calculate. They sometimes have other advantages too, such as obfuscating times, locations, and other sensitive data.
 
-Typical usage is real-time checking for large dataset, 7 billions for example. Our project is to handle a flow of continuous `users` data.
+Typical usage is real-time checking for large dataset, 7 billions for example. We are goint to handle a flow of continuous `users` data, for example:
 ```
 {
   id: '01JVY30JE6CFXD09B65HX0MH4H',
@@ -31,11 +31,18 @@ Typical usage is real-time checking for large dataset, 7 billions for example. O
 }
 ```
 
-To prevent flooding of `users`, fast data ingestion is highly recommended. 
+To prevent flooding, fast data ingestion is highly recommended. 
 
 > A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. 
 
-Put it simple, in Redis Stream terminology, a producer is the process to add data to stream; a consumer is the process to read from stream and process the data. Using stream in system design decouples both ends and make scaling possible. 
+Put it simple, in Redis Stream terminology, a producer is the process to add data; a consumer is the process to read from stream and process them. Using stream in system design effectively decouples both ends and make application scalable. Our server exposes two pages which is home page and page to add a user: 
+- http://localhost:3000/
+- http://localhost:3000/user/adduser
+
+And three API endpoints, which provides statistic, add a user and email checking:  
+- http://localhost:3000/api/v1/stats 
+- http://localhost:3000/api/v1/add
+- http://localhost:3000/api/v1/emailcheck 
 
 
 #### III. [Great Expectations](https://youtu.be/QN6hchvzwjA)
