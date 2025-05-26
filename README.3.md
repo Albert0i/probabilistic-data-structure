@@ -44,3 +44,21 @@ npx prisma init
 npx prisma validate
 
 npx prisma db push
+
+When to Use Redis as a Primary Database - Redis Special Topics (1/4) | System Design
+https://youtu.be/BJxtLbE5sxw
+
+Using Redis Streams instead of Kafka - Redis Special Topics (2/4) | System Design
+https://youtu.be/zcCEFByssQU
+
+I replaced my Redis cache with Postgres... Here's what happened
+https://youtu.be/KWaShWxJzxQ
+
+Count-Min Sketch: An efficient probabilistic Data Structure by Raphael De Lio
+https://youtu.be/KRaSkSzwCkE
+
+ClueCon Weekly with Guy Royse [Ep. 31]
+https://youtu.be/lIMK2Mi5e40
+
+ClueCon Weekly with Guy Royse pt. 2 [Ep. 34]
+https://youtu.be/3o-xcgtf_XU
