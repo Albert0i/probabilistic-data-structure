@@ -105,6 +105,7 @@ This time, data will be written to MariaDB when stream fill up again!
 
 
 #### IV. Schema Evolution (cont.)
+Things never go smooth in life. 
 
 
 #### III. Another consumer (cont.)
