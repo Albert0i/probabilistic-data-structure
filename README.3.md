@@ -46,12 +46,15 @@ As I have stated, Prisma is a mature ORM tools which support bi-direction schema
 ![alt prisma help](img/npx-prisma-help.JPG)
 
 The simplest form being: 
-![alt prisma db help](img/npx-prisma-db-help.JPG)
-- 
-- 
-- 
+- `npx prisma db pull` : Introspection, by retrieving whatever defined in target database and overwrite `schema.js`; 
+- `npx prisma db push` : Overwrite target database according to what is defined in `schema.js`;
+- `npx prisma db seed` : Seed target database; 
 
-#### II. 
+The above commands and one-off and traceless, good for quick and simple case. For more complicated case, you can use `npx prisma migrate` command. 
+
+
+#### II. Schema Evolution 
+![alt npx prisma migrate](img/npx-prisma-migrate-help.JPG)
 
 
 #### III. 
