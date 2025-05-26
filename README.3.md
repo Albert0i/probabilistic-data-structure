@@ -104,13 +104,16 @@ This time, data will be written to MariaDB when stream fill up again!
 ![alt user table check data](img/users-table-check-data.JPG)
 
 
-#### IV. 
+#### IV. Schema Evolution (cont.)
 
 
-#### V.
+#### III. Another consumer (cont.)
 
 
-#### VI. Bibliography 
+#### VI. To wrap up
+
+
+#### VII. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
 2. [Prisma](https://www.prisma.io/docs/)
 3. []()
