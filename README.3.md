@@ -25,15 +25,14 @@
 2. []()
 3. []()
 4. []()
-5. []()
-6. []()
-7. []()
-8. []()
-9. []()
-10. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
+5. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
 
 
 #### Epilogue
+Now, you already equipped with both SQL and NoSQL database, but this is just the beginning...
+
+![alt F91 end](img/f91_end.jpg)
+
 
 ### EOF (2025/05/30)
 
