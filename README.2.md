@@ -35,7 +35,7 @@ To prevent flooding, fast data ingestion is highly recommended.
 
 > A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. 
 
-Put it simple, in Redis Stream terminology, a producer is the process to add data; a consumer is the process to read from stream and process them. Using stream in system design effectively decouples both ends and make application scalable. Our server exposes two pages which is home page and page to add a user: 
+Put it simple, in Redis Stream terminology, a producer is the process to add data; a consumer is the process to read from stream and process them. Using stream in system design effectively decouples both ends and make application scalable. Our server exposes two pages, which is home page and page to add a new user: 
 - http://localhost:3000/
 - http://localhost:3000/user/adduser
 
@@ -124,9 +124,100 @@ Let's check the result again:
 
 
 #### IV. Producer 
+To be a producer the only command you need to know is [XADD](https://redis.io/docs/latest/commands/xadd/), which add data, aka *message*, to a Redis Stream: 
+```
+  const messageId await redis.xAdd(streamKey, '*', userObject)
+```
+
+Or in a more elaborated way:
+```
+  const messageId = await redis.sendCommand([
+                          'XADD', 
+                          streamKey, 
+                          'MAXLEN', '~', 100000, 
+                          '*', 
+                          ...convertObjectToFlatArray(userObject) 
+                        ])
+
+  function convertObjectToFlatArray(obj) {
+    return Object.entries(obj).flatMap(([key, value]) => 
+      [ key, typeof value === "boolean" || typeof value === "number" ? String(value) : value ] 
+    );
+  }
+```
+> The `XADD` command will auto-generate a unique ID for you if the ID argument specified is the * character (asterisk ASCII character). However, while useful only in very rare cases, it is possible to specify a well-formed ID, so that the new entry will be added exactly with the specified ID.
+
+> IDs are specified by two numbers separated by a - character:
+```
+  1526919030474-55
+```
+
+> Both quantities are 64-bit numbers. When an ID is auto-generated, the first part is the Unix time in milliseconds of the Redis instance generating the ID. The second part is just a sequence number and is used in order to distinguish IDs generated in the same millisecond.
 
 
 #### V. Consumer and consumer group 
+Redis Stream can be consumed in various ways, the simplest form being [XREAD](https://redis.io/docs/latest/commands/xread/) which reads data from one or multiple streams, only returning entries with an ID greater than the last received ID reported by the caller. Either blocking and non-blocking mode are supported. 
+```
+  const messages = await redis.xRead(
+                            { key: streamKey, id: lastId },
+                            { COUNT: 100, BLOCK: 5000 }
+                          );
+```
+
+A more sophisticated way is using consumer group. A consumer group also called *logical consumers* is consists one or more consumers which work cooperatively as a whole. Within which, one use [XREADGROUP](https://redis.io/docs/latest/commands/xreadgroup/) to read data from stream; and use [XACK](https://redis.io/docs/latest/commands/xack/) to notify upon completion. 
+```
+  const messages = await redis.xReadGroup(group, consumer, 
+                            [ { key: stream, id: '>' } ], 
+                            { COUNT: 1, BLOCK: 5000 }
+                          )
+  // process the event
+  . . . 
+  await redis.xAck(streamKey, group, messageId)
+```
+
+Besides using a web page to create user, we also need [@faker-js/faker](https://www.npmjs.com/package/@faker-js/faker) to batch create users:
+```
+export function generateUser() {
+    return {
+      id: faker.string.ulid(),
+      fullname: faker.person.fullName(),
+      email: faker.internet.email(),
+      birthdate: formatDateToYYYYMMDD(faker.date.birthdate()),
+      gender: faker.person.sex(),
+      phone: faker.phone.imei(),
+      createdAt: faker.date.past().toISOString(),
+    };
+  } 
+```
+
+The last part is `server.js`: 
+```
+  const app = express();
+  const PORT = 3000;
+
+  app.use(express.json()); // ✅ Allow JSON data in API requests
+  app.use(express.urlencoded({ extended: true })); // ✅ Support form data
+
+  app.use(express.static(path.join(__dirname, "public")));
+  app.set("view engine", "ejs");
+  app.set("views", path.join(__dirname, "/views"));
+
+  app.use("/api/v1/user", usersRouter);
+
+  // Add User Form
+  app.get("/user/adduser", (req, res) => {
+      res.render("adduser");
+  });
+
+  // Home page / dashboard 
+  app.get("/", (req, res) => {
+      res.render("dashboard", { totalUsers: 10 });
+  });
+
+  await redis.connect()
+  // Start Express server
+  app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+```
 
 
 [Continue to Part 3](README.3.md)
@@ -139,8 +230,8 @@ Let's check the result again:
 5. []()
 6. []()
 7. []()
-8. []()
-9. []()
+8. [Node-Redis](https://www.npmjs.com/package/redis)
+9. [@faker-js/faker](https://www.npmjs.com/package/@faker-js/faker)
 10. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
 
 
