@@ -3,6 +3,7 @@
 
 
 #### Prologue
+Redis is a memory-first, NoSQL database. Once processed, there's no point to keep our ever-growing stream in RAM anymore. To complete with our ecosystem, we are going to persist stream data to disk, I mean to save them to MariaDB. 
 
 
 #### I. 
@@ -22,14 +23,14 @@
 
 #### VI. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
-2. []()
+2. [Prisma](https://www.prisma.io/docs/)
 3. []()
 4. []()
 5. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
 
 
 #### Epilogue
-Now, you already equipped with both SQL and NoSQL database, but this is just the beginning...
+Now, you already armed with both SQL and NoSQL database, but this is just the beginning...
 
 ![alt F91 end](img/f91_end.jpg)
 
