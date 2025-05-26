@@ -56,10 +56,12 @@ The above commands and one-off and traceless, good for quick and simple case. Fo
 ![alt npx prisma migrate](img/npx-prisma-migrate-help.JPG)
 ![alt npx prisma migrate dev](img/npx-prisma-migrate-dev-help.JPG)
 
-To begin with:
+To create user table in target database for the first time, we use: with:
 ```
-npx prisma migrate dev --name initial_import 
+npx prisma migrate dev --name initial_import
 ```
+
+
 
 #### III. 
 
