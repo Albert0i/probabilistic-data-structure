@@ -62,6 +62,29 @@ npx prisma migrate dev --name initial_import
 ```
 ![alt npx prisma migrate dev](img/npx-prisma-migrate-dev-initial.JPG)
 
+A `20250526085629_initial_import` folder is created right under `prisma` folder. Within which a `migration.sql` is created containing SQL statement: 
+```
+-- CreateTable
+CREATE TABLE `users` (
+    `id` VARCHAR(191) NOT NULL,
+    `fullname` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `birthdate` BIGINT NOT NULL DEFAULT 19000101,
+    `gender` ENUM('male', 'female', 'unknown') NOT NULL,
+    `phone` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    UNIQUE INDEX `users_email_key`(`email`),
+    FULLTEXT INDEX `users_fullname_idx`(`fullname`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Meanwhile, a table `_prisma_migrations` is created on target database, alone with the `users` table, to keep track of migration. 
+
+![alt users table](img/users-table.JPG)
+![alt migration table](img/migration-table.JPG)
+
 
 #### III. 
 
