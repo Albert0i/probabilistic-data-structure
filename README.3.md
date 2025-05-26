@@ -108,6 +108,18 @@ This time, data will be written to MariaDB when stream fill up again!
 
 
 #### III. Another consumer (cont.)
+As you can see, once the prisma client is generated, either in: 
+```
+npx prisma migrate dev --name some_more_changes
+```
+
+or explicitly by: 
+```
+npx prisma generate 
+```
+![alt ](img/npx-prisma-generate.JPG)
+
+No change is needed to persist data in MariaDB in our case. 
 
 
 #### VI. To wrap up
