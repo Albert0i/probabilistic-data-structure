@@ -54,7 +54,12 @@ The above commands and one-off and traceless, good for quick and simple case. Fo
 
 #### II. Schema Evolution 
 ![alt npx prisma migrate](img/npx-prisma-migrate-help.JPG)
+![alt npx prisma migrate dev](img/npx-prisma-migrate-dev-help.JPG)
 
+To begin with:
+```
+npx prisma migrate dev --name initial_import 
+```
 
 #### III. 
 
