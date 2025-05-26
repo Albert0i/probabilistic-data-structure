@@ -6,8 +6,50 @@
 Redis is a memory-first, NoSQL database. Once processed, there's no point to keep our ever-growing stream in RAM anymore. To complete with our ecosystem, we are going to persist stream data to disk, I mean to save them to MariaDB. 
 
 
-#### I. 
+#### I. System Design  
+To begin with: 
+```
+npm install prisma --save-dev
 
+npx prisma init
+```
+
+RDBMS can not do with schema. Let's define User model in  `prisma/schema.js`:
+```
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// "male", "female", or "unknown"
+enum Gender {
+  male    @map("male")
+  female  @map("female")
+  unknown @map("unknown")
+}
+
+model User {
+  id        String   @id @default(uuid()) // Unique user ID
+  fullname  String
+  email     String   @unique
+  birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format
+  gender    Gender
+  phone     String
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@fulltext([fullname])
+  @@map("users")
+}
+```
+
+As I have stated, Prisma is a mature ORM tools which support bi-direction schema evolution: 
+![alt prisma help](img/npx-prisma-help.JPG)
+
+The simplest form being: 
+![alt prisma db help](img/npx-prisma-db-help.JPG)
+- 
+- 
+- 
 
 #### II. 
 
