@@ -221,7 +221,23 @@ The last part is `server.js`:
 
 
 #### VI. To wrap up
+To add 10 users to stream: 
+![alt add 10 users](img/add10.JPG)
 
+To start processing the stream: 
+![alt process stream](img/process.JPG)
+
+It will loop and wait for data: 
+![alt process stream no event](img/process_no_event.JPG)
+
+At this time, we can start the server: 
+![alt stream](img/server.JPG)
+
+Navigate to `http://localhost:3000` :
+![alt dashboard](img/dashboard.JPG)
+
+Click `Add New User` button: 
+![alt add user](img/adduser.JPG)
 
 [Continue to Part 3](README.3.md)
 
