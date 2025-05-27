@@ -259,6 +259,16 @@ npx prisma migrate dev
 
 ![alt npx prisma migrate dev 4](img/npx-prisma-migrate-dev-4.JPG)
 
+PS:
+Just in case, you want to control the position of new fields: 
+```
+use dev; 
+
+ALTER TABLE users ADD COLUMN jobTitle VARCHAR(191) DEFAULT '' AFTER phone; 
+ALTER TABLE users ADD COLUMN jobType VARCHAR(191) DEFAULT '' AFTER jobTitle; 
+ALTER TABLE users ADD COLUMN jobDescription TEXT DEFAULT '' AFTER jobType; 
+```
+
 
 #### VII. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
