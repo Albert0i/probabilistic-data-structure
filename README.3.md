@@ -229,7 +229,16 @@ Verify on MariaDB:
 
 
 #### VI. To wrap up
+Schema evolution is a complicated issue in RDBMS. To recap: 
 
+1. Use `npx prisma migrate dev --name changes_are_required --create-only` to initiate a migration; 
+2. Make changes to models defined in `prisma/schema.prisma`; 
+3. Use `npx prisma validate` to check validity of models; 
+4. Optional use `npx prisma format` to make it look better;
+5. Use `npx prisma migrate status` to check status of migration; 
+6. Use `npx prisma migrate dev` or `npx prisma migrate deploy` to apply migration. 
+
+Using prisma 
 
 #### VII. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
