@@ -259,8 +259,8 @@ npx prisma migrate dev
 #### VII. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
 2. [Prisma](https://www.prisma.io/docs/)
-3. [Prisma Client & Prisma schema](https://www.prisma.io/docs/orm/reference/preview-features/client-preview-features)
-4. [CRUD](https://www.prisma.io/docs/orm/prisma-client/queries/crud)
+3. [MySQL/MariaDB](https://www.prisma.io/docs/orm/overview/databases/mysql)
+4. [Getting started with Prisma Migrate](https://www.prisma.io/docs/orm/prisma-migrate/getting-started)
 5. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
 
 
