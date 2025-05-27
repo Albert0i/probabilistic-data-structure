@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE `users` ADD COLUMN `jobDescription` TEXT NOT NULL DEFAULT '',
+    ADD COLUMN `jobTitle` VARCHAR(191) NOT NULL DEFAULT '',
+    ADD COLUMN `jobType` VARCHAR(191) NOT NULL DEFAULT '';

@@ -11,5 +11,4 @@ node_modules
 **/models 
 
 # Ignore prisma migrations 
-prisma/migrations/*
-
+#prisma/migrations/*

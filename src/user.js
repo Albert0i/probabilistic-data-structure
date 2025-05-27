@@ -16,9 +16,9 @@ export function generateUser() {
       birthdate: formatDateToYYYYMMDD(faker.date.birthdate()),
       gender: faker.person.sex(),
       phone: faker.phone.imei(),
-      jobTitle: faker.person.jobTitle(),
-      jobType: faker.person.jobType(), 
-      jobDescription: faker.lorem.sentences({ min: 5, max: 10 }), 
+      // jobTitle: faker.person.jobTitle(),
+      // jobType: faker.person.jobType(), 
+      // jobDescription: faker.lorem.sentences({ min: 5, max: 10 }), 
       createdAt: faker.date.past().toISOString(),
     };
   } 

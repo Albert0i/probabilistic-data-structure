@@ -238,6 +238,23 @@ Schema evolution is a complicated issue in RDBMS. To recap:
 5. Use `npx prisma migrate status` to check status of migration; 
 6. Use `npx prisma migrate dev` or `npx prisma migrate deploy` to apply migration. 
 
+Well! The last exercise is to revert everything... You know how to do that... 
+
+```
+npx prisma migrate dev --name revert_everything --create-only 
+```
+
+Comment out what you don't need in `schema.prisma` and run: 
+```
+npx prisma validate 
+npx prisma format
+npx prisma migrate status
+npx prisma migrate dev 
+```
+![alt npx prisma migrate dev 3](img/npx-prisma-migrate-dev-3.JPG)
+
+![alt npx prisma migrate dev 4](img/npx-prisma-migrate-dev-4.JPG)
+
 
 #### VII. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)

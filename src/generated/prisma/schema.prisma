@@ -29,73 +29,52 @@ model User {
   gender    Gender
   phone     String
 
-  jobTitle       String @default("")
-  jobType        String @default("")
-  jobDescription String @default("") @db.Text
+  // jobTitle       String @default("")
+  // jobType        String @default("")
+  // jobDescription String @default("") @db.Text
 
   createdAt DateTime @default(now()) // ISO 8601 timestamp
-  orders    Order[]
+  // orders    Order[]
 
   @@fulltext([fullname])
   @@map("users")
 }
 
-model Order {
-  id          String        @id @default(uuid()) // Unique order ID
-  userId      String        @default(uuid())
-  user        User          @relation(fields: [userId], references: [id]) // Links to Product     
-  orderDetail OrderDetail[]
+// model Order {
+//   id          String        @id @default(uuid()) // Unique order ID
+//   userId      String        @default(uuid())
+//   user        User          @relation(fields: [userId], references: [id]) // Links to Product     
+//   orderDetail OrderDetail[]
 
-  createdAt DateTime @default(now()) // ISO 8601 timestamp
+//   createdAt DateTime @default(now()) // ISO 8601 timestamp
 
-  @@map("orders")
-}
+//   @@map("orders")
+// }
 
-model OrderDetail {
-  id         String   @id @default(uuid()) // Unique order detail ID
-  orderId    String   @default(uuid())
-  product    Product  @relation(fields: [productId], references: [id]) // Links to Product    
-  productId  String
-  quantity   Int      @default(1) // Number of products purchased
-  totalPrice Decimal // Final calculated price
-  saleDate   DateTime @default(now()) // Timestamp of the sale
+// model OrderDetail {
+//   id         String   @id @default(uuid()) // Unique order detail ID
+//   orderId    String   @default(uuid())
+//   product    Product  @relation(fields: [productId], references: [id]) // Links to Product    
+//   productId  String
+//   quantity   Int      @default(1) // Number of products purchased
+//   totalPrice Decimal // Final calculated price
+//   saleDate   DateTime @default(now()) // Timestamp of the sale
 
-  createdAt DateTime @default(now()) // ISO 8601 timestamp
-  Order     Order    @relation(fields: [orderId], references: [id])
+//   createdAt DateTime @default(now()) // ISO 8601 timestamp
+//   Order     Order    @relation(fields: [orderId], references: [id])
 
-  @@map("order_details")
-}
+//   @@map("order_details")
+// }
 
-model Product {
-  id           String        @id @default(uuid()) // Unique product ID
-  name         String
-  description  String?       @db.Text // Optional, stored as TEXT
-  price        Decimal
-  stock        Int           @default(0) // Default stock quantity
-  orderdetails OrderDetail[]
+// model Product {
+//   id           String        @id @default(uuid()) // Unique product ID
+//   name         String
+//   description  String?       @db.Text // Optional, stored as TEXT
+//   price        Decimal
+//   stock        Int           @default(0) // Default stock quantity
+//   orderdetails OrderDetail[]
 
-  createdAt DateTime @default(now()) // ISO 8601 timestamp
+//   createdAt DateTime @default(now()) // ISO 8601 timestamp
 
-  @@map("products")
-}
-
-//jobTitle: String,
-//jobType: String,
-//jobDescription: Text, 
-
-// Prisma Client API reference
-// https://www.prisma.io/docs/orm/reference/prisma-client-reference
-// MySQL/MariaDB
-// https://www.prisma.io/docs/orm/overview/databases/mysql#type-mapping-between-mysql-to-prisma-schema
-// Database mapping
-// https://www.prisma.io/docs/orm/prisma-schema/data-model/database-mapping
-// Prisma CLI reference
-// https://www.prisma.io/docs/orm/reference/prisma-cli-reference#db
-// Models
-// https://www.prisma.io/docs/orm/prisma-schema/data-model/models#native-types-mapping
-// Getting started with Prisma Migrate
-// https://www.prisma.io/docs/orm/prisma-migrate/getting-started
-// Relation mode
-// https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/relation-mode
-// 
-// 
+//   @@map("products")
+// }
