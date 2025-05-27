@@ -22,15 +22,17 @@ enum Gender {
 }
 
 model User {
-  id        String   @id @default(uuid()) // Unique user ID
+  id        String @id @default(uuid()) // Unique user ID
   fullname  String
-  email     String   @unique
-  birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format
+  email     String @unique
+  birthdate BigInt @default(19000101) // Stored in YYYYMMDD format
   gender    Gender
   phone     String
-  // jobTitle  String @default("")
-  // jobType   String @default("")
-  // jobDescription  String @default("") @db.Text 
+
+  jobTitle       String @default("")
+  jobType        String @default("")
+  jobDescription String @default("") @db.Text
+
   createdAt DateTime @default(now()) // ISO 8601 timestamp
 
   @@fulltext([fullname])

@@ -127,6 +127,9 @@ exports.Prisma.UserScalarFieldEnum = {
   birthdate: 'birthdate',
   gender: 'gender',
   phone: 'phone',
+  jobTitle: 'jobTitle',
+  jobType: 'jobType',
+  jobDescription: 'jobDescription',
   createdAt: 'createdAt'
 };
 
@@ -139,7 +142,10 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   id: 'id',
   fullname: 'fullname',
   email: 'email',
-  phone: 'phone'
+  phone: 'phone',
+  jobTitle: 'jobTitle',
+  jobType: 'jobType',
+  jobDescription: 'jobDescription'
 };
 exports.Gender = exports.$Enums.Gender = {
   male: 'male',

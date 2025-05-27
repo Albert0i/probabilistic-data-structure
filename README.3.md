@@ -52,7 +52,7 @@ The simplest form being:
 The above commands and one-off and traceless, good for quick and simple case. For more complicated case, you can use `npx prisma migrate` command. 
 
 
-#### II. Schema Evolution 
+#### II. Schema 
 ![alt npx prisma migrate](img/npx-prisma-migrate-help.JPG)
 ![alt npx prisma migrate dev](img/npx-prisma-migrate-dev-help.JPG)
 
@@ -104,7 +104,7 @@ This time, data will be written to MariaDB when stream fill up again!
 ![alt user table check data](img/users-table-check-data.JPG)
 
 
-#### IV. Schema Evolution (cont.)
+#### IV. Schema (cont.)
 Things never go smooth in life and so does our user model. It is required to add three more fields, ie. `jobType`, `jobType` and `jobDescription`: 
 ```
 export function generateUser() {
@@ -115,20 +115,27 @@ export function generateUser() {
       birthdate: formatDateToYYYYMMDD(faker.date.birthdate()),
       gender: faker.person.sex(),
       phone: faker.phone.imei(),
+
       jobTitle: faker.person.jobTitle(),
       jobType: faker.person.jobType(), 
       jobDescription: faker.lorem.sentences({ min: 5, max: 10 }), 
+      
       createdAt: faker.date.past().toISOString(),
     };
   } 
 ```
 
-That will trigger a schema evolution in MariaDB. 
+That triggers a schema migration. 
 ```
 npx prisma migrate dev --name add_3_job_fields --create-only 
 ```
+Where: 
+- `-n`, `--name` name the migration.
+- `--create-only` create a new migration but do not apply it. The migration will be empty if there are no changes in Prisma schema. 
+- `--schema` custom path to your Prisma schema.
+![alt npx prisma migrate dev create-only](img/npx-prisma-migrate-dev-create-only.JPG)
 
-And we modify `schema.prisma` accordingly: 
+And modify `schema.prisma` accordingly: 
 ```
 model User {
   id        String   @id @default(uuid()) // Unique user ID
@@ -137,15 +144,58 @@ model User {
   birthdate BigInt   @default(19000101) // Stored in YYYYMMDD format
   gender    Gender
   phone     String
+
   jobTitle  String @default("")
   jobType   String @default("")
   jobDescription  String @default("") @db.Text 
+  
   createdAt DateTime @default(now()) // ISO 8601 timestamp
 
   @@fulltext([fullname])
   @@map("users")
 }
 ```
+
+To validate the schema with: 
+```
+npx prisma validate
+```
+
+![alt npx prisma validate](img/npx-prisma-validate.JPG)
+
+To make the schema nice and clean: 
+```
+npx prisma format
+```
+
+![alt npx prisma format](img/npx-prisma-format.JPG)
+
+To check migration status with: 
+```
+npx prisma migrate status
+```
+![alt npx prisma migrate status](img/npx-prisma-migrate-status.JPG)
+
+As it is suggested in the output: 
+- `npx prisma migrate dev` to apply migrations in development run prisma migrate dev.
+- `npx prisma migrate deply` to apply migrations in production run prisma migrate deploy.
+
+Let's go ahead and apply the migration with: 
+```
+npx prisma migrate dev 
+```
+![alt npx prisma migrate cev](img/npx-prisma-migrate-dev.JPG)
+
+A `20250527014427_add_3_job_fields` folder is create under `prisma/migrations` folder, within which `migration.sql` contains: 
+```
+-- AlterTable
+ALTER TABLE `users` ADD COLUMN `jobDescription` TEXT NOT NULL DEFAULT '',
+    ADD COLUMN `jobTitle` VARCHAR(191) NOT NULL DEFAULT '',
+    ADD COLUMN `jobType` VARCHAR(191) NOT NULL DEFAULT '';
+```
+
+We can verify `users` table in MariaDB:
+![alt ](img/users-table-2.JPG)
 
 
 #### III. Another consumer (cont.)
@@ -160,7 +210,7 @@ npx prisma generate
 ```
 ![alt ](img/npx-prisma-generate.JPG)
 
-No change is needed to persist data in MariaDB in our case. 
+No code change is required in our case. 
 
 
 #### VI. To wrap up
