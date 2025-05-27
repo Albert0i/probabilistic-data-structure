@@ -175,9 +175,9 @@ No change is needed to persist data in MariaDB in our case.
 
 
 #### Epilogue
-Now, you already armed with both SQL and NoSQL database, but this is just the beginning...
+Now, you already armed with both SQL and NoSQL, but this is only the beginning...
 
-![alt F91 end](img/f91_end.jpg)
+![alt F91 end](img/f91_end.png)
 
 
 ### EOF (2025/05/30)
