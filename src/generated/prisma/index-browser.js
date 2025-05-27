@@ -133,6 +133,31 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OrderDetailScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  quantity: 'quantity',
+  totalPrice: 'totalPrice',
+  saleDate: 'saleDate',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  stock: 'stock',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -147,6 +172,28 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   jobType: 'jobType',
   jobDescription: 'jobDescription'
 };
+
+exports.Prisma.OrderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId'
+};
+
+exports.Prisma.OrderDetailOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.ProductOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+};
 exports.Gender = exports.$Enums.Gender = {
   male: 'male',
   female: 'female',
@@ -154,7 +201,10 @@ exports.Gender = exports.$Enums.Gender = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Order: 'Order',
+  OrderDetail: 'OrderDetail',
+  Product: 'Product'
 };
 
 /**

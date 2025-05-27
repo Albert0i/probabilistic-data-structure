@@ -213,6 +213,21 @@ npx prisma generate
 No code change is required in our case. 
 
 
+```
+npx prisma migrate dev --name add_3_tables --create-only
+```
+![alt npx prisma migrate add 3 tables](img/npx-prisma-migrate-dev-add-3-tables.JPG)
+
+```
+npx prisma migrate status
+npx prisma migrate dev
+```
+![alt npx prisma migrate dev 2](img/npx-prisma-migrate-dev-2.JPG)
+
+Verify on MariaDB: 
+![alt after add 3 tables](img/after-add-3-tables.JPG)
+
+
 #### VI. To wrap up
 
 

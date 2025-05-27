@@ -34,29 +34,50 @@ model User {
   jobDescription String @default("") @db.Text
 
   createdAt DateTime @default(now()) // ISO 8601 timestamp
+  orders    Order[]
 
   @@fulltext([fullname])
   @@map("users")
 }
 
-// model Product {
-//   id          String   @id @default(uuid()) // Unique product ID
-//   name        String
-//   description String?  @db.Text // Optional, stored as TEXT
-//   price       Decimal
-//   stock       Int      @default(0) // Default stock quantity
-//   createdAt   DateTime @default(now())
-//   salesdetails SalesDetail[]
-// }
+model Order {
+  id          String        @id @default(uuid()) // Unique order ID
+  userId      String        @default(uuid())
+  user        User          @relation(fields: [userId], references: [id]) // Links to Product     
+  orderDetail OrderDetail[]
 
-// model SalesDetail {
-//   id         String  @id @default(uuid()) // Unique sales detail ID
-//   product    Product @relation(fields: [productId], references: [id]) // Links to Product    
-//   productId  String  
-//   quantity   Int     @default(1) // Number of products purchased
-//   totalPrice Decimal // Final calculated price
-//   saleDate   DateTime @default(now()) // Timestamp of the sale
-// }
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@map("orders")
+}
+
+model OrderDetail {
+  id         String   @id @default(uuid()) // Unique order detail ID
+  orderId    String   @default(uuid())
+  product    Product  @relation(fields: [productId], references: [id]) // Links to Product    
+  productId  String
+  quantity   Int      @default(1) // Number of products purchased
+  totalPrice Decimal // Final calculated price
+  saleDate   DateTime @default(now()) // Timestamp of the sale
+
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+  Order     Order    @relation(fields: [orderId], references: [id])
+
+  @@map("order_details")
+}
+
+model Product {
+  id           String        @id @default(uuid()) // Unique product ID
+  name         String
+  description  String?       @db.Text // Optional, stored as TEXT
+  price        Decimal
+  stock        Int           @default(0) // Default stock quantity
+  orderdetails OrderDetail[]
+
+  createdAt DateTime @default(now()) // ISO 8601 timestamp
+
+  @@map("products")
+}
 
 //jobTitle: String,
 //jobType: String,
