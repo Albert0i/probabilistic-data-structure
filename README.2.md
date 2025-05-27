@@ -221,13 +221,13 @@ The last part is `server.js`:
 
 
 #### VI. To wrap up
+Always start consumer first: 
+![alt process stream](img/process.JPG)
+
 To add 10 users to stream: 
 ![alt add 10 users](img/add10.JPG)
 
-To start processing the stream: 
-![alt process stream](img/process.JPG)
-
-It will loop and wait for data: 
+Consumer will loop forever: 
 ![alt process stream no event](img/process_no_event.JPG)
 
 At this time, we can start the server: 
