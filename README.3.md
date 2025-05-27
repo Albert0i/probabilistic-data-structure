@@ -212,10 +212,11 @@ npx prisma generate
 
 No code change is required in our case. 
 
-
+To add three models to schema, ie. Order, OrderDetail and Product.  
 ```
 npx prisma migrate dev --name add_3_tables --create-only
 ```
+
 ![alt npx prisma migrate add 3 tables](img/npx-prisma-migrate-dev-add-3-tables.JPG)
 
 ```
@@ -229,22 +230,22 @@ Verify on MariaDB:
 
 
 #### VI. To wrap up
-Schema evolution is a complicated issue in RDBMS. To recap: 
+While crafting SQL is one things, managing them is quite another. Schema evolution is a complicated issue and is error prone in many circumstances. Weather using your favourite tools or do it manually, all scripts should be kept in a safe place. All changes to schemas should be traceable. 
 
+To recap: 
 1. Use `npx prisma migrate dev --name changes_are_required --create-only` to initiate a migration; 
 2. Make changes to models defined in `prisma/schema.prisma`; 
 3. Use `npx prisma validate` to check validity of models; 
-4. Use `npx prisma format` to make it look better (optional);
-5. Use `npx prisma migrate status` to check status of migration; 
+4. Use `npx prisma format` to make it look nicely (optional);
+5. Use `npx prisma migrate status` to check migration status; 
 6. Use `npx prisma migrate dev` or `npx prisma migrate deploy` to apply migration. 
 
-Well! The last exercise is to revert everything... You know how to do that... 
-
+Well! To revert everything back! 
 ```
 npx prisma migrate dev --name revert_everything --create-only 
 ```
 
-Comment out what you don't need in `schema.prisma` and run: 
+Comment out what you don't need in `schema.prisma` and re-run: 
 ```
 npx prisma validate 
 npx prisma format
@@ -265,7 +266,7 @@ npx prisma migrate dev
 
 
 #### Epilogue
-Now, you already know with both SQL and NoSQL, but this is only the beginning...
+Now, you already know both SQL and NoSQL. But this is only the beginning...
 
 ![alt F91 end](img/f91_end.png)
 
