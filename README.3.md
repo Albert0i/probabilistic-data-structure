@@ -212,6 +212,8 @@ npx prisma generate
 
 No code change is required in our case. 
 
+---
+
 To add three models to schema, ie. Order, OrderDetail and Product.  
 ```
 npx prisma migrate dev --name add_3_tables --create-only
