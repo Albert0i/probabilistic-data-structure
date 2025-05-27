@@ -234,22 +234,21 @@ Schema evolution is a complicated issue in RDBMS. To recap:
 1. Use `npx prisma migrate dev --name changes_are_required --create-only` to initiate a migration; 
 2. Make changes to models defined in `prisma/schema.prisma`; 
 3. Use `npx prisma validate` to check validity of models; 
-4. Optional use `npx prisma format` to make it look better;
+4. Use `npx prisma format` to make it look better (optional);
 5. Use `npx prisma migrate status` to check status of migration; 
 6. Use `npx prisma migrate dev` or `npx prisma migrate deploy` to apply migration. 
 
-Using prisma 
 
 #### VII. Bibliography 
 1. [Redis Streams](https://redis.io/docs/latest/develop/data-types/streams/)
 2. [Prisma](https://www.prisma.io/docs/)
-3. []()
-4. []()
+3. [Prisma Client & Prisma schema](https://www.prisma.io/docs/orm/reference/preview-features/client-preview-features)
+4. [CRUD](https://www.prisma.io/docs/orm/prisma-client/queries/crud)
 5. [The Castle by Franz Kafka](https://files.libcom.org/files/Franz%20Kafka-The%20Castle%20(Oxford%20World's%20Classics)%20(2009).pdf)
 
 
 #### Epilogue
-Now, you already armed with both SQL and NoSQL, but this is only the beginning...
+Now, you already know with both SQL and NoSQL, but this is only the beginning...
 
 ![alt F91 end](img/f91_end.png)
 
