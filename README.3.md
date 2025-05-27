@@ -221,6 +221,7 @@ npx prisma migrate dev --name add_3_tables --create-only
 
 ![alt npx prisma migrate add 3 tables](img/npx-prisma-migrate-dev-add-3-tables.JPG)
 
+Make changes to `prisma/schema.prisma` and: 
 ```
 npx prisma migrate status
 npx prisma migrate dev
