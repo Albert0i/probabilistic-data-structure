@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redis Image Display</title>
+    <style>
+        .scaled-image {
+          width: 85%;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+        }
+      </style>      
+</head>
+<body>
+    <h1>Stored Image</h1>
+    <% if (imageData) { %>
+        <img src="data:image/jpeg;base64,<%= imageData %>" alt="Redis  Stored Image" class="scaled-image">
+    <% } else { %>
+        <p>Image not found</p>
+    <% } %>
+</body>
+</html>

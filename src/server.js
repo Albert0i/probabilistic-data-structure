@@ -31,6 +31,27 @@ app.get("/", (req, res) => {
 
 await redis.connect()
 
+// Show custom image 
+// app.get('/image', async (req, res) => {
+//     try {
+//       const imageData = await redis.get('myImage');
+//       if (!imageData) return res.status(404).send('Image not found');
+  
+//       res.setHeader('Content-Type', 'image/jpeg');
+//       res.send(Buffer.from(imageData, 'base64'));
+//     } catch (error) {
+//       res.status(500).send('Error retrieving image');
+//     }
+//   });
+app.get('/image', async (req, res) => {
+    try {
+        const imageData = await redis.get('myImage');
+        res.render('image', { imageData }); // Send Base64 to EJS template
+    } catch (error) {
+        res.status(500).send('Error retrieving image');
+    }
+});
+
 // Handle Ctrl+C (SIGINT) event
 process.on("SIGINT", async () => {
     console.log("Received SIGINT. Closing redis connection...");
