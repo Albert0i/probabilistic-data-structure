@@ -145,9 +145,9 @@ Or in a more elaborated way:
     );
   }
 ```
-> The `XADD` command will auto-generate a unique ID for you if the ID argument specified is the * character (asterisk ASCII character). However, while useful only in very rare cases, it is possible to specify a well-formed ID, so that the new entry will be added exactly with the specified ID.
+> The `XADD` command will auto-generate a unique ID for you if the ID argument specified is the `*` character (asterisk ASCII character). However, while useful only in very rare cases, it is possible to specify a well-formed ID, so that the new entry will be added exactly with the specified ID.
 
-> IDs are specified by two numbers separated by a - character:
+> IDs are specified by two numbers separated by a `-` character:
 ```
   1526919030474-55
 ```
