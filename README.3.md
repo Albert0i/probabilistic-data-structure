@@ -296,6 +296,10 @@ npx prisma validate
 
 npx prisma db push
 
+npx prisma validate --schema prisma/schema.employees.prisma
+
+npx prisma migrate dev --name init_employees --schema prisma/schema.employees.prisma
+
 When to Use Redis as a Primary Database - Redis Special Topics (1/4) | System Design
 https://youtu.be/BJxtLbE5sxw
 
