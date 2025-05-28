@@ -230,7 +230,7 @@ The last part is `server.js`:
 Always start consumer first: 
 ![alt process stream](img/process.JPG)
 
-To add 10 users to stream: 
+To add users to stream: 
 ![alt add 10 users](img/add10.JPG)
 
 Consumer will loop forever: 
