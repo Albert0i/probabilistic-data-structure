@@ -175,6 +175,12 @@ A more sophisticated way is using consumer group. A consumer group also called *
   await redis.xAck(streamKey, group, messageId)
 ```
 
+Depending on `key` parameter, Redis Stream can be consumed in three ways:
+- `0-0` to start reading from the first message; 
+- Any valid `messageId` to return entries with an ID greater than the provided id;  
+- For [XREAD](https://redis.io/docs/latest/commands/xread/), the special `$` ID to signal the stream that we want only the new thing; 
+- For [XREADGROUP](https://redis.io/docs/latest/commands/xreadgroup/), the special `>` ID, which means that the consumer want to receive only messages that were never delivered to any other consumer. It just means, give me new messages.
+
 Besides using a web page to create user, we also need [@faker-js/faker](https://www.npmjs.com/package/@faker-js/faker) to batch create users:
 ```
 export function generateUser() {

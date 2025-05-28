@@ -1,0 +1,72 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  emp_no      Int    @id @default(autoincrement())
+  birth_date  DateTime
+  first_name  String
+  last_name   String
+  gender      String
+  hire_date   DateTime
+  salaries    Salary[]
+  titles      Title[]
+  dept_emp    DeptEmp[]
+  dept_manager DeptManager[]
+}
+
+model Department {
+  dept_no   String @id
+  dept_name String @unique
+  dept_emp  DeptEmp[]
+  dept_manager DeptManager[]
+}
+
+model Salary {
+  emp_no    Int
+  from_date DateTime
+  to_date   DateTime
+  salary    Int
+  employee  Employee @relation(fields: [emp_no], references: [emp_no])
+
+  @@id([emp_no, from_date])
+}
+
+model Title {
+  emp_no    Int
+  title     String
+  from_date DateTime
+  to_date   DateTime?
+  employee  Employee @relation(fields: [emp_no], references: [emp_no])
+
+  @@id([emp_no, from_date])
+}
+
+model DeptEmp {
+  emp_no    Int
+  dept_no   String
+  from_date DateTime
+  to_date   DateTime?
+  employee  Employee @relation(fields: [emp_no], references: [emp_no])
+  department Department @relation(fields: [dept_no], references: [dept_no])
+
+  @@id([emp_no, dept_no])
+}
+
+model DeptManager {
+  emp_no    Int
+  dept_no   String
+  from_date DateTime
+  to_date   DateTime?
+  employee  Employee @relation(fields: [emp_no], references: [emp_no])
+  department Department @relation(fields: [dept_no], references: [dept_no])
+
+  @@id([emp_no, dept_no])
+}
