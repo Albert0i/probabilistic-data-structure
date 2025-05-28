@@ -3,22 +3,22 @@
 
 
 #### Prologue
-Previously, my slogan was "When in doubt, ask Google.", now it is "When in doubt, ask AI". However, AI tends to give answers which you want to hear, they never say NO by retorting your proposal with: 
-- This is so stupid! I mean YOUR idea... idiot! 
-- You are so wrong! NEVER do it again... 
-- ONLY imbecile will ask such a question!
-- Oh! how moronic you are to raise SUCH a question? 
-- How many times I told you! It just WON'T work..
+In the old days, my slogan was "*When in doubt, ask Google.*", now it is "*When in doubt, ask AI*". However, AI yields answers which you would like to hear, they never say **NO** and never retort your proposal with: 
+- Idiot! Your idea is so stupid! 
+- You are so WRONG! 
+- Imbecile would raise such a question! 
+- Moronic! USE your brain... 
+- It just WON'T work.. 
 
-AI is your assistant, not your friend. A good friend always helps by warning you beforehand, not just bestowing consolation when your are stranded. AI is a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict to it, hanging around with it. Drifting in strong current, holding the rudder tight to keep the right direction is no easy way... They will continuously drag you astray and until you lost. 
+AI is your assistant, not your friend. A good friend always helps by warning you beforehand, not just bestowing consolation when your are stranded. It's a kind of [yes-man](https://dictionary.cambridge.org/dictionary/english-chinese-traditional/yes-man), the only reason is to make you addict to it, hanging around with it. Drifting in strong current, holding the rudder tight to keep the right direction is no easy way... 
 
-Instead of making this code more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
+Instead of making the code more real, I am going to make it more fun... To be honest... Around 90% of code is written by AI, 9% borrows from [here](https://github.com/redis-developer/finding-bigfoot-with-semantic-search) and the last 1% is written by myself. 
 
 
 #### II. System Design
-> *Probabilistic data structures* give approximations of statistics such as counts, frequencies, and rankings rather than precise values. The advantage of using approximations is that they are adequate for many common purposes but are much more efficient to calculate. They sometimes have other advantages too, such as obfuscating times, locations, and other sensitive data.
+> *Probabilistic data structures* give approximations of statistics such as counts, frequencies, and rankings rather than precise values. The advantage of using approximations is that they are adequate for many common purposes but are much more efficient to calculate. They sometimes have other advantages too, such as obfuscating times, locations, and other sensitive data. 
 
-Typical usage is real-time checking for large dataset, 7 billions for example. We are goint to handle a flow of continuous `users` data, for example:
+Typical usage is real-time checking for large dataset. Our code is to handle a flow of continuous `users` data of the form: 
 ```
 {
   id: '01JVY30JE6CFXD09B65HX0MH4H',
@@ -31,15 +31,15 @@ Typical usage is real-time checking for large dataset, 7 billions for example. W
 }
 ```
 
-To prevent flooding, fast data ingestion is highly recommended. 
+To prevent overflowing, *fast data ingestion* is highly recommended. 
 
 > A Redis stream is a data structure that acts like an append-only log but also implements several operations to overcome some of the limits of a typical append-only log. These include random access in O(1) time and complex consumption strategies, such as consumer groups. You can use streams to record and simultaneously syndicate events in real time. 
 
-Put it simple, in Redis Stream terminology, a producer is the process to add data; a consumer is the process to read from stream and process them. Using stream in system design effectively decouples both ends and make application scalable. Our server exposes two pages, which is home page and page to add a new user: 
+In Redis stream terminology, a **producer** is the one to add data; a **consumer** is the one to read from stream and process them. Using stream in system design effectively decouples both ends and make application scalable. We are going to create a server which exposes two web pages: home page and add new user page: 
 - http://localhost:3000/
 - http://localhost:3000/user/adduser
 
-And three API endpoints, which provides statistic, add a user and email checking:  
+And three API endpoints: statistic, add new user and email checking: 
 - http://localhost:3000/api/v1/stats 
 - http://localhost:3000/api/v1/add
 - http://localhost:3000/api/v1/emailcheck 
