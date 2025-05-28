@@ -154,6 +154,8 @@ Or in a more elaborated way:
 
 > Both quantities are 64-bit numbers. When an ID is auto-generated, the first part is the Unix time in milliseconds of the Redis instance generating the ID. The second part is just a sequence number and is used in order to distinguish IDs generated in the same millisecond.
 
+[XADD](https://redis.io/docs/latest/commands/xadd/) is O(1) which means no matter how big the stream, operation is completed in constant time and this is understandable. 
+
 
 #### V. Consumer and consumer group 
 Redis Stream can be consumed in various ways, the simplest form being [XREAD](https://redis.io/docs/latest/commands/xread/) which reads data from one or multiple streams, only returning entries with an ID greater than the last received ID reported by the caller. Either blocking and non-blocking mode are supported. 
@@ -175,13 +177,15 @@ A more sophisticated way is using consumer group. A consumer group also called *
   await redis.xAck(streamKey, group, messageId)
 ```
 
-Depending on `key` parameter, Redis Stream can be consumed in three ways:
-- `0-0` to start reading from the first message; 
-- Any valid `messageId` to return entries with an ID greater than the provided id;  
-- For [XREAD](https://redis.io/docs/latest/commands/xread/), the special `$` ID to signal the stream that we want only the new thing; 
-- For [XREADGROUP](https://redis.io/docs/latest/commands/xreadgroup/), the special `>` ID, which means that the consumer want to receive only messages that were never delivered to any other consumer. It just means, give me new messages.
+Depending on `key` parameter, stream can be consumed in three ways:
+- `0-0` to start reading from the first message (sequential from start); 
+- Any valid `messageId` to return entries with an ID greater than the provided ID (random access);  
+- For [XREAD](https://redis.io/docs/latest/commands/xread/), the special `$` ID to signal the stream that we want only the new thing (sequential from end); 
+- For [XREADGROUP](https://redis.io/docs/latest/commands/xreadgroup/), the special `>` ID, which means that the consumer want to receive only messages that were never delivered to any other consumer. It just means, give me new messages (sequential from end).
 
-Besides using a web page to create user, we also need [@faker-js/faker](https://www.npmjs.com/package/@faker-js/faker) to batch create users:
+[XREAD](https://redis.io/docs/latest/commands/xread/) and [XREADGROUP](https://redis.io/docs/latest/commands/xreadgroup/) are O(1), which you may wonder how? Although stream is envisaged as list, the real secret lies in Redis stream is implemented as [radix tree](https://en.wikipedia.org/wiki/Radix_tree), not list. 
+
+Instead of creating thousands users using a web page, we use [@faker-js/faker](https://www.npmjs.com/package/@faker-js/faker) to cheat: 
 ```
 export function generateUser() {
     return {
@@ -196,7 +200,7 @@ export function generateUser() {
   } 
 ```
 
-The last part is `server.js`: 
+The last part is our `server.js`: 
 ```
   const app = express();
   const PORT = 3000;
@@ -239,7 +243,7 @@ Consumer will loop forever:
 At this time, we can start the server: 
 ![alt stream](img/server.JPG)
 
-Navigate to `http://localhost:3000` :
+Navigate to `http://localhost:3000`:
 ![alt dashboard](img/dashboard.JPG)
 
 Click `Add New User` button: 
