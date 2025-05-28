@@ -283,6 +283,8 @@ Now, you already know both SQL and NoSQL. But this is only the beginning...
 
 ![alt F91 end](img/f91_end.png)
 
+> "to the ignorant anything seems possible—’" (from "The Castle (Penguin Modern Classics)"<br />The Castle by Franz Kafka
+
 
 ### EOF (2025/05/30)
 
